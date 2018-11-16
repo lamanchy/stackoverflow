@@ -10,29 +10,25 @@ def get_result(rule, value):
 
 
 def view_results():
-    print('r', end='\t')
-    for value in values:
-        print(value, end='\t')
-    print()
-
-    for i, rule in enumerate(get_rules()):
-        print(i, end='\t')
-        for value in values:
-            print(get_result(rule, value), end='\t')
+    colors = ["green", "yellow", "red", "black"]
+    for c, color in enumerate(colors):
+        print(colors[:c + 1])
+        print('r', end='\t')
+        color_values = []
+        color_rules = []
+        for color in colors[:c + 1]: color_values += values[color]
+        for color in colors[:c + 1]: color_rules += get_rules()[color]
+        color_values.sort()
+        for value in color_values:
+            print(value, end='\t')
         print()
 
+        for i, rule in enumerate(color_rules):
+            print(i, end='\t')
+            for value in color_values:
+                print(get_result(rule, value), end='\t')
+            print()
 
 
-
-
-
-
-view_results()
-
-
-
-
-
-
-
-
+if __name__ == "__main__":
+    view_results()
