@@ -10,7 +10,10 @@ def get_rules():
             lambda x: x,
             lambda x: x + 5,
             lambda x: x + 11,
-            lambda x: x - 1,  # I would not substract more, so the result is never negative (0 in worst case)
+            #  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
+
+            # I would not substract more, so the result is never negative (0 in worst case)
+            lambda x: x - 1,
             lambda x: min(x * 2, 20),
             lambda x: floor(x / 3),
             lambda x: max(x, 7),
@@ -26,6 +29,8 @@ def get_rules():
             yellow_if_2,
             yellow_for,
             yellow_while,
+            lambda x: "test",
+            #  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
         ],
         "red": [
             #     lambda x: sin(pi * x / 2),
@@ -37,11 +42,17 @@ def get_rules():
     }
 
 
+#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
+#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
+
 def yellow_if_1(x):
     if x < 10: return 66
     if x > 66: return 10
     return 42
 
+
+#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
+#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
 
 def yellow_if_2(x):
     if x != 10:
@@ -54,6 +65,9 @@ def yellow_if_2(x):
     return x
 
 
+#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
+#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
+
 def yellow_for(x):
     for i in range(floor(x) % 5):
         x += 10
@@ -61,8 +75,26 @@ def yellow_for(x):
     return x
 
 
+#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
+#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
 def yellow_while(x):
     while x % 4 != 0:
         x = round(x / 3)
 
+    asd = "string", 'string', "string'string'"
+
+    # comment sdeeed
+
     return x
+
+#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
+#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
+
+
+def get_all_functions():
+    fns = []
+    for color in get_rules():
+        for fn in get_rules()[color]:
+            fns.append((fn, color))
+
+    return fns
