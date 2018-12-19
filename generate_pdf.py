@@ -9,9 +9,10 @@ from rules import get_rules, get_all_functions
 from values import get_all_values
 
 FONT = "fonts/DejaVuSansMono.ttf"
+FONT_BOLD = "fonts/DejaVuSansMono-Bold.ttf"
 
-ANTIALIASING = 1  # do not set bigger that 32 :D
-RESOLUTION_DPI = 100
+ANTIALIASING = 2  # do not set bigger that 32 :D
+RESOLUTION_DPI = 200
 CARD_SIZE_MM = (87, 57)
 
 RESOLUTION_DPI *= ANTIALIASING
@@ -37,8 +38,8 @@ def mm_to_px(*args):
     return type(x)([mm_to_px(i) for i in x])
 
 
-def get_font(size):
-    return ImageFont.truetype(FONT, size=size * RESOLUTION_DPI // 100)
+def get_font(size, font=FONT):
+    return ImageFont.truetype(font, size=size * RESOLUTION_DPI // 100)
 
 
 color_codes = {
@@ -125,10 +126,30 @@ def get_card_base():
     return card
 
 
-def get_card_base_with_color(color):
+def get_order_sign_n_color(order):
+    sign = "♠"
+    if order % 4 == 1: sign = u"♣"
+    if order % 4 == 2: sign = u"♥"
+    if order % 4 == 3: sign = u"♦"
+
+    number = (8 + order) // 4
+    if number == 11:
+        number = "J"
+    elif number == 12:
+        number = "Q"
+    elif number == 13:
+        number = "K"
+    elif number == 14:
+        number = "A"
+    else:
+        number = str(number)
+    return sign + number, "orange" if (order // 2) % 2 == 1 else "blue"
+
+
+def get_card_base_with_color(order, color):
     card = get_card_base()
     draw = ImageDraw.Draw(card)
-    base_size = 6
+    base_size = 10
     move_up = 3
     move_left = 3
     smaller_by = 0
@@ -145,6 +166,14 @@ def get_card_base_with_color(color):
         base_size + move_left - smaller_by,
         CARD_SIZE_MM[1] - move_up - smaller_by
     ), fill=color_codes[color])
+
+    font = get_font(15, FONT_BOLD)
+
+    sign, color = get_order_sign_n_color(order)
+    w, h = draw.textsize(sign, font)
+    draw.text(
+        (mm_to_px(move_left + base_size // 2) - w // 2, mm_to_px(CARD_SIZE_MM[1] - base_size // 2 - move_up) - h // 2),
+        sign, font=font, fill=color_codes[color])
 
     return card
 
@@ -165,11 +194,11 @@ def get_source_code_position_n_size(source_code, draw):
         min_font_size += 1
 
 
-def get_fn_card_front(fn, color):
+def get_fn_card_front(order, fn, color):
     source_code = get_source_code(fn)
     colors = get_source_code_coloring(source_code)
 
-    card = get_card_base_with_color(color)
+    card = get_card_base_with_color(order, color)
     base = Image.new("RGBA", mm_to_px(CARD_SIZE_MM), (0, 0, 0, 0))
     draw = ImageDraw.Draw(base)
     sc_size = get_source_code_position_n_size(source_code, draw)
@@ -185,9 +214,9 @@ def get_fn_card_front(fn, color):
     return card
 
 
-def get_value_card_front(value, color):
-    value = "{0:.5f}".format(value).rstrip('0').rstrip('.')
-    card = get_card_base_with_color(color)
+def get_value_card_front(order, value, color):
+    value = value[1]
+    card = get_card_base_with_color(order, color)
     draw = ImageDraw.Draw(card)
     font = get_font(30)
     W, H = mm_to_px(CARD_SIZE_MM)
@@ -196,7 +225,6 @@ def get_value_card_front(value, color):
     draw.text(((W - w) // 2, (H - h) // 2), value, font=font, fill=color_codes["blue"])
 
     return card
-
 
 
 def get_card_back(color):
@@ -210,22 +238,22 @@ def get_card_back(color):
     return card
 
 
-def get_fn_card(fn, color):
-    return get_fn_card_front(fn, color), get_card_back("yellow")
+def get_fn_card(order, fn, color):
+    return get_fn_card_front(order, fn, color), get_card_back("yellow")
 
 
-def get_value_card(value, color):
-    return get_value_card_front(value, color), get_card_back("blue")
+def get_value_card(order, value, color):
+    return get_value_card_front(order, value, color), get_card_back("blue")
 
 
 if __name__ == "__main__":
     fn = get_rules()["yellow"][-1]
 
-    cards = [get_fn_card(fn, c) for fn, c in get_all_functions()]
-    cards += [get_value_card(v, c) for v, c in get_all_values()]
+    cards = [get_value_card(i, v, c) for i, (v, c) in enumerate(get_all_values())]
+    cards += [get_fn_card(i, fn, c) for i, (fn, c) in enumerate(get_all_functions())]
 
-    front_canvas = back_canvas = None # deklarace
-    base_point = int(mm_to_px(210) / 2 - mm_to_px(CARD_SIZE_MM[0])),\
+    front_canvas = back_canvas = None  # deklarace
+    base_point = int(mm_to_px(210) / 2 - mm_to_px(CARD_SIZE_MM[0])), \
                  int(mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]) - mm_to_px(2.5))
     pages = []
     for i, card in enumerate(cards):
@@ -245,7 +273,8 @@ if __name__ == "__main__":
             pages.append(front_canvas)
             pages.append(back_canvas)
 
-    pages[0].save("stack_overflow.pdf", save_all=True, append_images=pages[1:], title="Stack Overflow card game", resolution=RESOLUTION_DPI)
+    pages[0].save("stack_overflow.pdf", save_all=True, append_images=pages[1:], title="Stack Overflow card game",
+                  resolution=RESOLUTION_DPI)
 
     exit(0)
 

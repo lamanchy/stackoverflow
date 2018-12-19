@@ -3,7 +3,7 @@ from math import *
 
 def get_rules():
     return {
-        "green": [  # 10 very simple
+        "green": [  # 16 very simple  .... 2-5
             lambda x: 5,
             lambda x: 12,
             lambda x: 19,
@@ -17,8 +17,9 @@ def get_rules():
             lambda x: min(x * 2, 20),
             lambda x: floor(x / 3),
             lambda x: max(x, 7),
+            #     TODO 6 missing
         ],
-        "yellow": [  # 6 math, 4 very simple programs
+        "yellow": [  # 12 math, 8 very simple programs ... 6-10
             lambda x: x - 13,
             lambda x: 151 - x,
             lambda x: x / -6,
@@ -29,14 +30,16 @@ def get_rules():
             yellow_if_2,
             yellow_for,
             yellow_while,
-            lambda x: "test",
             #  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
+            #     TODO 10 missing
         ],
-        "red": [
+        "red": [  # KQJ
+            #     TODO 12 missing
             #     lambda x: sin(pi * x / 2),
 
         ],
-        "grey": [
+        "white": [  # esa
+            #     TODO 4 missing
             # black_goto_hell,
         ]
     }
@@ -87,13 +90,14 @@ def yellow_while(x):
 
     return x
 
+
 #  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
 #  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
 
 
 def get_all_functions():
     fns = []
-    for color in get_rules():
+    for color in ["green", "yellow", "red", "white"]:
         for fn in get_rules()[color]:
             fns.append((fn, color))
 

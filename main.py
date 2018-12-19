@@ -7,10 +7,12 @@ def get_result(rule, value):
         return int(rule(value))
     except ZeroDivisionError:
         return 'zd'
+    except ValueError:
+        return 'te'
 
 
 def view_results():
-    colors = ["green", "yellow", "red", "black"]
+    colors = ["green", "yellow", "red", "grey"]
     for c, color in enumerate(colors):
         print(colors[:c + 1])
         print('r', end='\t')
@@ -18,6 +20,7 @@ def view_results():
         color_rules = []
         for color in colors[:c + 1]: color_values += values[color]
         for color in colors[:c + 1]: color_rules += get_rules()[color]
+        color_values = [v[0] for v in color_values]
         color_values.sort()
         for value in color_values:
             print(value, end='\t')
