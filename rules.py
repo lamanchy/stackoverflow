@@ -36,7 +36,7 @@ def get_rules():
             #     lambda x: sin(pi * x / 2),
 
         ],
-        "black": [
+        "grey": [
             # black_goto_hell,
         ]
     }

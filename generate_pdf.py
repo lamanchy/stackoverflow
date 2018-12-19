@@ -6,11 +6,12 @@ from PIL import Image, ImageFont, ImageDraw, ImageColor
 from PIL.Image import ANTIALIAS
 
 from rules import get_rules, get_all_functions
+from values import get_all_values
 
 FONT = "fonts/DejaVuSansMono.ttf"
 
-ANTIALIASING = 2  # do not set bigger that 32 :D
-RESOLUTION_DPI = 300
+ANTIALIASING = 1  # do not set bigger that 32 :D
+RESOLUTION_DPI = 100
 CARD_SIZE_MM = (87, 57)
 
 RESOLUTION_DPI *= ANTIALIASING
@@ -51,6 +52,7 @@ color_codes = {
     "yellow": "#FFC66D",
     "green": "#6A8759",
     "grey": "#808080",
+    "red": "#AA4926",
 }
 
 
@@ -183,6 +185,20 @@ def get_fn_card_front(fn, color):
     return card
 
 
+def get_value_card_front(value, color):
+    value = "{0:.5f}".format(value).rstrip('0').rstrip('.')
+    card = get_card_base_with_color(color)
+    draw = ImageDraw.Draw(card)
+    font = get_font(30)
+    W, H = mm_to_px(CARD_SIZE_MM)
+    w, h = draw.textsize(value, font)
+
+    draw.text(((W - w) // 2, (H - h) // 2), value, font=font, fill=color_codes["blue"])
+
+    return card
+
+
+
 def get_card_back(color):
     card = get_card_base()
     draw = ImageDraw.Draw(card)
@@ -195,17 +211,22 @@ def get_card_back(color):
 
 
 def get_fn_card(fn, color):
-    return get_fn_card_front(fn, color), get_card_back(color)
+    return get_fn_card_front(fn, color), get_card_back("yellow")
+
+
+def get_value_card(value, color):
+    return get_value_card_front(value, color), get_card_back("blue")
 
 
 if __name__ == "__main__":
     fn = get_rules()["yellow"][-1]
 
     cards = [get_fn_card(fn, c) for fn, c in get_all_functions()]
+    cards += [get_value_card(v, c) for v, c in get_all_values()]
 
     front_canvas = back_canvas = None # deklarace
-    base_point = int(mm_to_px(210) / 2 - mm_to_px(CARD_SIZE_MM[0])), int(
-        mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]))
+    base_point = int(mm_to_px(210) / 2 - mm_to_px(CARD_SIZE_MM[0])),\
+                 int(mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]) - mm_to_px(2.5))
     pages = []
     for i, card in enumerate(cards):
         i_mod = i % 10
