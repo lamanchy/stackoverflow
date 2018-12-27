@@ -5,6 +5,7 @@ from numbers import Number
 from PIL import Image, ImageFont, ImageDraw, ImageColor
 from PIL.Image import ANTIALIAS
 
+from help_cards import get_all_help_cards
 from rules import get_rules, get_all_functions
 from values import get_all_values
 
@@ -71,9 +72,10 @@ def get_source_code(fn):
 
 color_regexes = [
     (r".*", "white"),  # default color
-    (r"\d", "blue"),  # default color
-    (r'(?:^|\s)(round|range|abs|max|min|floor|len)', "violet"),
-    (r'(?:^|\s)(lambda|def|if|while|and|or|else|elif|for|in|return)', "orange"),
+    (r"\d", "blue"),
+    (r"(pi|inf)", "blue"),
+    (r'(?:^|\s|\()(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str|pow|float|eval|copysign)(?=\()', "violet"),
+    (r'(?:^|\s)(lambda|def|if|while|and|or|else|elif|for|in|return)(?:\W)', "orange"),
     (r'def (\w*)', "yellow"),
     (r"'[^']*'", "green"),
     (r'"[^"]*"', "green"),
@@ -170,9 +172,13 @@ def get_card_base_with_color(order, color):
     font = get_font(15, FONT_BOLD)
 
     sign, color = get_order_sign_n_color(order)
-    w, h = draw.textsize(sign, font)
+    w, _ = draw.textsize(sign, font)
+    _, h = draw.textsize("8", font)
     draw.text(
-        (mm_to_px(move_left + base_size // 2) - w // 2, mm_to_px(CARD_SIZE_MM[1] - base_size // 2 - move_up) - h // 2),
+        (
+            mm_to_px(move_left + base_size // 2) - w // 2 - mm_to_px(.1),
+            mm_to_px(CARD_SIZE_MM[1] - base_size // 2 - move_up) - h // 2 - mm_to_px(.45)
+        ),
         sign, font=font, fill=color_codes[color])
 
     return card
@@ -183,7 +189,7 @@ def get_source_code_position_n_size(source_code, draw):
 
     min_font_size = 1
     max_font_size = 25
-    available_size = mm_to_px(CARD_SIZE_MM[0] - 30, CARD_SIZE_MM[1] - 30)
+    available_size = list(mm_to_px(CARD_SIZE_MM[0] - 10, CARD_SIZE_MM[1] - 30))
 
     while True:
         size = draw.textsize(source_code, get_font(min_font_size))
@@ -192,6 +198,7 @@ def get_source_code_position_n_size(source_code, draw):
             return min_font_size - 1
 
         min_font_size += 1
+        available_size[0] *= .99
 
 
 def get_fn_card_front(order, fn, color):
@@ -242,6 +249,26 @@ def get_fn_card(order, fn, color):
     return get_fn_card_front(order, fn, color), get_card_back("yellow")
 
 
+def get_help_card(order, help_text):
+    source_code = help_text
+    colors = get_source_code_coloring(source_code)
+
+    card = get_card_base()
+    base = Image.new("RGBA", mm_to_px(CARD_SIZE_MM), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(base)
+    sc_size = get_source_code_position_n_size(source_code, draw)
+    font = get_font(sc_size)
+    W, H = mm_to_px(CARD_SIZE_MM)
+    w, h = draw.textsize(source_code, font)
+
+    for color in colors:
+        draw.text((mm_to_px(10), (H - h) // 2 - mm_to_px(2)), colors[color], font=font, fill=color_codes[color])
+
+    card.paste(base, mask=base)
+
+    return card
+
+
 def get_value_card(order, value, color):
     return get_value_card_front(order, value, color), get_card_back("blue")
 
@@ -249,12 +276,14 @@ def get_value_card(order, value, color):
 if __name__ == "__main__":
     fn = get_rules()["yellow"][-1]
 
-    cards = [get_value_card(i, v, c) for i, (v, c) in enumerate(get_all_values())]
+    cards = []
+    cards += [get_value_card(i, v, c) for i, (v, c) in enumerate(get_all_values())]
     cards += [get_fn_card(i, fn, c) for i, (fn, c) in enumerate(get_all_functions())]
+    cards += [(get_help_card(i, help1), get_help_card(i, help2)) for i, (help1, help2) in enumerate(get_all_help_cards())]
 
     front_canvas = back_canvas = None  # deklarace
     base_point = int(mm_to_px(210) / 2 - mm_to_px(CARD_SIZE_MM[0])), \
-                 int(mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]) - mm_to_px(2.5))
+                 int(mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]) - mm_to_px(.25))
     pages = []
     for i, card in enumerate(cards):
         i_mod = i % 10
@@ -262,11 +291,11 @@ if __name__ == "__main__":
             front_canvas = Image.new("RGB", mm_to_px(210, 297), (255, 255, 255))
             back_canvas = Image.new("RGB", mm_to_px(210, 297), (255, 255, 255))
 
-        offset_x = mm_to_px(CARD_SIZE_MM[0] + 1) if i % 2 == 1 else 0
-        offset_y = mm_to_px(CARD_SIZE_MM[1] + 1) * (i_mod - (i % 2)) // 2
+        offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 1 else 0
+        offset_y = mm_to_px(CARD_SIZE_MM[1] + .05) * (i_mod - (i % 2)) // 2
 
         front_canvas.paste(card[0], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[0])
-        offset_x = mm_to_px(CARD_SIZE_MM[0] + 1) if i % 2 == 0 else 0
+        offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 0 else 0
         back_canvas.paste(card[1], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[1])
 
         if i_mod == 9 or i + 1 == len(cards):
@@ -275,9 +304,3 @@ if __name__ == "__main__":
 
     pages[0].save("stack_overflow.pdf", save_all=True, append_images=pages[1:], title="Stack Overflow card game",
                   resolution=RESOLUTION_DPI)
-
-    exit(0)
-
-    for fn, c in get_all_functions():
-        show(get_fn_card_front(fn, c))
-        break

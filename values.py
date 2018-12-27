@@ -17,6 +17,7 @@ for c in values:
 def get_all_values():
     fns = []
     for color in ["green", "yellow", "red", "white"]:
+    # for color in ["green", "yellow"]:
         for fn in values[color]:
             fns.append((fn, color))
 
