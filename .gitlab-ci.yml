@@ -21,7 +21,7 @@ cache:
 
 stages:
   - build
-  - deploy
+#  - deploy
 
 build:
   stage: build
@@ -44,14 +44,14 @@ build:
       - stack_overflow.pdf
       
 
-pages:
-  stage: deploy
-  tags:
-    - shared-fi
-    
-  script:
-    - mkdir public
-    - cp stack_overflow.pdf public/stack_overflow.pdf
-  artifacts:
-    paths:
-      - public
+#pages:
+#  stage: deploy
+#  tags:
+#    - shared-fi
+#    
+#  script:
+#    - mkdir public
+#    - cp stack_overflow.pdf public/stack_overflow.pdf
+#  artifacts:
+#    paths:
+#      - public
