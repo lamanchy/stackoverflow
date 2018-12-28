@@ -37,6 +37,11 @@ build:
       
   script:
     - python generate_pdf.py
+    
+  artifacts:
+    paths:
+      - stack_overflow.pdf
+      
 
 pages:
   stage: deploy
