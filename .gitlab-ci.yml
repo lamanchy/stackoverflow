@@ -20,6 +20,7 @@ cache:
 
 stages:
   - build
+  - deploy
 
 build:
   stage: build
@@ -35,3 +36,12 @@ build:
       
   script:
     - python generate_pdf.py
+
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - cp stack_overflow.pdf public/stack_overflow.pdf
+  artifacts:
+    paths:
+      - public
