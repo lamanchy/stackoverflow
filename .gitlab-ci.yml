@@ -17,6 +17,14 @@ cache:
   paths:
     - .cache/pip
     - venv/
+    
+
+before_script:
+  - python -V               # Print out python version for debugging
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install -r requirements.txt
 
 stages:
   - build
@@ -26,19 +34,15 @@ build:
   stage: build
   tags:
     - shared-fi
-    
-  before_script:
-    - python -V               # Print out python version for debugging
-    - pip install virtualenv
-    - virtualenv venv
-    - source venv/bin/activate
-    - pip install -r requirements.txt
       
   script:
     - python generate_pdf.py
 
 pages:
   stage: deploy
+  tags:
+    - shared-fi
+    
   script:
     - mkdir public
     - cp stack_overflow.pdf public/stack_overflow.pdf
