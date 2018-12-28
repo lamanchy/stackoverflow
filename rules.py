@@ -271,3 +271,4 @@ if __name__ == "__main__":
 
         print(source_code)
         print(timeit("fn(3)", number=1000000, globals=globals()))
+
