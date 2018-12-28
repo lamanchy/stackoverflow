@@ -12,7 +12,7 @@ https://docs.google.com/document/d/1KJpDfn2CIS4Q5bR3ipN0cY1jfeCXjULs1Pb03f7ohmw/
 
 ## GDD (rules, game mechanics, loops etc.)
 
-
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/blob/master/GDD.md
 
 ## Download latest pdf here
 
