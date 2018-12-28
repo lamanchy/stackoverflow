@@ -19,13 +19,6 @@ cache:
     - venv/
     
 
-before_script:
-  - python -V               # Print out python version for debugging
-  - pip install virtualenv
-  - virtualenv venv
-  - source venv/bin/activate
-  - pip install -r requirements.txt
-
 stages:
   - build
   - deploy
@@ -34,6 +27,14 @@ build:
   stage: build
   tags:
     - shared-fi
+    
+    
+  before_script:
+    - python -V               # Print out python version for debugging
+    - pip install virtualenv
+    - virtualenv venv
+    - source venv/bin/activate
+    - pip install -r requirements.txt
       
   script:
     - python generate_pdf.py
