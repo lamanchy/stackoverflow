@@ -1,4 +1,5 @@
 import inspect
+import os
 import re
 from numbers import Number
 
@@ -74,7 +75,9 @@ color_regexes = [
     (r".*", "white"),  # default color
     (r"\d", "blue"),
     (r"(pi|inf)", "blue"),
-    (r'(?:^|\s|\()(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str|pow|float|eval|copysign)(?=\()', "violet"),
+    (
+        r'(?:^|\s|\()(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str|pow|float|eval|copysign)(?=\()',
+        "violet"),
     (r'(?:^|\s)(lambda|def|if|while|and|or|else|elif|for|in|return)(?:\W)', "orange"),
     (r'def (\w*)', "yellow"),
     (r"'[^']*'", "green"),
@@ -274,33 +277,57 @@ def get_value_card(order, value, color):
 
 
 if __name__ == "__main__":
-    fn = get_rules()["yellow"][-1]
-
     cards = []
-    cards += [get_value_card(i, v, c) for i, (v, c) in enumerate(get_all_values())]
-    cards += [get_fn_card(i, fn, c) for i, (fn, c) in enumerate(get_all_functions())]
-    cards += [(get_help_card(i, help1), get_help_card(i, help2)) for i, (help1, help2) in enumerate(get_all_help_cards())]
+    is_this_first_page = True
 
-    front_canvas = back_canvas = None  # deklarace
-    base_point = int(mm_to_px(210) / 2 - mm_to_px(CARD_SIZE_MM[0])), \
-                 int(mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]) - mm_to_px(.25))
-    pages = []
-    for i, card in enumerate(cards):
-        i_mod = i % 10
-        if i_mod == 0:
-            front_canvas = Image.new("RGB", mm_to_px(210, 297), (255, 255, 255))
-            back_canvas = Image.new("RGB", mm_to_px(210, 297), (255, 255, 255))
+    try:
+        os.remove("stack_overflow.pdf")
+    except FileNotFoundError:
+        pass
 
-        offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 1 else 0
-        offset_y = mm_to_px(CARD_SIZE_MM[1] + .05) * (i_mod - (i % 2)) // 2
 
-        front_canvas.paste(card[0], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[0])
-        offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 0 else 0
-        back_canvas.paste(card[1], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[1])
+    def generate_pdf(last_time=False):
+        if len(cards) < 10 and (not last_time or len(cards) == 0):
+            return
 
-        if i_mod == 9 or i + 1 == len(cards):
-            pages.append(front_canvas)
-            pages.append(back_canvas)
+        front_canvas = Image.new("RGB", mm_to_px(210, 297), (255, 255, 255))
+        back_canvas = Image.new("RGB", mm_to_px(210, 297), (255, 255, 255))
+        base_point = int(mm_to_px(210) / 2 - mm_to_px(CARD_SIZE_MM[0])), \
+                     int(mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]) - mm_to_px(.25))
 
-    pages[0].save("stack_overflow.pdf", save_all=True, append_images=pages[1:], title="Stack Overflow card game",
-                  resolution=RESOLUTION_DPI)
+        for i, card in enumerate(cards[:10]):
+            offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 1 else 0
+            offset_y = mm_to_px(CARD_SIZE_MM[1] + .05) * (i - (i % 2)) // 2
+
+            front_canvas.paste(card[0], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[0])
+            offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 0 else 0
+            back_canvas.paste(card[1], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[1])
+
+        def save_canvas(canvas):
+            try:
+                canvas.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
+                            resolution=RESOLUTION_DPI, append=True)
+            except IOError:
+                canvas.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
+                            resolution=RESOLUTION_DPI, append=False)
+
+        save_canvas(front_canvas)
+        save_canvas(back_canvas)
+
+        for i in range(min(len(cards), 10)):
+            cards.pop(0)
+
+
+    for i, (v, c) in enumerate(get_all_values()):
+        cards.append(get_value_card(i, v, c))
+        generate_pdf(False)
+
+    for i, (fn, c) in enumerate(get_all_functions()):
+        cards.append(get_fn_card(i, fn, c))
+        generate_pdf(False)
+
+    for i, (help1, help2) in enumerate(get_all_help_cards()):
+        cards.append((get_help_card(i, help1), get_help_card(i, help2)))
+        generate_pdf(False)
+
+    generate_pdf(True)
