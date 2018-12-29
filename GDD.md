@@ -1,52 +1,91 @@
 # StackOverflow GDD
-## název hry
-## autory hry
-## popis cílové skupiny
-## chtěný herní zážitek
-## počet hráčů
-## délka herní instance
-## herní pravidla
-## mechaniky
-## smyčky
-## identifikované problémy/neznámé návrhu hry
+## Název hry
+Stack Overflow
+## Autoři hry
+Anna Skorobogatova, Aleš Calábek, Ondřej Lomič
+## Popis cílové skupiny
+Hru může hrát kdokoliv se znalostí základů programování a syntaxe jazyka Python.
+## Chtěný herní zážitek
+Vycházíme z předpokladu, že hráče baví počítání - ať už z hlavy nebo na papíře.
+Méně zkušení hráči si mohou osvěžit/naučit se některé prvky jazyka Python,
+zkušenější hráči se mohou předhánět, kdo se nejrychleji dopočítá k výsledku,
+a kdo si z hlavy poradí i s vysokými čísly.
+## Počet hráčů
+2+
+## Délka herní instance
+30 minut
+## Herní pravidla
 
-### original text:
+### Obsah:
+1. Karty programů - karty obsahující jednoduché programy v jazyce Python; každý
+program přijímá jednu vstupní hodnotu, kterou tranformuje na jednu hodnotu výstupní.
+2. Karty hodnot - karty obsahující kladná i záporná, celá i desetinná čísla,
+sloužící jako vstupní hodnoty pro programy a jako výstupní hodnota.
 
-A script for testing possible gameplay of card game with the same name.
+### Cíl hry:
+Zůstat jako poslední hráč ve hře, to znamená jako poslední přijít o všechny karty.
 
-The basic version:
+### Příprava:
+Zamíchejte karty programů a rozdejte každému hráči 4 karty.
+Zamíchejte karty hodnot, jednu kartu vylosujte a umístěte ji na stůl tak, aby
+na ní každý hráč viděl. Tato karta představuje výstupní hodnotu a bude stejná
+po celou hru.
+Balíčky programů a hodnot položte doprostřed stolu jako lízací balíčky.
 
-+ at the beginning of each game, each players get a five cards of programs, and one output value is randomly selected form 
-the deck of values
+### Herní kolo:
+Na začátku každého herního kola je z balíčku hodnot vytažena jedna karta, která
+slouží jako vstupní hodnota programů. Úkolem všech hráčů je vybrat z karet, které
+mají v ruce, jeden či více programů tak, aby se výsledek jimi vybrané sekvence
+programů co nejvíce blížil hodnotě na kartě s výstupní hodnotou. Po uplynutí
+časového limitu, který si hráči určují domluvou, dojde k vyhodnocení kola.
+Vítězem kola se stává hráč, jehož výsledek se nejvíce blíží výstupní hodnotě,
+tedy že absolutní hodnota rozdílu jeho výsledku a výstupní hodnoty má nejmenší
+hodnotu mezi všemi hráči. Všechny použité karty programů se odhodí. Vítěz si
+z balíčku programů dobírá tolik karet, kolik měl na začátku kola, ostatní
+poražení hráči si dobírají o jednu kartu méně než měli na začátku kola. V případě
+remízy (stejného rozdílu výsledku a výstupní hodnoty) je více vítězů kola a tito
+si dobírají nesnížený počet karet. Na konec se odklidí karta se vstupní hodnotou
+a hra pokračuje novým herním kolem.
 
-+ at the beginning of each round an input value is randomly selected from the deck of values. Then, each player tries
-to select program from his has, such that it transforms input value as close to output value as possible.
+### Řetězení programů:
+K transformaci vstupní hodnoty na výstupní mohou hráči použít více než jeden
+program. V takovém případě je výstupní hodnota prvního programu použita jako
+vstupní hodnota druhého programu, výstupní hodnota druhého programu je použita
+jako vstupní hodnota třetího programu a tak dále. Výsledkem pro dané herní kolo
+je výstupní hodnota posledního programu z použité sekvence programů. Hráč musí
+jasně stanovit pořadí použitých programů.
 
-+ recursive programs can throw exception "Stack Overflow"
+### Speciální efekty karet:
+Pro některé vstupní hodnoty může v programu dojít k chybě:
+1. Recursion Error - nekončící rekurzivní program
+efekt: všichni hráči, kteří jsou mimo hru (nemají karty), se vrací do hry s jednou kartou
+2. Zero Division Error - modulo nebo dělení nulou
+efekt: v aktuálním kole všichni prohrávají a ztrácí jednu kartu
+3. Type Error - použití objektu nesprávného typu
+efekt: hráč si s jiným hráčem vlastního výběru vymění všechny karty
+4. Index Error - čtení mimo rozsah pole
+efekt: hráč může v dalším kole vylosovat novou vstupní hodnotu, pokud se mu ta
+původní nelíbí
 
-I have just a few more ideas which I want to write down somewhere. 
+### Konec hry:
+Hra končí ve chvíli, kdy zbývá jen jediný hráč s kartami v ruce.
 
-There should be different types of values and programs by difficulty.
+## Mechaniky
+herní kola, hrací karty, lízání karet, držení karet v ruce, ztráta karet
+při prohraném kole, speciální efekty (viz Herní pravidla), řetězení programů,
+výběr programů na základě vstupní a výstupní hodnoty
 
-+ green values 1 to 20, natural numbers
-+ green programs - simple ones, the output should be again inside green values, operations should be simple
-+ yellow values -20 to +100, whole
-+ yellow programs - more difficult one, but still fairly simple, no type errors, no recursive, first mega simple
-programs (for i in range(3): x += 2)
-+ red values +- 200, simple rational numbers
-+ red programs - High school math (quadratic, exponential, sin, cos, sqrt, log, fibonaci), simple programs, 
-type errors, recursive errors etc. 
-+ black something awful, pi, e, difficult programs, complex numbers?
+## Smyčky
+1. počítání výsledku pro danou vstupní hodnotu a sekvenci programů
+2. jedno herní kolo - vylosuje se vstupní hodnota, každý hráč vybere sekvenci
+programů, vyhodnocení
+3. jedna celá hra - opakování herních kol zatímco mají alespoň dva hráči karty v ruce
 
-It is important, that we make all combinations playable and balanced. So only "green" game makes sense, but also 
-"green + yellow + red"
+## Identifikované problémy/neznámé návrhu hry
+1. jak často bude docházet ke speciálním efektům a jejich balancování
+2. jak přístupná je hra pro neprogramátory
 
-Which means, that the results should be distributed more less evenly. It wouldn't make sense if most of the combinations
-would yield... 1. 
- 
-Also, when yellow has input values of -20 to 100, output values has to be in that range, because....
-
-1. The most interesting idea is, that you could "stack" programs, each round you could select more than one program,
-so the result would be program2(program1(input)). That way, it could be even more about skill, but there would be also
-bigger risk, if you would fail, you would loose all those programs. If you wouldn't fail, you would get as many new
-programs as you used. 
+## Co kdo dělal
+Anna Skorobogatova: karty
+Aleš Calábek: herní pravidla, GDD
+Ondřej Lomič: Gitlab projekt, programy
