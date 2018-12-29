@@ -49,6 +49,7 @@ color_codes = {
     "true_black": "#000000",
     "lighter_black": "#313335",
     "white": "#A9B7C6",
+    "true_white": "#FFFFFF",
     "blue": "#6897BB",
     "violet": "#8888C6",
     "orange": "#CC7832",
@@ -191,13 +192,15 @@ def get_source_code_position_n_size(source_code, draw):
     # width is exactly half the height
 
     min_font_size = 1
-    max_font_size = 25
+    max_font_size = 50
     available_size = list(mm_to_px(CARD_SIZE_MM[0] - 10, CARD_SIZE_MM[1] - 30))
 
     while True:
         size = draw.textsize(source_code, get_font(min_font_size))
 
-        if size[0] >= available_size[0] or size[1] >= available_size[1] or min_font_size == max_font_size:
+        if size[0] >= available_size[0] or size[1] >= available_size[1] or min_font_size+1 == max_font_size:
+            print(source_code.split('\n')[0])
+            print(min_font_size - 1)
             return min_font_size - 1
 
         min_font_size += 1
@@ -318,9 +321,15 @@ if __name__ == "__main__":
             cards.pop(0)
 
 
-    for i, (v, c) in enumerate(get_all_values()):
-        cards.append(get_value_card(i, v, c))
-        generate_pdf(False)
+    # for i, (v, c) in enumerate(get_all_values()):
+    #     cards.append(get_value_card(i, v, c))
+    #     generate_pdf(False)
+    #
+
+    # cards.append(get_fn_card(0, get_all_functions()[24][0], "yellow"))
+    # cards.append(get_fn_card(0, get_all_functions()[28][0], "yellow"))
+    # cards.append(get_fn_card(0, get_all_functions()[31][0], "yellow"))
+    # generate_pdf(False)
 
     for i, (fn, c) in enumerate(get_all_functions()):
         cards.append(get_fn_card(i, fn, c))

@@ -19,7 +19,7 @@ def prepare_game():
     # for whole game
     global output_value = pop_random_value()
     
-    # each player gets 4 function cards
+    # each player gets 5 function cards
     global players = []
     for _ in range(len(players)):
         players.append(

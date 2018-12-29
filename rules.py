@@ -3,6 +3,12 @@ import random
 from math import *
 
 
+# yvetsit values
+# zvetsit text na programech
+# type error, value error, stack overflow, zero division, timeout error
+# co delat pri chybe
+# napisu program aby delal stack overflow
+
 def get_rules():
     return {
         "green": [  # 16 very simple  .... 2-5
@@ -46,15 +52,15 @@ def get_rules():
 
             # 8
             lambda x: x * (x // 10),
-            lambda x: ceil(sqrt(x)),
+            lambda x: ceil(sqrt(abs(x))),
             lambda x: floor(log2(x)),
             lambda x: sin(pi * x / 2),
 
             # 9
-            if_greater_or_less,
+            if_greater_or_less,  # this
             if_equal_or_not,
             for_cycle,
-            while_cycle,
+            while_cycle,  # this
 
             # 10
             int_from_list,
@@ -157,11 +163,13 @@ def while_cycle(x):
 
 
 def int_from_list(x):
+    # index:  012345678
     string = "957812463"
     return int(string[x % 9])
 
 
 def ints_from_list(x):
+    # index:  0123456789
     string = "176485923074"
     first = x % 9
     second = first + (x % 3) + 1
