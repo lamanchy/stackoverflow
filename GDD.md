@@ -23,7 +23,7 @@ program přijímá jednu vstupní hodnotu, kterou tranformuje na jednu hodnotu v
 sloužící jako vstupní hodnoty pro programy a jako výstupní hodnota.
 
 ### Cíl hry:
-Zůstat jako poslední hráč ve hře, to znamená jako poslední přijít o všechny karty.
+Zbavit se všech karet.
 
 ### Příprava:
 Zamíchejte karty programů a rozdejte každému hráči 4 karty.
@@ -36,15 +36,14 @@ Balíčky programů a hodnot položte doprostřed stolu jako lízací balíčky.
 Na začátku každého herního kola je z balíčku hodnot vytažena jedna karta, která
 slouží jako vstupní hodnota programů. Úkolem všech hráčů je vybrat z karet, které
 mají v ruce, jeden či více programů tak, aby se výsledek jimi vybrané sekvence
-programů co nejvíce blížil hodnotě na kartě s výstupní hodnotou. Po uplynutí
-časového limitu, který si hráči určují domluvou, dojde k vyhodnocení kola.
-Vítězem kola se stává hráč, jehož výsledek se nejvíce blíží výstupní hodnotě,
+programů co nejvíce blížil hodnotě na kartě s výstupní hodnotou. Vítězem kola
+se stává hráč, jehož výsledek se nejvíce blíží výstupní hodnotě,
 tedy že absolutní hodnota rozdílu jeho výsledku a výstupní hodnoty má nejmenší
-hodnotu mezi všemi hráči. Všechny použité karty programů se odhodí. Vítěz si
-z balíčku programů dobírá tolik karet, kolik měl na začátku kola, ostatní
-poražení hráči si dobírají o jednu kartu méně než měli na začátku kola. V případě
-remízy (stejného rozdílu výsledku a výstupní hodnoty) je více vítězů kola a tito
-si dobírají nesnížený počet karet. Na konec se odklidí karta se vstupní hodnotou
+hodnotu mezi všemi hráči. Všechny použité karty programů se odhodí. Až na vítěze
+si všichni hráči si doberou z balíčku tolik karet, aby měli stejný počet karet
+jako na začátku kola, vítěz si bere o jednu kartu méně. V případě remízy
+(stejného rozdílu výsledku a výstupní hodnoty) je více vítězů kola a tito
+si dobírají snížený počet karet. Na konec se odklidí karta se vstupní hodnotou
 a hra pokračuje novým herním kolem.
 
 ### Řetězení programů:
@@ -58,17 +57,18 @@ jasně stanovit pořadí použitých programů.
 ### Speciální efekty karet:
 Pro některé vstupní hodnoty může v programu dojít k chybě:
 1. Recursion Error - nekončící rekurzivní program
-efekt: všichni hráči, kteří jsou mimo hru (nemají karty), se vrací do hry s jednou kartou
++ efekt: všichni hráči, kteří jsou mimo hru (nemají karty), se vrací do hry s jednou kartou
 2. Zero Division Error - modulo nebo dělení nulou
-efekt: v aktuálním kole všichni prohrávají a ztrácí jednu kartu
++ efekt: v aktuálním kole všichni prohrávají a ztrácí jednu kartu
 3. Type Error - použití objektu nesprávného typu
-efekt: hráč si s jiným hráčem vlastního výběru vymění všechny karty
-4. Index Error - čtení mimo rozsah pole
-efekt: hráč může v dalším kole vylosovat novou vstupní hodnotu, pokud se mu ta
++ efekt: hráč si s jiným hráčem vlastního výběru vymění všechny karty
+4. Value Error - použití hodnoty mimo očekávaný rozsah
++ efekt: hráč může v dalším kole vylosovat novou vstupní hodnotu, pokud se mu ta
 původní nelíbí
 
 ### Konec hry:
-Hra končí ve chvíli, kdy zbývá jen jediný hráč s kartami v ruce.
+Hra končí ve chvíli, kdy se jeden z hráčů zbaví všech karet a tento se stává
+vítězem.
 
 ## Mechaniky
 herní kola, hrací karty, lízání karet, držení karet v ruce, ztráta karet
@@ -86,6 +86,6 @@ programů, vyhodnocení
 2. jak přístupná je hra pro neprogramátory
 
 ## Co kdo dělal
-Anna Skorobogatova: karty
-Aleš Calábek: herní pravidla, GDD
-Ondřej Lomič: Gitlab projekt, programy
++ Anna Skorobogatova: karty
++ Aleš Calábek: herní pravidla, GDD
++ Ondřej Lomič: Gitlab projekt, programy
