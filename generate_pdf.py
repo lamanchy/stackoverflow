@@ -86,6 +86,13 @@ color_regexes = [
   (r'#\s.*', "grey"),
 ]
 
+card_colors_to_real_colors = {
+  "green": "green",
+  "yellow": "yellow",
+  "red": "red",
+  "black": "true_black",
+}
+
 
 def get_source_code_coloring(string):
   colors = [color_regexes[0][1] for i in range(len(string))]
@@ -171,7 +178,7 @@ def get_card_base_with_color(order, color):
     CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
     base_size + move_left - smaller_by,
     CARD_SIZE_MM[1] - move_up - smaller_by
-  ), fill=color_codes[color])
+  ), fill=color_codes[card_colors_to_real_colors[color]])
 
   font = get_font(15, FONT_BOLD)
 
@@ -192,16 +199,13 @@ def get_source_code_position_n_size(source_code, draw):
   # width is exactly half the height
 
   min_font_size = 1
-  max_font_size = 30
+  max_font_size = 25
   available_size = list(mm_to_px(CARD_SIZE_MM[0] - 10, CARD_SIZE_MM[1] - 30))
 
   while True:
     size = draw.textsize(source_code, get_font(min_font_size))
 
-    if size[0] >= available_size[0] or size[1] >= available_size[1] or min_font_size + 1 == max_font_size:
-      if min_font_size-1 < 15:
-        print(source_code.split('\n')[0])
-        print(min_font_size - 1)
+    if size[0] >= available_size[0] or size[1] >= available_size[1] or min_font_size - 1 == max_font_size:
       return min_font_size - 1
 
     min_font_size += 1
@@ -232,11 +236,11 @@ def get_value_card_front(order, value, color):
   value = value[1]
   card = get_card_base_with_color(order, color)
   draw = ImageDraw.Draw(card)
-  font = get_font(30)
+  font = get_font(50)
   W, H = mm_to_px(CARD_SIZE_MM)
   w, h = draw.textsize(value, font)
 
-  draw.text(((W - w) // 2, (H - h) // 2), value, font=font, fill=color_codes["blue"])
+  draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(2)), value, font=font, fill=color_codes["blue"])
 
   return card
 
@@ -246,7 +250,7 @@ def get_card_back(color):
   draw = ImageDraw.Draw(card)
   text = "Stack Overflow"
   W, H = mm_to_px(CARD_SIZE_MM)
-  font = get_font(15)
+  font = get_font(17)
   w, h = draw.textsize(text, font)
   draw.text(((W - w) // 2, (H - h) // 2), text, font=font, fill=color_codes[color])
   return card
@@ -322,10 +326,10 @@ if __name__ == "__main__":
       cards.pop(0)
 
 
-  # for i, (v, c) in enumerate(get_all_values()):
-  #     cards.append(get_value_card(i, v, c))
-  #     generate_pdf(False)
-  #
+  for i, (v, c) in enumerate(get_all_values()[:4]):
+      cards.append(get_value_card(i, v, c))
+      generate_pdf(False)
+
 
   # cards.append(get_fn_card(0, get_all_functions()[24][0], "yellow"))
   # cards.append(get_fn_card(0, get_all_functions()[28][0], "yellow"))

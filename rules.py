@@ -89,7 +89,7 @@ def get_rules():
       rec_mul,
 
     ],
-    "white": [
+    "black": [
       # A
       ack,
       lambda x: min(x, -10000),
@@ -140,12 +140,11 @@ def if_greater_or_less(x):
 #  MAX FUNCTION LINES 7 !!!!!
 
 def if_equal_or_not(x):
-  if x == 10:
-    x += 66
-  elif x != 66:
-    x -= 10
-  else:
-    return x // 10
+  if x == 10:   x += 66
+  elif x != 66: x -= 10
+  else:  return x // 10
+
+  return x
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
@@ -220,7 +219,7 @@ def reverse(x):
 
 def subtract_madness(x):
   s = "{0:.2f}".format(x)
-  s.replace('.', '--')
+  s = s.replace('.', '--')
   return eval('-'.join(s))
 
 
@@ -274,7 +273,7 @@ def ack(m, n=None):
 
 def get_all_functions():
   fns = []
-  for color in ["green", "yellow", "red", "white"]:
+  for color in ["green", "yellow", "red", "black"]:
     for fn in get_rules()[color]:
       fns.append((fn, color))
 
