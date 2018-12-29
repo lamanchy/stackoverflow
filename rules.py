@@ -34,7 +34,7 @@ def get_rules():
       # 5
       lambda x: gcd(x, 24),
       lambda x: lcm(x, 6),
-      lambda x: x if is_prime(x) else 1,
+      if_prime,
       lambda x: x % 5,
     ],
     "yellow": [  # 12 math, 8 very simple programs ... 6-10
@@ -57,10 +57,10 @@ def get_rules():
       lambda x: sin(pi * x / 2),
 
       # 9
-      if_greater_or_less,  # this
+      if_greater_or_less,
       if_equal_or_not,
       for_cycle,
-      while_cycle,  # this
+      while_cycle,
 
       # 10
       int_from_list,
@@ -83,16 +83,16 @@ def get_rules():
       subtract_madness,
 
       # K
-      rec_subtract,
+      rec_sub,
       rec_divide,
-      double_rec,
-      rec_multiply,
+      d_rec,
+      rec_mul,
 
     ],
     "white": [
       # A
-      ackermann,
-      lambda x: min(max(x, 10000), -10000),
+      ack,
+      lambda x: min(x, -10000),
       lambda x: pow(x, -x),
       lambda x: inf,
     ]
@@ -120,8 +120,15 @@ def lcm(a, b):
   return abs(a * b) // gcd(a, b)
 
 
-#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
-#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
+def if_prime(x):
+  if is_prime(x):
+    return x
+
+  return 1
+
+
+#  MAX LINE LENGTH 29 SIGNS!!
+#  MAX FUNCTION LINES 7 !!!!!
 
 def if_greater_or_less(x):
   if x < 10:  return 66
@@ -129,8 +136,8 @@ def if_greater_or_less(x):
   return 42
 
 
-#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
-#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
+#  MAX LINE LENGTH 29 SIGNS!!
+#  MAX FUNCTION LINES 7 !!!!!
 
 def if_equal_or_not(x):
   if x == 10:
@@ -140,21 +147,20 @@ def if_equal_or_not(x):
   else:
     return x // 10
 
-  return x
 
-
-#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
-#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
+#  MAX LINE LENGTH 29 SIGNS!!
+#  MAX FUNCTION LINES 7 !!!!!
 
 def for_cycle(x):
-  for i in range(floor(x) % 5):
+  num = floor(x) % 5
+  for i in range(num):
     x += 10
 
   return x
 
 
-#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
-#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
+#  MAX LINE LENGTH 29 SIGNS!!
+#  MAX FUNCTION LINES 7 !!!!!
 def while_cycle(x):
   while x % 4 != 0:
     x = round(x / 5)
@@ -168,27 +174,34 @@ def int_from_list(x):
   return int(string[x % 9])
 
 
+#  MAX LINE LENGTH 29 SIGNS!!
 def ints_from_list(x):
   # index:  0123456789
   string = "176485923074"
-  first = x % 9
-  second = first + (x % 3) + 1
-  return int(string[first:second])
+  a = x % 9
+  b = a + (a % 3) + 1
+  return int(string[a:b])
 
 
 def split_by_int(x):
-  string = "19754862315879625413"
-  return len(string.split(str(x)))
+  x = str(int(x) % 10)
+  string = "1975486231587962"
+  parts = string.split(x)
+  return len(parts)
 
+
+#  MAX LINE LENGTH 29 SIGNS!!
 
 def switch_places(x):
-  string = "{0:.2f}".format(abs(x))
-  a, b = string.split(".")
-  a, b = b, a
-  result = float(a + "." + b)
-  copysign(x, result)
+  y = abs(x)
+  s = "{0:.2f}".format(y)
+  a, b = s.split(".")
+  result = float(b + "." + a)
+  copysign(-1*x, result)
   return result
 
+
+#  MAX LINE LENGTH 29 SIGNS!!
 
 def put_and_eval(x):
   res = "{0:.2f}".format(x)
@@ -197,62 +210,66 @@ def put_and_eval(x):
 
 
 def reverse(x):
-  x = abs(x)
-  string = "{0:.2f}".format(x)
-  return eval(string[::-1])
+  string = str(abs(int(x)))
+  reversed = string[::-1]
+  copysign(x, string)
+  return string
 
+
+#  MAX LINE LENGTH 29 SIGNS!!
 
 def subtract_madness(x):
-  string = "{0:.2f}".format(x)
-  string.replace('.', '--')
-  return eval('-'.join(string))
+  s = "{0:.2f}".format(x)
+  s.replace('.', '--')
+  return eval('-'.join(s))
 
 
-def rec_subtract(x):
+def rec_sub(x):
   if x <= 0:
     return x
 
-  return rec_subtract(x - 30)
+  return rec_sub(x - 30)
 
 
 def rec_divide(x):
   if x == 0:
     return -1
 
-  return -1 + rec_divide(round(x / 3))
+  x = round(x / 3)
+  return -1 + rec_divide(x)
 
 
-def double_rec(x):
+#  MAX LINE LENGTH 29 SIGNS!!
+
+def d_rec(x):
   x = abs(x)
-  if x <= 1:
-    return x
+  if x <= 1: return x
 
-  return double_rec(x // 10) + \
-         double_rec(x // 100)
+  return d_rec(x // 10) + \
+         d_rec(x // 100)
 
 
-def rec_multiply(x):
+#  MAX LINE LENGTH 29 SIGNS!!
+
+def rec_mul(x):
   if x % 8 != 0:
     return x
 
-  return rec_multiply(2 * x) - 1
+  return rec_mul(2 * x) - 1
 
 
-def ackermann(m, n=None):
+#  MAX LINE LENGTH 29 SIGNS!!
+def ack(m, n=None):
   if n is None:  n = m
   if m == 0:     return n + 1
-
-  if n == 0:
-    return ackermann(m - 1, 1)
-
-  return ackermann(
-    m - 1,
-    ackermann(m, n - 1)
-  )
+  if n == 0:     n = 1
+  else:
+    n = ack(m, n - 1)
+  return ack(m - 1, n)
 
 
-#  MAX LINE LENGTH 50 SIGNS!!!!!!!!!!!!!!!!!!!!!!
-#  MAX FUNCTION LINES 15 !!!!!!!!!!!!!!!!!!!!!!!!
+#  MAX LINE LENGTH 29 SIGNS!!
+#  MAX FUNCTION LINES 7 !!!!!
 
 
 def get_all_functions():
