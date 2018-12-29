@@ -59,7 +59,7 @@ Pro některé vstupní hodnoty může v programu dojít k chybě:
 1. Recursion Error - nekončící rekurzivní program
 + efekt: všichni hráči, kteří jsou mimo hru (nemají karty), se vrací do hry s jednou kartou
 2. Zero Division Error - modulo nebo dělení nulou
-+ efekt: v aktuálním kole všichni prohrávají a ztrácí jednu kartu
++ efekt: v aktuálním kole všichni vyhrávají a ztrácí jednu kartu
 3. Type Error - použití objektu nesprávného typu
 + efekt: hráč si s jiným hráčem vlastního výběru vymění všechny karty
 4. Value Error - použití hodnoty mimo očekávaný rozsah
