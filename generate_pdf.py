@@ -13,8 +13,8 @@ from values import get_all_values
 FONT = "fonts/DejaVuSansMono.ttf"
 FONT_BOLD = "fonts/DejaVuSansMono-Bold.ttf"
 
-ANTIALIASING = 2  # do not set bigger that 32 :D
-RESOLUTION_DPI = 200
+ANTIALIASING = 3  # do not set bigger that 32 :D
+RESOLUTION_DPI = 300
 CARD_SIZE_MM = (87, 57)
 
 RESOLUTION_DPI *= ANTIALIASING
@@ -163,22 +163,29 @@ def get_card_base_with_color(order, color):
   card = get_card_base()
   draw = ImageDraw.Draw(card)
   base_size = 10
-  move_up = 3
-  move_left = 3
-  smaller_by = 0
+  move_up = 3.5
+  move_left = 3.5
+  smaller_by = -.5
   draw.ellipse(mm_to_px(
     move_left + smaller_by,
     CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
     base_size + move_left - smaller_by,
     CARD_SIZE_MM[1] - move_up - smaller_by
-  ), fill=color_codes["black"])
-  smaller_by = 1
+  ), fill=color_codes["lighter_black"])
+  smaller_by = .5
   draw.ellipse(mm_to_px(
     move_left + smaller_by,
     CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
     base_size + move_left - smaller_by,
     CARD_SIZE_MM[1] - move_up - smaller_by
   ), fill=color_codes[card_colors_to_real_colors[color]])
+  smaller_by = 1
+  draw.ellipse(mm_to_px(
+    move_left + smaller_by,
+    CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
+    base_size + move_left - smaller_by,
+    CARD_SIZE_MM[1] - move_up - smaller_by
+  ), fill=color_codes["true_black"])
 
   font = get_font(15, FONT_BOLD)
 
@@ -225,7 +232,7 @@ def get_fn_card_front(order, fn, color):
   w, h = draw.textsize(source_code, font)
 
   for color in colors:
-    draw.text((mm_to_px(10), (H - h) // 2 - mm_to_px(2)), colors[color], font=font, fill=color_codes[color])
+    draw.text((mm_to_px(10), (H - h) // 2 - mm_to_px(3)), colors[color], font=font, fill=color_codes[color])
 
   card.paste(base, mask=base)
 
@@ -240,7 +247,7 @@ def get_value_card_front(order, value, color):
   W, H = mm_to_px(CARD_SIZE_MM)
   w, h = draw.textsize(value, font)
 
-  draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(2)), value, font=font, fill=color_codes["blue"])
+  draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(3)), value, font=font, fill=color_codes["blue"])
 
   return card
 
@@ -300,18 +307,22 @@ if __name__ == "__main__":
 
     front_canvas = Image.new("RGB", mm_to_px(210, 297), (255, 255, 255))
     back_canvas = Image.new("RGB", mm_to_px(210, 297), (255, 255, 255))
-    base_point = int(mm_to_px(210) / 2 - mm_to_px(CARD_SIZE_MM[0])), \
-                 int(mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]) - mm_to_px(.25))
+    base_point = int(mm_to_px(210) / 2 - mm_to_px(CARD_SIZE_MM[0]) - mm_to_px(.05)), \
+                 int(mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]) - mm_to_px(.2))
 
     for i, card in enumerate(cards[:10]):
       offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 1 else 0
-      offset_y = mm_to_px(CARD_SIZE_MM[1] + .05) * (i - (i % 2)) // 2
+      offset_y = mm_to_px(CARD_SIZE_MM[1] + .1) * (i // 2)
 
       front_canvas.paste(card[0], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[0])
       offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 0 else 0
+      background = get_round_rectangle((CARD_SIZE_MM[0]+2, CARD_SIZE_MM[1]+2), "true_black")
+      back_canvas.paste(background, (base_point[0] + offset_x - mm_to_px(1), base_point[1] + offset_y - mm_to_px(1)), mask=background)
       back_canvas.paste(card[1], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[1])
 
     def save_canvas(canvas):
+      canvas = do_antialiasing(canvas)
+      print(canvas.size)
       try:
         canvas.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
                     resolution=RESOLUTION_DPI, append=True)
