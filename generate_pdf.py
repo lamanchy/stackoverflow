@@ -17,9 +17,6 @@ ANTIALIASING = 3  # do not set bigger that 32 :D
 RESOLUTION_DPI = 300
 CARD_SIZE_MM = (87, 57)
 
-RESOLUTION_DPI *= ANTIALIASING
-
-
 def do_antialiasing(img):
   return img.resize((img.size[0] // ANTIALIASING, img.size[1] // ANTIALIASING), ANTIALIAS)
 
@@ -35,13 +32,13 @@ def mm_to_px(*args):
   if len(args) == 1:
     x = args[0]
   if isinstance(x, Number):
-    return int(RESOLUTION_DPI * 0.03937 * x)
+    return int(RESOLUTION_DPI * ANTIALIASING * 0.03937 * x)
 
   return type(x)([mm_to_px(i) for i in x])
 
 
 def get_font(size, font=FONT):
-  return ImageFont.truetype(font, size=size * RESOLUTION_DPI // 100)
+  return ImageFont.truetype(font, size=size * RESOLUTION_DPI * ANTIALIASING // 100)
 
 
 color_codes = {
@@ -322,7 +319,6 @@ if __name__ == "__main__":
 
     def save_canvas(canvas):
       canvas = do_antialiasing(canvas)
-      print(canvas.size)
       try:
         canvas.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
                     resolution=RESOLUTION_DPI, append=True)
@@ -337,7 +333,7 @@ if __name__ == "__main__":
       cards.pop(0)
 
 
-  for i, (v, c) in enumerate(get_all_values()[:4]):
+  for i, (v, c) in enumerate(get_all_values()):
       cards.append(get_value_card(i, v, c))
       generate_pdf(False)
 
@@ -351,8 +347,8 @@ if __name__ == "__main__":
     cards.append(get_fn_card(i, fn, c))
     generate_pdf(False)
 
-  # for i, (help1, help2) in enumerate(get_all_help_cards()):
-  #   cards.append((get_help_card(i, help1), get_help_card(i, help2)))
-  #   generate_pdf(False)
+  for i, (help1, help2) in enumerate(get_all_help_cards()):
+    cards.append((get_help_card(i, help1), get_help_card(i, help2)))
+    generate_pdf(False)
 
   generate_pdf(True)
