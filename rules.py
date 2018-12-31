@@ -226,9 +226,8 @@ def reverse(x):
 #  MAX LINE LENGTH 29 SIGNS!!
 
 def subtract_madness(x):
-  if isnan(x) or isinf(x):
-    return 0
-
+  if isnan(x) or isinf(x): # DEBUG this line wont be printed
+    return 0 # DEBUG this line wont be printed
   s = "{0:.2f}".format(x)
   s = s.replace('.', '--')
   return eval('-'.join(s))
