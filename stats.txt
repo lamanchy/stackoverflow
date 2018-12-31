@@ -1,161 +1,1095 @@
 C:\Users\Lamanchy\PycharmProjects\stackoverflow\venv\Scripts\python.exe C:/Users/Lamanchy/PycharmProjects/stackoverflow/test_domains.py
-stats with 1 cards
-
-['green']
-green-int           :  87.11%(abs count =    223 out of    256)
-yellow-int+         :  12.50%(abs count =     32 out of    256)
-red-int+            :   0.39%(abs count =      1 out of    256)
-['green', 'yellow']
-green-int           :  52.01%(abs count =    674 out of   1296)
-yellow-int+         :  23.61%(abs count =    306 out of   1296)
-yellow-int-         :   8.87%(abs count =    115 out of   1296)
-red-int-            :   6.10%(abs count =     79 out of   1296)
-red-int+            :   3.78%(abs count =     49 out of   1296)
-white-int+          :   1.62%(abs count =     21 out of   1296)
-red-float+          :   1.47%(abs count =     19 out of   1296)
-red-float-          :   1.31%(abs count =     17 out of   1296)
-ve                  :   0.69%(abs count =      9 out of   1296)
-white-int-          :   0.46%(abs count =      6 out of   1296)
-zd                  :   0.08%(abs count =      1 out of   1296)
-['green', 'yellow', 'red']
-green-int           :  37.46%(abs count =    863 out of   2304)
-yellow-int+         :  17.10%(abs count =    394 out of   2304)
-red-float+          :  11.98%(abs count =    276 out of   2304)
-yellow-int-         :   9.51%(abs count =    219 out of   2304)
-red-float-          :   6.64%(abs count =    153 out of   2304)
-red-int-            :   5.56%(abs count =    128 out of   2304)
-red-int+            :   3.30%(abs count =     76 out of   2304)
-te                  :   2.60%(abs count =     60 out of   2304)
-white-int+          :   1.91%(abs count =     44 out of   2304)
-white-float+        :   1.74%(abs count =     40 out of   2304)
-white-int-          :   0.69%(abs count =     16 out of   2304)
-ve                  :   0.65%(abs count =     15 out of   2304)
-white-float-        :   0.48%(abs count =     11 out of   2304)
-re                  :   0.30%(abs count =      7 out of   2304)
-zd                  :   0.09%(abs count =      2 out of   2304)
-['green', 'yellow', 'red', 'white']
-green-int           :  33.58%(abs count =    908 out of   2704)
-yellow-int+         :  14.98%(abs count =    405 out of   2704)
-red-float+          :  12.57%(abs count =    340 out of   2704)
-yellow-int-         :   8.43%(abs count =    228 out of   2704)
-red-float-          :   6.10%(abs count =    165 out of   2704)
-red-int-            :   4.81%(abs count =    130 out of   2704)
-white-float+        :   3.07%(abs count =     83 out of   2704)
-red-int+            :   2.81%(abs count =     76 out of   2704)
-white-int-          :   2.63%(abs count =     71 out of   2704)
-te                  :   2.59%(abs count =     70 out of   2704)
-white-int+          :   2.14%(abs count =     58 out of   2704)
-re                  :   2.07%(abs count =     56 out of   2704)
-white               :   2.00%(abs count =     54 out of   2704)
-white-float-        :   1.41%(abs count =     38 out of   2704)
-ve                  :   0.74%(abs count =     20 out of   2704)
-zd                  :   0.07%(abs count =      2 out of   2704)
-
-
-stats with 2 cards
-
-['green']
-green-int           :  87.11%(abs count =   3568 out of   4096)
-yellow-int+         :  12.50%(abs count =    512 out of   4096)
-red-int+            :   0.39%(abs count =     16 out of   4096)
-['green', 'yellow']
-green-int           :  52.01%(abs count =  24264 out of  46656)
-yellow-int+         :  23.61%(abs count =  11016 out of  46656)
-yellow-int-         :   8.87%(abs count =   4140 out of  46656)
-red-int-            :   6.10%(abs count =   2844 out of  46656)
-red-int+            :   3.78%(abs count =   1764 out of  46656)
-white-int+          :   1.62%(abs count =    756 out of  46656)
-red-float+          :   1.47%(abs count =    684 out of  46656)
-red-float-          :   1.31%(abs count =    612 out of  46656)
-ve                  :   0.69%(abs count =    324 out of  46656)
-white-int-          :   0.46%(abs count =    216 out of  46656)
-zd                  :   0.08%(abs count =     36 out of  46656)
-['green', 'yellow', 'red']
-green-int           :  37.46%(abs count =  41424 out of 110592)
-yellow-int+         :  17.10%(abs count =  18912 out of 110592)
-red-float+          :  11.98%(abs count =  13248 out of 110592)
-yellow-int-         :   9.51%(abs count =  10512 out of 110592)
-red-float-          :   6.64%(abs count =   7344 out of 110592)
-red-int-            :   5.56%(abs count =   6144 out of 110592)
-red-int+            :   3.30%(abs count =   3648 out of 110592)
-te                  :   2.60%(abs count =   2880 out of 110592)
-white-int+          :   1.91%(abs count =   2112 out of 110592)
-white-float+        :   1.74%(abs count =   1920 out of 110592)
-white-int-          :   0.69%(abs count =    768 out of 110592)
-ve                  :   0.65%(abs count =    720 out of 110592)
-white-float-        :   0.48%(abs count =    528 out of 110592)
-re                  :   0.30%(abs count =    336 out of 110592)
-zd                  :   0.09%(abs count =     96 out of 110592)
-['green', 'yellow', 'red', 'white']
-green-int           :  33.58%(abs count =  47216 out of 140608)
-yellow-int+         :  14.98%(abs count =  21060 out of 140608)
-red-float+          :  12.65%(abs count =  17782 out of 140608)
-yellow-int-         :   8.43%(abs count =  11856 out of 140608)
-red-float-          :   6.10%(abs count =   8580 out of 140608)
-red-int-            :   4.81%(abs count =   6760 out of 140608)
-white-float+        :   3.07%(abs count =   4316 out of 140608)
-red-int+            :   2.81%(abs count =   3952 out of 140608)
-white-int-          :   2.63%(abs count =   3692 out of 140608)
-te                  :   2.59%(abs count =   3640 out of 140608)
-white-int+          :   2.14%(abs count =   3016 out of 140608)
-re                  :   2.07%(abs count =   2912 out of 140608)
-white               :   1.92%(abs count =   2706 out of 140608)
-white-float-        :   1.41%(abs count =   1976 out of 140608)
-ve                  :   0.74%(abs count =   1040 out of 140608)
-zd                  :   0.07%(abs count =    104 out of 140608)
-
-
 stats with 3 cards
 
 ['green']
-green-int           :  87.11%(abs count =  50398 out of  57856)
-yellow-int+         :  12.50%(abs count =   7232 out of  57856)
-red-int+            :   0.39%(abs count =    226 out of  57856)
+green-int           :  81.25%(abs count =  47009 out of  57856)
+yellow-int+         :  17.28%(abs count =   9995 out of  57856)
+red-int+            :   1.19%(abs count =    691 out of  57856)
+yellow-int-         :   0.20%(abs count =    113 out of  57856)
+black-int+          :   0.08%(abs count =     48 out of  57856)
+fn: 16
+                  16:  100.00%(abs count =   3616 out of   3616)
+
+fn: 19
+                  19:  100.00%(abs count =   3616 out of   3616)
+
+fn: x
+                   7:  12.47%(abs count =    451 out of   3616)
+                  13:  12.36%(abs count =    447 out of   3616)
+                   1:  10.01%(abs count =    362 out of   3616)
+                  19:   8.08%(abs count =    292 out of   3616)
+                  16:   7.69%(abs count =    278 out of   3616)
+
+fn: x + 5
+                  18:  13.16%(abs count =    476 out of   3616)
+                  12:  12.64%(abs count =    457 out of   3616)
+                   6:  10.76%(abs count =    389 out of   3616)
+                  24:   8.41%(abs count =    304 out of   3616)
+                  21:   8.13%(abs count =    294 out of   3616)
+
+fn: x + 11
+                  24:  13.05%(abs count =    472 out of   3616)
+                  18:  13.05%(abs count =    472 out of   3616)
+                  12:  10.73%(abs count =    388 out of   3616)
+                  30:   8.38%(abs count =    303 out of   3616)
+                  27:   8.08%(abs count =    292 out of   3616)
+
+fn: x - 1
+                   6:  13.08%(abs count =    473 out of   3616)
+                  12:  13.00%(abs count =    470 out of   3616)
+                   0:  10.32%(abs count =    373 out of   3616)
+                  18:   8.38%(abs count =    303 out of   3616)
+                  15:   8.05%(abs count =    291 out of   3616)
+
+fn: 2 * x
+                  26:  13.33%(abs count =    482 out of   3616)
+                  14:  13.14%(abs count =    475 out of   3616)
+                   2:  10.76%(abs count =    389 out of   3616)
+                  38:   8.63%(abs count =    312 out of   3616)
+                  32:   8.16%(abs count =    295 out of   3616)
+
+fn: min(x, 7)
+                   7:  68.34%(abs count =   2471 out of   3616)
+                   1:  10.04%(abs count =    363 out of   3616)
+                   6:   4.92%(abs count =    178 out of   3616)
+                   2:   4.65%(abs count =    168 out of   3616)
+                   4:   3.57%(abs count =    129 out of   3616)
+
+fn: x // 3
+                   2:  19.16%(abs count =    693 out of   3616)
+                   4:  17.92%(abs count =    648 out of   3616)
+                   0:  15.87%(abs count =    574 out of   3616)
+                   6:  12.06%(abs count =    436 out of   3616)
+                   5:  10.65%(abs count =    385 out of   3616)
+
+fn: max(x, 13)
+                  13:  63.80%(abs count =   2307 out of   3616)
+                  19:   8.10%(abs count =    293 out of   3616)
+                  16:   7.77%(abs count =    281 out of   3616)
+                  18:   2.21%(abs count =     80 out of   3616)
+                  24:   1.71%(abs count =     62 out of   3616)
+
+fn: gcd(x, 24)
+                   1:  48.56%(abs count =   1756 out of   3616)
+                   6:  11.73%(abs count =    424 out of   3616)
+                   8:   9.98%(abs count =    361 out of   3616)
+                   2:   9.51%(abs count =    344 out of   3616)
+                   3:   6.44%(abs count =    233 out of   3616)
+
+fn: lcm(x, 6)
+                   6:  23.76%(abs count =    859 out of   3616)
+                  42:  15.76%(abs count =    570 out of   3616)
+                  78:  14.52%(abs count =    525 out of   3616)
+                 114:   9.21%(abs count =    333 out of   3616)
+                  48:   8.35%(abs count =    302 out of   3616)
+
+fn: if_prime
+                   1:  53.29%(abs count =   1927 out of   3616)
+                   7:  12.72%(abs count =    460 out of   3616)
+                  13:  12.31%(abs count =    445 out of   3616)
+                  19:   8.16%(abs count =    295 out of   3616)
+                   2:   4.92%(abs count =    178 out of   3616)
+
+fn: x % 5
+                   1:  26.33%(abs count =    952 out of   3616)
+                   2:  25.08%(abs count =    907 out of   3616)
+                   3:  22.65%(abs count =    819 out of   3616)
+                   4:  16.98%(abs count =    614 out of   3616)
+                   0:   8.96%(abs count =    324 out of   3616)
+
+fn: 13
+                  13:  100.00%(abs count =   3616 out of   3616)
+
+fn: 7
+                   7:  100.00%(abs count =   3616 out of   3616)
+
+fns which produced certain result:
+color: green-int     ['16', '19', 'x', 'x + 5', 'x - 1', 'min(x, 7)', 'x // 3', 'max(x, 13)', 'gcd(x, 24)', 'if_prime', 'x % 5', '13', 'x + 11', '2 * x', 'lcm(x, 6)', '7']
+color: yellow-int+   ['x + 11', '2 * x', 'lcm(x, 6)', 'x + 5', 'x - 1', 'x // 3', 'x', 'max(x, 13)', 'gcd(x, 24)', 'x % 5', 'min(x, 7)', 'if_prime']
+color: red-int+      ['lcm(x, 6)', '2 * x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'if_prime']
+color: black-int+    ['2 * x', 'lcm(x, 6)', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)']
+color: yellow-int-   ['x - 1', 'x', '2 * x', 'min(x, 7)', 'x // 3']
 ['green', 'yellow']
-green-int           :  52.01%(abs count = 826324 out of 1588896)
-yellow-int+         :  23.61%(abs count = 375156 out of 1588896)
-yellow-int-         :   8.87%(abs count = 140990 out of 1588896)
-red-int-            :   6.10%(abs count =  96854 out of 1588896)
-red-int+            :   3.78%(abs count =  60074 out of 1588896)
-white-int+          :   1.62%(abs count =  25746 out of 1588896)
-red-float+          :   1.47%(abs count =  23294 out of 1588896)
-red-float-          :   1.31%(abs count =  20842 out of 1588896)
-ve                  :   0.69%(abs count =  11034 out of 1588896)
-white-int-          :   0.46%(abs count =   7356 out of 1588896)
-zd                  :   0.08%(abs count =   1226 out of 1588896)
+green-int           :  52.02%(abs count = 826596 out of 1588896)
+yellow-int+         :  21.11%(abs count = 335472 out of 1588896)
+yellow-int-         :   8.75%(abs count = 138970 out of 1588896)
+red-int-            :   7.23%(abs count = 114914 out of 1588896)
+red-int+            :   4.16%(abs count =  66138 out of 1588896)
+black-int+          :   2.91%(abs count =  46218 out of 1588896)
+black-int-          :   0.93%(abs count =  14730 out of 1588896)
+red-float+          :   0.90%(abs count =  14347 out of 1588896)
+red-float-          :   0.84%(abs count =  13410 out of 1588896)
+te                  :   0.41%(abs count =   6474 out of 1588896)
+zd                  :   0.37%(abs count =   5889 out of 1588896)
+ve                  :   0.36%(abs count =   5738 out of 1588896)
+fn: 16
+                  16:  100.00%(abs count =  43872 out of  43872)
+
+fn: 19
+                  19:  100.00%(abs count =  43872 out of  43872)
+
+fn: x
+                   1:   8.68%(abs count =   3809 out of  43874)
+                   7:   6.08%(abs count =   2667 out of  43874)
+                   0:   5.86%(abs count =   2570 out of  43874)
+                  13:   5.37%(abs count =   2355 out of  43874)
+                   2:   4.02%(abs count =   1764 out of  43874)
+
+fn: x + 5
+                   6:   8.90%(abs count =   3903 out of  43874)
+                   5:   6.47%(abs count =   2840 out of  43874)
+                  12:   6.09%(abs count =   2673 out of  43874)
+                  18:   5.45%(abs count =   2391 out of  43874)
+                   7:   4.11%(abs count =   1805 out of  43874)
+
+fn: x + 11
+                  12:   8.91%(abs count =   3909 out of  43872)
+                  11:   6.84%(abs count =   2999 out of  43872)
+                  18:   6.17%(abs count =   2709 out of  43872)
+                  24:   5.39%(abs count =   2365 out of  43872)
+                  13:   4.17%(abs count =   1829 out of  43872)
+
+fn: x - 1
+                   0:   8.78%(abs count =   3853 out of  43874)
+                   6:   6.17%(abs count =   2709 out of  43874)
+                  -1:   5.81%(abs count =   2551 out of  43874)
+                  12:   5.47%(abs count =   2402 out of  43874)
+                   1:   4.03%(abs count =   1770 out of  43874)
+
+fn: 2 * x
+                   2:   8.97%(abs count =   3934 out of  43874)
+                  14:   6.23%(abs count =   2735 out of  43874)
+                   0:   5.89%(abs count =   2582 out of  43874)
+                  26:   5.52%(abs count =   2420 out of  43874)
+                   4:   3.92%(abs count =   1720 out of  43874)
+
+fn: min(x, 7)
+                   7:  49.30%(abs count =  21632 out of  43874)
+                   1:   8.70%(abs count =   3819 out of  43874)
+                   0:   5.91%(abs count =   2591 out of  43874)
+                   4:   3.96%(abs count =   1738 out of  43874)
+                   2:   3.87%(abs count =   1700 out of  43874)
+
+fn: x // 3
+                   0:  18.64%(abs count =   8179 out of  43878)
+                   2:  11.16%(abs count =   4898 out of  43878)
+                   1:   9.69%(abs count =   4252 out of  43878)
+                   4:   7.29%(abs count =   3200 out of  43878)
+                  -1:   4.98%(abs count =   2185 out of  43878)
+
+fn: max(x, 13)
+                  13:  67.68%(abs count =  29691 out of  43872)
+                  16:   3.78%(abs count =   1660 out of  43872)
+                  19:   3.39%(abs count =   1486 out of  43872)
+                  42:   1.79%(abs count =    786 out of  43872)
+                  66:   1.58%(abs count =    692 out of  43872)
+
+fn: gcd(x, 24)
+                   1:  39.75%(abs count =  17437 out of  43872)
+                   6:  11.17%(abs count =   4899 out of  43872)
+                   2:  10.89%(abs count =   4776 out of  43872)
+                   3:   9.94%(abs count =   4359 out of  43872)
+                  24:   8.73%(abs count =   3829 out of  43872)
+
+fn: lcm(x, 6)
+                   6:  24.60%(abs count =  10791 out of  43874)
+                  42:   9.64%(abs count =   4230 out of  43874)
+                  78:   6.55%(abs count =   2873 out of  43874)
+                   0:   6.08%(abs count =   2667 out of  43874)
+                  30:   5.79%(abs count =   2542 out of  43874)
+
+fn: if_prime
+                   1:  68.15%(abs count =  29899 out of  43872)
+                   7:   6.15%(abs count =   2696 out of  43872)
+                  13:   5.34%(abs count =   2343 out of  43872)
+                   2:   4.03%(abs count =   1770 out of  43872)
+                  19:   3.39%(abs count =   1488 out of  43872)
+
+fn: x % 5
+                   1:  24.25%(abs count =  10642 out of  43892)
+                   2:  19.62%(abs count =   8612 out of  43892)
+                   0:  19.34%(abs count =   8487 out of  43892)
+                   4:  17.76%(abs count =   7796 out of  43892)
+                   3:  17.29%(abs count =   7591 out of  43892)
+
+fn: x - 25
+                 -24:   8.91%(abs count =   3909 out of  43872)
+               -25.0:   7.25%(abs count =   3181 out of  43872)
+                 -18:   6.25%(abs count =   2744 out of  43872)
+                 -12:   5.48%(abs count =   2402 out of  43872)
+                 -23:   4.15%(abs count =   1820 out of  43872)
+
+fn: x - 128
+                -127:   8.93%(abs count =   3918 out of  43872)
+              -128.0:   7.64%(abs count =   3353 out of  43872)
+                -121:   6.28%(abs count =   2755 out of  43872)
+                -115:   5.47%(abs count =   2399 out of  43872)
+                -126:   4.20%(abs count =   1841 out of  43872)
+
+fn: 151 - x
+                 150:   8.92%(abs count =   3915 out of  43872)
+               151.0:   7.61%(abs count =   3337 out of  43872)
+                 144:   6.17%(abs count =   2707 out of  43872)
+                 138:   5.53%(abs count =   2424 out of  43872)
+                 149:   4.20%(abs count =   1843 out of  43872)
+
+fn: 38 - x
+                  37:   8.93%(abs count =   3919 out of  43872)
+                38.0:   7.39%(abs count =   3243 out of  43872)
+                  31:   6.20%(abs count =   2721 out of  43872)
+                  25:   5.51%(abs count =   2417 out of  43872)
+                  36:   4.15%(abs count =   1822 out of  43872)
+
+fn: x // -6
+                  -1:  27.61%(abs count =  12118 out of  43884)
+                  -2:  11.89%(abs count =   5218 out of  43884)
+                  -3:  11.86%(abs count =   5205 out of  43884)
+                 0.0:  10.02%(abs count =   4397 out of  43884)
+                  -4:   6.29%(abs count =   2762 out of  43884)
+
+fn: -5 * x
+                  -5:   8.99%(abs count =   3946 out of  43874)
+                 -35:   6.28%(abs count =   2755 out of  43874)
+                   0:   5.81%(abs count =   2550 out of  43874)
+                 -65:   5.48%(abs count =   2405 out of  43874)
+                 -10:   4.22%(abs count =   1853 out of  43874)
+
+fn: 100 // x
+zd                  :  12.45%(abs count =   5889 out of  47302)
+                 100:   8.05%(abs count =   3808 out of  47302)
+                   0:   6.35%(abs count =   3005 out of  47302)
+                   7:   5.67%(abs count =   2681 out of  47302)
+                  14:   5.66%(abs count =   2676 out of  47302)
+
+fn: x % 25
+                   1:  10.63%(abs count =   4664 out of  43876)
+                   0:   8.37%(abs count =   3674 out of  43876)
+                   7:   7.31%(abs count =   3208 out of  43876)
+                  13:   6.57%(abs count =   2883 out of  43876)
+                  16:   6.34%(abs count =   2783 out of  43876)
+
+fn: x * (x // 4)
+                   0:  22.46%(abs count =   9857 out of  43880)
+                   7:   6.08%(abs count =   2669 out of  43880)
+                  39:   5.52%(abs count =   2424 out of  43880)
+                   4:   4.48%(abs count =   1965 out of  43880)
+                  64:   3.96%(abs count =   1736 out of  43880)
+
+fn: ceil(sqrt(abs(x)))
+                   3:  16.87%(abs count =   7401 out of  43874)
+                   4:  14.57%(abs count =   6391 out of  43874)
+                   1:  13.06%(abs count =   5729 out of  43874)
+                   2:  12.13%(abs count =   5320 out of  43874)
+                   5:   9.87%(abs count =   4329 out of  43874)
+
+fn: floor(log2(abs(x)))
+                   2:  16.19%(abs count =   7645 out of  47234)
+                   4:  15.34%(abs count =   7245 out of  47234)
+                   3:  13.38%(abs count =   6322 out of  47234)
+ve                  :  12.15%(abs count =   5738 out of  47234)
+                   0:  10.65%(abs count =   5031 out of  47234)
+
+fn: sin(pi * x / 2)
+                 1.0:  25.77%(abs count =  11327 out of  43946)
+                -1.0:  24.04%(abs count =  10563 out of  43946)
+                 0.0:   5.62%(abs count =   2471 out of  43946)
+1.2246467991473532e-16:   4.23%(abs count =   1859 out of  43946)
+-2.4492935982947064e-16:   4.09%(abs count =   1799 out of  43946)
+
+fn: if_greater_or_less
+                  66:  46.03%(abs count =  20193 out of  43872)
+                  42:  44.36%(abs count =  19460 out of  43872)
+                   5:   9.62%(abs count =   4219 out of  43872)
+
+fn: if_equal_or_not
+                  -9:   8.88%(abs count =   3894 out of  43872)
+                 -10:   6.81%(abs count =   2989 out of  43872)
+                  -3:   6.22%(abs count =   2730 out of  43872)
+                   3:   5.48%(abs count =   2403 out of  43872)
+                   6:   5.46%(abs count =   2395 out of  43872)
+
+fn: for_cycle
+                  11:   8.93%(abs count =   3918 out of  43874)
+                  27:   6.20%(abs count =   2719 out of  43874)
+                   0:   5.90%(abs count =   2587 out of  43874)
+                  43:   5.52%(abs count =   2422 out of  43874)
+                  22:   4.17%(abs count =   1829 out of  43874)
+
+fn: while_cycle
+                   0:  25.01%(abs count =  10977 out of  43888)
+                   2:  13.87%(abs count =   6088 out of  43888)
+                   4:  10.80%(abs count =   4741 out of  43888)
+                   6:   7.58%(abs count =   3325 out of  43888)
+                  16:   4.16%(abs count =   1825 out of  43888)
+
+fn: int_from_list
+                   5:  14.67%(abs count =   6622 out of  45132)
+                   6:  13.37%(abs count =   6033 out of  45132)
+                   1:  13.18%(abs count =   5947 out of  45132)
+                   9:  10.80%(abs count =   4872 out of  45132)
+                   4:   9.93%(abs count =   4482 out of  45132)
+
+fn: ints_from_list
+                  76:  14.48%(abs count =   6533 out of  45132)
+                  23:  13.43%(abs count =   6063 out of  45132)
+                  85:  12.42%(abs count =   5607 out of  45132)
+                   1:  10.40%(abs count =   4695 out of  45132)
+                   9:  10.33%(abs count =   4663 out of  45132)
+
+fn: split_by_int
+                   1:  44.75%(abs count =  19642 out of  43892)
+                   0:  28.28%(abs count =  12414 out of  43892)
+                  -1:  26.97%(abs count =  11836 out of  43892)
+
+fn: int(str(x)[-1])
+                   0:  14.18%(abs count =   6221 out of  43886)
+                   6:  12.96%(abs count =   5688 out of  43886)
+                   1:  12.83%(abs count =   5632 out of  43886)
+                   3:  11.55%(abs count =   5069 out of  43886)
+                   2:  10.74%(abs count =   4715 out of  43886)
+
+fn: 13
+                  13:  100.00%(abs count =  43872 out of  43872)
+
+fn: 7
+                   7:  100.00%(abs count =  43872 out of  43872)
+
+fns which produced certain result:
+color: green-int     ['16', '19', 'x', 'x + 5', 'x - 1', 'min(x, 7)', 'x // 3', 'max(x, 13)', 'gcd(x, 24)', 'if_prime', 'x % 5', '100 // x', 'x % 25', 'ceil(sqrt(abs(x)))', 'floor(log2(abs(x)))', 'sin(pi * x / 2)', 'if_equal_or_not', 'while_cycle', 'int_from_list', 'split_by_int', 'int(str(x)[-1])', '13', '38 - x', 'x + 11', '2 * x', 'x * (x // 4)', 'lcm(x, 6)', 'ints_from_list', 'for_cycle', 'x - 25', 'x // -6', 'x - 128', 'if_greater_or_less', '-5 * x', '7', '151 - x']
+color: yellow-int+   ['x + 11', '2 * x', 'lcm(x, 6)', '38 - x', 'x * (x // 4)', 'if_greater_or_less', 'for_cycle', 'ints_from_list', 'x + 5', 'split_by_int', '100 // x', 'x - 1', 'x // 3', 'floor(log2(abs(x)))', 'while_cycle', 'x', 'max(x, 13)', 'if_equal_or_not', '-5 * x', 'gcd(x, 24)', 'if_prime', 'x % 25', 'x % 5', 'x // -6', 'int(str(x)[-1])', 'x - 25', '151 - x', 'min(x, 7)', 'ceil(sqrt(abs(x)))', 'sin(pi * x / 2)', 'x - 128']
+color: yellow-int-   ['x - 25', 'x // -6', 'sin(pi * x / 2)', 'if_equal_or_not', 'split_by_int', '-5 * x', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'min(x, 7)', 'x // 3', '100 // x', 'while_cycle', '2 * x', 'x - 128', 'for_cycle', 'floor(log2(abs(x)))', '151 - x']
+color: red-int-      ['x - 128', '-5 * x', 'x - 25', '2 * x', 'if_equal_or_not', 'x', 'x + 5', 'x + 11', 'x - 1', 'min(x, 7)', 'x // 3', 'for_cycle', 'while_cycle', '38 - x', 'x // -6', '100 // x', 'floor(log2(abs(x)))', '151 - x']
+color: red-int+      ['151 - x', 'lcm(x, 6)', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'x * (x // 4)', '2 * x', '-5 * x', 'if_prime', 'x // 3', 'x // -6', 'x - 128', 'ceil(sqrt(abs(x)))']
+color: red-float-    ['sin(pi * x / 2)', 'x', 'x - 1', '2 * x', 'min(x, 7)', 'if_equal_or_not', '-5 * x', 'x - 25', 'x + 5', 'for_cycle', 'x - 128', 'x + 11']
+color: red-float+    ['sin(pi * x / 2)', 'x + 5', 'x + 11', 'x % 5', '-5 * x', 'x * (x // 4)', '2 * x', 'min(x, 7)', 'gcd(x, 24)', 'x % 25', 'for_cycle', 'x', '38 - x', 'x - 1', 'if_equal_or_not', '151 - x', 'max(x, 13)', 'x - 25']
+color: black-int+    ['ints_from_list', 'x * (x // 4)', 'lcm(x, 6)', '151 - x', '-5 * x', '2 * x', '100 // x', '38 - x', 'x + 11', 'for_cycle', 'x + 5', 'x', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not', 'while_cycle', 'x // 3', 'ceil(sqrt(abs(x)))', 'x // -6']
+color: black-int-    ['-5 * x', '2 * x', 'x - 128', '100 // x', '151 - x', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'min(x, 7)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'x // -6', 'x // 3']
+color: te            ['int_from_list', 'ints_from_list']
+color: zd            ['100 // x']
+color: ve            ['floor(log2(abs(x)))']
 ['green', 'yellow', 'red']
-green-int           :  37.46%(abs count = 1907230 out of 5091840)
-yellow-int+         :  17.10%(abs count = 870740 out of 5091840)
-red-float+          :  11.98%(abs count = 609960 out of 5091840)
-yellow-int-         :   9.51%(abs count = 483990 out of 5091840)
-red-float-          :   6.64%(abs count = 338130 out of 5091840)
-red-int-            :   5.56%(abs count = 282880 out of 5091840)
-red-int+            :   3.30%(abs count = 167960 out of 5091840)
-te                  :   2.60%(abs count = 132600 out of 5091840)
-white-int+          :   1.91%(abs count =  97240 out of 5091840)
-white-float+        :   1.74%(abs count =  88400 out of 5091840)
-white-int-          :   0.69%(abs count =  35360 out of 5091840)
-ve                  :   0.65%(abs count =  33150 out of 5091840)
-white-float-        :   0.48%(abs count =  24310 out of 5091840)
-re                  :   0.30%(abs count =  15470 out of 5091840)
-zd                  :   0.09%(abs count =   4420 out of 5091840)
-['green', 'yellow', 'red', 'white']
-green-int           :  33.58%(abs count = 2362616 out of 7035808)
-yellow-int+         :  14.98%(abs count = 1053810 out of 7035808)
-red-float+          :  12.65%(abs count = 889882 out of 7035808)
-yellow-int-         :   8.43%(abs count = 593256 out of 7035808)
-red-float-          :   6.10%(abs count = 429330 out of 7035808)
-red-int-            :   4.81%(abs count = 338260 out of 7035808)
-white-float+        :   3.07%(abs count = 215966 out of 7035808)
-red-int+            :   2.81%(abs count = 197752 out of 7035808)
-white-int-          :   2.63%(abs count = 184742 out of 7035808)
-te                  :   2.59%(abs count = 182140 out of 7035808)
-white-int+          :   2.14%(abs count = 150916 out of 7035808)
-re                  :   2.07%(abs count = 145712 out of 7035808)
-white               :   1.92%(abs count = 135306 out of 7035808)
-white-float-        :   1.41%(abs count =  98876 out of 7035808)
-ve                  :   0.74%(abs count =  52040 out of 7035808)
-zd                  :   0.07%(abs count =   5204 out of 7035808)
+green-int           :  41.39%(abs count = 2107751 out of 5091840)
+yellow-int+         :  17.38%(abs count = 884888 out of 5091840)
+yellow-int-         :   9.85%(abs count = 501485 out of 5091840)
+red-float+          :   7.24%(abs count = 368801 out of 5091840)
+red-int-            :   6.25%(abs count = 318164 out of 5091840)
+red-float-          :   3.99%(abs count = 202950 out of 5091840)
+red-int+            :   2.94%(abs count = 149469 out of 5091840)
+te                  :   2.87%(abs count = 146274 out of 5091840)
+black-int+          :   2.83%(abs count = 144106 out of 5091840)
+black-float+        :   2.39%(abs count = 121720 out of 5091840)
+black-int-          :   1.06%(abs count =  54004 out of 5091840)
+black-float-        :   1.01%(abs count =  51357 out of 5091840)
+zd                  :   0.53%(abs count =  26887 out of 5091840)
+ve                  :   0.26%(abs count =  13260 out of 5091840)
+re                  :   0.01%(abs count =    724 out of 5091840)
+fn: 16
+                  16:  100.00%(abs count = 103911 out of 103911)
+
+fn: 19
+                  19:  100.00%(abs count = 103911 out of 103911)
+
+fn: x
+                   1:   7.60%(abs count =   7897 out of 103926)
+                   0:   6.18%(abs count =   6420 out of 103926)
+                   7:   4.75%(abs count =   4940 out of 103926)
+                  13:   4.14%(abs count =   4303 out of 103926)
+                   2:   3.73%(abs count =   3875 out of 103926)
+
+fn: x + 5
+                   6:   7.74%(abs count =   8042 out of 103926)
+                   5:   6.68%(abs count =   6947 out of 103926)
+                  12:   4.75%(abs count =   4933 out of 103926)
+                  18:   4.19%(abs count =   4352 out of 103926)
+                   7:   3.79%(abs count =   3935 out of 103926)
+
+fn: x + 11
+                  12:   7.75%(abs count =   8059 out of 103923)
+                  11:   6.93%(abs count =   7200 out of 103923)
+                  18:   4.80%(abs count =   4985 out of 103923)
+                  24:   4.14%(abs count =   4307 out of 103923)
+                  13:   3.82%(abs count =   3973 out of 103923)
+
+fn: x - 1
+                   0:   7.67%(abs count =   7969 out of 103926)
+                  -1:   6.20%(abs count =   6441 out of 103926)
+                   6:   4.80%(abs count =   4992 out of 103926)
+                  12:   4.20%(abs count =   4369 out of 103926)
+                   1:   3.75%(abs count =   3900 out of 103926)
+
+fn: 2 * x
+                   2:   7.76%(abs count =   8068 out of 103926)
+                   0:   6.19%(abs count =   6434 out of 103926)
+                  14:   4.84%(abs count =   5025 out of 103926)
+                  26:   4.23%(abs count =   4391 out of 103926)
+                   4:   3.66%(abs count =   3799 out of 103926)
+
+fn: min(x, 7)
+                   7:  41.02%(abs count =  42629 out of 103924)
+                   1:   7.62%(abs count =   7923 out of 103924)
+                   0:   6.21%(abs count =   6455 out of 103924)
+                   2:   3.66%(abs count =   3804 out of 103924)
+                 4.0:   3.50%(abs count =   3634 out of 103924)
+
+fn: x // 3
+                   0:  22.56%(abs count =  23452 out of 103935)
+                   1:   9.55%(abs count =   9927 out of 103935)
+                   2:   9.40%(abs count =   9774 out of 103935)
+                  -1:   7.46%(abs count =   7754 out of 103935)
+                   4:   5.69%(abs count =   5919 out of 103935)
+
+fn: max(x, 13)
+                  13:  72.90%(abs count =  75756 out of 103911)
+                  16:   2.85%(abs count =   2963 out of 103911)
+                  19:   2.52%(abs count =   2615 out of 103911)
+                  66:   1.41%(abs count =   1470 out of 103911)
+                  42:   1.13%(abs count =   1173 out of 103911)
+
+fn: gcd(x, 24)
+                   1:  34.02%(abs count =  35354 out of 103923)
+                   2:   9.99%(abs count =  10386 out of 103923)
+                   6:   8.87%(abs count =   9215 out of 103923)
+                   3:   8.81%(abs count =   9153 out of 103923)
+                  24:   8.51%(abs count =   8849 out of 103923)
+
+fn: lcm(x, 6)
+                   6:  24.37%(abs count =  25330 out of 103929)
+                  42:   7.74%(abs count =   8046 out of 103929)
+                   0:   6.33%(abs count =   6576 out of 103929)
+                30.0:   5.84%(abs count =   6070 out of 103929)
+                  78:   5.36%(abs count =   5568 out of 103929)
+
+fn: if_prime
+                   1:  72.97%(abs count =  75827 out of 103911)
+                   7:   4.79%(abs count =   4978 out of 103911)
+                  13:   4.13%(abs count =   4290 out of 103911)
+                   2:   3.71%(abs count =   3851 out of 103911)
+                   0:   3.22%(abs count =   3351 out of 103911)
+
+fn: x % 5
+                   1:  21.06%(abs count =  21898 out of 103956)
+                   0:  17.35%(abs count =  18034 out of 103956)
+                   2:  16.39%(abs count =  17039 out of 103956)
+                   4:  15.67%(abs count =  16285 out of 103956)
+                   3:  14.53%(abs count =  15105 out of 103956)
+
+fn: x - 25
+                 -24:   7.77%(abs count =   8072 out of 103923)
+               -25.0:   7.21%(abs count =   7496 out of 103923)
+                 -18:   4.85%(abs count =   5038 out of 103923)
+                 -12:   4.21%(abs count =   4370 out of 103923)
+                 -23:   3.83%(abs count =   3978 out of 103923)
+
+fn: x - 128
+                -127:   7.77%(abs count =   8080 out of 103923)
+              -128.0:   7.52%(abs count =   7815 out of 103923)
+                -121:   4.86%(abs count =   5053 out of 103923)
+                -115:   4.20%(abs count =   4368 out of 103923)
+                -126:   3.85%(abs count =   4002 out of 103923)
+
+fn: 151 - x
+                 150:   7.78%(abs count =   8087 out of 103923)
+               151.0:   7.53%(abs count =   7823 out of 103923)
+                 144:   4.77%(abs count =   4955 out of 103923)
+                 138:   4.23%(abs count =   4397 out of 103923)
+                 149:   3.82%(abs count =   3971 out of 103923)
+
+fn: 38 - x
+                  37:   7.77%(abs count =   8076 out of 103923)
+                38.0:   7.33%(abs count =   7620 out of 103923)
+                  31:   4.82%(abs count =   5009 out of 103923)
+                  25:   4.22%(abs count =   4389 out of 103923)
+                  36:   3.82%(abs count =   3966 out of 103923)
+
+fn: x // -6
+                  -1:  30.10%(abs count =  31290 out of 103950)
+                 0.0:  13.88%(abs count =  14427 out of 103950)
+                  -2:   9.97%(abs count =  10369 out of 103950)
+                  -3:   9.22%(abs count =   9588 out of 103950)
+                  -4:   4.94%(abs count =   5134 out of 103950)
+
+fn: -5 * x
+                  -5:   7.79%(abs count =   8100 out of 103926)
+                   0:   6.16%(abs count =   6399 out of 103926)
+                 -35:   4.87%(abs count =   5057 out of 103926)
+                 -65:   4.21%(abs count =   4375 out of 103926)
+                 -10:   3.85%(abs count =   4005 out of 103926)
+
+fn: 100 // x
+zd                  :  11.98%(abs count =  13301 out of 111073)
+                 100:   7.11%(abs count =   7897 out of 111073)
+                   0:   6.34%(abs count =   7037 out of 111073)
+                  14:   4.51%(abs count =   5004 out of 111073)
+                   7:   4.49%(abs count =   4985 out of 111073)
+
+fn: x % 25
+                   1:   9.15%(abs count =   9514 out of 103932)
+                   0:   8.15%(abs count =   8475 out of 103932)
+                   7:   5.71%(abs count =   5932 out of 103932)
+                  16:   5.21%(abs count =   5412 out of 103932)
+                  13:   5.12%(abs count =   5319 out of 103932)
+
+fn: x * (x // 4)
+                   0:  25.75%(abs count =  26769 out of 103938)
+                   7:   4.75%(abs count =   4941 out of 103938)
+                  39:   4.23%(abs count =   4397 out of 103938)
+                 4.0:   4.10%(abs count =   4257 out of 103938)
+                  64:   3.02%(abs count =   3143 out of 103938)
+
+fn: ceil(sqrt(abs(x)))
+                   1:  17.56%(abs count =  18252 out of 103914)
+                   3:  16.12%(abs count =  16755 out of 103914)
+                   2:  13.27%(abs count =  13786 out of 103914)
+                   4:  12.60%(abs count =  13096 out of 103914)
+                   5:   8.63%(abs count =   8972 out of 103914)
+
+fn: floor(log2(abs(x)))
+                   2:  15.57%(abs count =  17288 out of 111061)
+                   4:  13.52%(abs count =  15021 out of 111061)
+                   3:  12.18%(abs count =  13526 out of 111061)
+ve                  :  11.94%(abs count =  13260 out of 111061)
+                   0:  10.32%(abs count =  11460 out of 111061)
+
+fn: sin(pi * x / 2)
+                 1.0:  22.77%(abs count =  23688 out of 104010)
+                -1.0:  20.12%(abs count =  20927 out of 104010)
+                 0.0:   5.98%(abs count =   6220 out of 104010)
+1.2246467991473532e-16:   3.82%(abs count =   3978 out of 104010)
+-2.4492935982947064e-16:   3.62%(abs count =   3760 out of 104010)
+
+fn: if_greater_or_less
+                  66:  54.35%(abs count =  56474 out of 103911)
+                  42:  36.57%(abs count =  38000 out of 103911)
+                   5:   9.08%(abs count =   9437 out of 103911)
+
+fn: if_equal_or_not
+                  -9:   7.73%(abs count =   8038 out of 103923)
+                 -10:   6.91%(abs count =   7185 out of 103923)
+                  -3:   4.83%(abs count =   5020 out of 103923)
+                   6:   4.33%(abs count =   4496 out of 103923)
+                   3:   4.20%(abs count =   4368 out of 103923)
+
+fn: for_cycle
+                  11:   7.77%(abs count =   8070 out of 103926)
+                   0:   6.20%(abs count =   6447 out of 103926)
+                  27:   4.82%(abs count =   5006 out of 103926)
+                  43:   4.23%(abs count =   4393 out of 103926)
+                  22:   3.82%(abs count =   3974 out of 103926)
+
+fn: while_cycle
+                   0:  31.32%(abs count =  32552 out of 103950)
+                   2:  13.10%(abs count =  13615 out of 103950)
+                   4:   9.59%(abs count =   9967 out of 103950)
+                   6:   6.30%(abs count =   6547 out of 103950)
+                  -2:   3.32%(abs count =   3456 out of 103950)
+
+fn: int_from_list
+te                  :  50.67%(abs count =  73137 out of 144331)
+                   5:   8.10%(abs count =  11697 out of 144331)
+                   6:   7.35%(abs count =  10609 out of 144331)
+                   1:   7.00%(abs count =  10103 out of 144331)
+                   9:   5.98%(abs count =   8637 out of 144331)
+
+fn: ints_from_list
+te                  :  50.67%(abs count =  73137 out of 144331)
+                  76:   8.01%(abs count =  11555 out of 144331)
+                  23:   7.37%(abs count =  10635 out of 144331)
+                  85:   6.69%(abs count =   9653 out of 144331)
+                   1:   5.84%(abs count =   8432 out of 144331)
+
+fn: split_by_int
+                   1:  40.01%(abs count =  41589 out of 103956)
+                  -1:  31.90%(abs count =  33167 out of 103956)
+                   0:  28.09%(abs count =  29200 out of 103956)
+
+fn: int(str(x)[-1])
+                   0:  24.37%(abs count =  25328 out of 103935)
+                   5:  12.00%(abs count =  12474 out of 103935)
+                   6:  10.95%(abs count =  11381 out of 103935)
+                   1:  10.91%(abs count =  11342 out of 103935)
+                   3:   9.62%(abs count =   9999 out of 103935)
+
+fn: x + 0.5
+                 1.5:   7.77%(abs count =   8079 out of 104007)
+                 0.5:   6.36%(abs count =   6614 out of 104007)
+                 7.5:   4.85%(abs count =   5046 out of 104007)
+                13.5:   4.22%(abs count =   4388 out of 104007)
+                 2.5:   3.83%(abs count =   3986 out of 104007)
+
+fn: -0.5 * x
+                -0.5:   7.73%(abs count =   8040 out of 104010)
+                -0.0:   6.14%(abs count =   6382 out of 104010)
+                -3.5:   4.87%(abs count =   5067 out of 104010)
+                -6.5:   4.20%(abs count =   4368 out of 104010)
+                -1.0:   3.81%(abs count =   3959 out of 104010)
+
+fn: x / 1.5
+  0.6666666666666666:   7.78%(abs count =   8090 out of 104010)
+                 0.0:   6.17%(abs count =   6419 out of 104010)
+   4.666666666666667:   4.85%(abs count =   5045 out of 104010)
+   8.666666666666666:   4.21%(abs count =   4383 out of 104010)
+  1.3333333333333333:   3.76%(abs count =   3907 out of 104010)
+
+fn: 1 / x
+zd                  :  12.21%(abs count =  13586 out of 111290)
+                 1.0:   7.12%(abs count =   7925 out of 111290)
+ 0.14285714285714285:   4.57%(abs count =   5081 out of 111290)
+ 0.07692307692307693:   3.93%(abs count =   4372 out of 111290)
+                 0.5:   3.55%(abs count =   3952 out of 111290)
+
+fn: switch_places
+                 0.1:   8.62%(abs count =   8967 out of 104010)
+                -0.0:   7.41%(abs count =   7707 out of 104010)
+                 0.7:   4.93%(abs count =   5129 out of 104010)
+                 0.2:   4.23%(abs count =   4404 out of 104010)
+                0.13:   4.22%(abs count =   4391 out of 104010)
+
+fn: put_and_eval
+                 1.0:   7.61%(abs count =   7916 out of 104010)
+                -0.0:   7.47%(abs count =   7773 out of 104010)
+                 7.0:   4.76%(abs count =   4946 out of 104010)
+                13.0:   4.14%(abs count =   4303 out of 104010)
+                 2.0:   3.73%(abs count =   3882 out of 104010)
+
+fn: reverse
+                 0.0:  13.23%(abs count =  13762 out of 104019)
+                 1.0:   9.00%(abs count =   9363 out of 104019)
+                 7.0:   4.98%(abs count =   5178 out of 104019)
+                 2.0:   4.43%(abs count =   4605 out of 104019)
+                31.0:   4.37%(abs count =   4544 out of 104019)
+
+fn: subtract_madness
+                   1:  13.81%(abs count =  14359 out of 103938)
+                   0:  11.83%(abs count =  12297 out of 103938)
+                   2:   7.70%(abs count =   8008 out of 103938)
+                  -2:   7.11%(abs count =   7395 out of 103938)
+                  -5:   6.47%(abs count =   6721 out of 103938)
+
+fn: rec_subtract
+                 -29:   8.43%(abs count =   8776 out of 104164)
+                   0:   7.15%(abs count =   7446 out of 104164)
+                 -23:   5.46%(abs count =   5686 out of 104164)
+                 -24:   5.10%(abs count =   5311 out of 104164)
+                 -17:   4.52%(abs count =   4711 out of 104164)
+
+fn: rec_divide
+                 4.0:  20.01%(abs count =  20809 out of 104013)
+                 2.0:  18.20%(abs count =  18932 out of 104013)
+                 5.0:  13.78%(abs count =  14333 out of 104013)
+                 3.0:   9.51%(abs count =   9892 out of 104013)
+                 1.0:   8.92%(abs count =   9282 out of 104013)
+
+fn: double_rec
+                   1:  20.80%(abs count =  21618 out of 103922)
+                   2:  10.31%(abs count =  10711 out of 103922)
+                  -3:   7.84%(abs count =   8143 out of 103922)
+                   4:   6.44%(abs count =   6690 out of 103922)
+                  -2:   6.23%(abs count =   6478 out of 103922)
+
+fn: rec_mul
+                   5:   7.77%(abs count =   8077 out of 103928)
+                   0:   6.20%(abs count =   6439 out of 103928)
+                  53:   4.74%(abs count =   4927 out of 103928)
+                 101:   4.23%(abs count =   4391 out of 103928)
+                   6:   3.83%(abs count =   3980 out of 103928)
+
+fn: 13
+                  13:  100.00%(abs count = 103911 out of 103911)
+
+fn: 7
+                   7:  100.00%(abs count = 103911 out of 103911)
+
+fns which produced certain result:
+color: green-int     ['16', '19', 'x', 'x + 5', 'x - 1', 'min(x, 7)', 'x // 3', 'max(x, 13)', 'gcd(x, 24)', 'if_prime', 'x % 5', '100 // x', 'x % 25', 'ceil(sqrt(abs(x)))', 'floor(log2(abs(x)))', 'sin(pi * x / 2)', 'if_equal_or_not', 'while_cycle', 'int_from_list', 'split_by_int', 'int(str(x)[-1])', 'put_and_eval', 'rec_divide', 'double_rec', '13', 'rec_mul', '38 - x', 'x + 11', '2 * x', 'x * (x // 4)', 'reverse', 'subtract_madness', 'lcm(x, 6)', 'ints_from_list', 'x / 1.5', 'for_cycle', '1 / x', 'x - 25', 'x // -6', '-0.5 * x', 'x - 128', 'if_greater_or_less', '-5 * x', 'switch_places', '7', '151 - x', 'x + 0.5']
+color: yellow-int+   ['x + 11', '2 * x', 'lcm(x, 6)', '38 - x', 'x * (x // 4)', 'if_greater_or_less', 'for_cycle', 'ints_from_list', 'reverse', 'x + 5', 'split_by_int', 'rec_mul', '100 // x', 'x - 1', 'x // 3', 'floor(log2(abs(x)))', 'while_cycle', 'x', 'max(x, 13)', 'if_equal_or_not', 'x / 1.5', 'put_and_eval', '-5 * x', 'gcd(x, 24)', 'if_prime', 'x % 25', 'x % 5', 'x // -6', 'int(str(x)[-1])', 'x - 25', '151 - x', 'rec_divide', 'subtract_madness', '-0.5 * x', 'switch_places', 'rec_subtract', 'min(x, 7)', 'ceil(sqrt(abs(x)))', 'sin(pi * x / 2)', 'double_rec', 'x - 128', 'x + 0.5', '1 / x']
+color: yellow-int-   ['x - 25', 'x // -6', 'subtract_madness', 'rec_subtract', '-0.5 * x', 'sin(pi * x / 2)', 'if_equal_or_not', 'split_by_int', '-5 * x', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'min(x, 7)', 'x // 3', '100 // x', 'while_cycle', 'x / 1.5', 'put_and_eval', 'rec_divide', 'double_rec', '2 * x', 'reverse', 'rec_mul', '1 / x', 'x + 0.5', 'floor(log2(abs(x)))', 'for_cycle', 'x - 128', 'switch_places', '151 - x']
+color: red-int-      ['x - 128', '-5 * x', 'rec_subtract', 'x - 25', '-0.5 * x', '2 * x', 'if_equal_or_not', 'reverse', 'rec_mul', 'x', 'x + 5', 'x + 11', 'x - 1', 'min(x, 7)', 'x // 3', 'for_cycle', 'while_cycle', 'put_and_eval', '38 - x', 'x // -6', '100 // x', 'floor(log2(abs(x)))', 'x / 1.5', '151 - x', 'subtract_madness', 'switch_places', 'x + 0.5', 'rec_divide']
+color: red-int+      ['151 - x', 'rec_mul', 'lcm(x, 6)', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'put_and_eval', 'x * (x // 4)', '100 // x', '-5 * x', '2 * x', 'if_prime', 'reverse', '-0.5 * x', 'x // 3', 'x - 128', 'x // -6', 'ceil(sqrt(abs(x)))', 'x + 0.5', 'x / 1.5', 'double_rec', 'floor(log2(abs(x)))']
+color: red-float+    ['x + 0.5', 'x / 1.5', 'switch_places', 'sin(pi * x / 2)', '1 / x', '-0.5 * x', 'x', 'x + 5', 'x + 11', 'x - 1', 'gcd(x, 24)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'x * (x // 4)', 'for_cycle', 'put_and_eval', 'double_rec', '-5 * x', '2 * x', 'min(x, 7)', 'max(x, 13)', 'if_equal_or_not', 'x - 25', 'x - 128']
+color: red-float-    ['-0.5 * x', 'sin(pi * x / 2)', 'x + 0.5', 'x / 1.5', '1 / x', 'switch_places', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', 'rec_subtract', 'x', 'x - 1', 'min(x, 7)', 'put_and_eval', 'x + 5', '2 * x', 'double_rec', 'for_cycle', 'x + 11', '38 - x', '151 - x']
+color: black-float+  ['1 / x', 'switch_places', 'sin(pi * x / 2)', 'x + 0.5', 'put_and_eval', 'x', 'x + 5', 'x + 11', '2 * x', 'min(x, 7)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'for_cycle', 'x / 1.5', 'double_rec', 'gcd(x, 24)', '-5 * x', 'x * (x // 4)', '-0.5 * x', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not']
+color: black-int+    ['ints_from_list', 'x * (x // 4)', 'lcm(x, 6)', '151 - x', '-5 * x', '2 * x', 'reverse', 'rec_mul', '100 // x', '38 - x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'x / 1.5', 'put_and_eval', 'x // 3', 'x', 'x // -6', '-0.5 * x', 'ceil(sqrt(abs(x)))', '1 / x', 'x + 0.5', 'double_rec']
+color: black-int-    ['-5 * x', '2 * x', 'rec_mul', 'reverse', 'x - 128', '100 // x', 'x - 25', 'if_equal_or_not', 'min(x, 7)', 'put_and_eval', 'rec_subtract', 'x - 1', 'x + 5', 'x + 11', 'for_cycle', 'while_cycle', '151 - x', '38 - x', '-0.5 * x', 'x // -6', 'x', 'x / 1.5', 'x // 3', 'x + 0.5', 'double_rec', '1 / x']
+color: black-float-  ['1 / x', 'switch_places', 'x - 1', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', '-0.5 * x', 'rec_subtract', 'sin(pi * x / 2)', 'x + 0.5', '2 * x', 'put_and_eval', 'x / 1.5', 'x', 'min(x, 7)', 'double_rec', 'x + 5', 'x + 11', 'for_cycle', '38 - x', '151 - x']
+color: te            ['int_from_list', 'ints_from_list']
+color: zd            ['100 // x', '1 / x']
+color: ve            ['floor(log2(abs(x)))']
+color: re            ['rec_subtract']
+['green', 'yellow', 'red', 'black']
+green-int           :  37.90%(abs count = 2513806 out of 6632652)
+yellow-int+         :  16.20%(abs count = 1074760 out of 6632652)
+yellow-int-         :   8.96%(abs count = 594012 out of 6632652)
+red-float+          :   7.72%(abs count = 512100 out of 6632652)
+red-int-            :   5.61%(abs count = 372211 out of 6632652)
+black-int+          :   3.71%(abs count = 246337 out of 6632652)
+red-float-          :   3.69%(abs count = 244620 out of 6632652)
+te                  :   3.17%(abs count = 210039 out of 6632652)
+re                  :   2.62%(abs count = 173467 out of 6632652)
+black-float+        :   2.56%(abs count = 169822 out of 6632652)
+red-int+            :   2.54%(abs count = 168583 out of 6632652)
+black-inf           :   1.40%(abs count =  92952 out of 6632652)
+black-int-          :   1.28%(abs count =  84786 out of 6632652)
+black-float-        :   1.13%(abs count =  74954 out of 6632652)
+ve                  :   0.79%(abs count =  52174 out of 6632652)
+zd                  :   0.49%(abs count =  32291 out of 6632652)
+black-NaN           :   0.24%(abs count =  15738 out of 6632652)
+fn: 16
+                  16:  100.00%(abs count = 124463 out of 124463)
+
+fn: 19
+                  19:  100.00%(abs count = 124463 out of 124463)
+
+fn: x
+                   1:   7.52%(abs count =   9359 out of 124508)
+                   0:   6.35%(abs count =   7909 out of 124508)
+                   7:   4.49%(abs count =   5593 out of 124508)
+                  13:   3.99%(abs count =   4963 out of 124508)
+                   2:   3.44%(abs count =   4289 out of 124508)
+
+fn: x + 5
+                   6:   7.65%(abs count =   9520 out of 124500)
+                 5.0:   7.51%(abs count =   9351 out of 124500)
+                  12:   4.49%(abs count =   5586 out of 124500)
+                  18:   4.03%(abs count =   5015 out of 124500)
+                   7:   3.49%(abs count =   4350 out of 124500)
+
+fn: x + 11
+                11.0:   7.72%(abs count =   9617 out of 124496)
+                  12:   7.66%(abs count =   9542 out of 124496)
+                  18:   4.53%(abs count =   5640 out of 124496)
+                  24:   3.99%(abs count =   4969 out of 124496)
+                  13:   3.53%(abs count =   4393 out of 124496)
+
+fn: x - 1
+                   0:   7.58%(abs count =   9441 out of 124510)
+                -1.0:   7.04%(abs count =   8764 out of 124510)
+                   6:   4.54%(abs count =   5648 out of 124510)
+                  12:   4.04%(abs count =   5035 out of 124510)
+                   1:   3.47%(abs count =   4315 out of 124510)
+
+fn: 2 * x
+                   2:   7.67%(abs count =   9546 out of 124506)
+                   0:   6.36%(abs count =   7924 out of 124506)
+                  14:   4.57%(abs count =   5684 out of 124506)
+                  26:   4.06%(abs count =   5058 out of 124506)
+                   4:   3.37%(abs count =   4202 out of 124506)
+
+fn: min(x, 7)
+                   7:  41.08%(abs count =  51149 out of 124505)
+                   1:   7.54%(abs count =   9383 out of 124505)
+                   0:   6.39%(abs count =   7950 out of 124505)
+                   2:   3.38%(abs count =   4214 out of 124505)
+                 4.0:   3.16%(abs count =   3938 out of 124505)
+
+fn: x // 3
+                   0:  23.68%(abs count =  29484 out of 124511)
+                   1:   9.05%(abs count =  11272 out of 124511)
+                   2:   8.82%(abs count =  10976 out of 124511)
+                  -1:   7.24%(abs count =   9016 out of 124511)
+                   4:   5.42%(abs count =   6750 out of 124511)
+
+fn: max(x, 13)
+                  13:  71.97%(abs count =  89580 out of 124463)
+                  16:   2.67%(abs count =   3326 out of 124463)
+                  19:   2.38%(abs count =   2961 out of 124463)
+                 inf:   1.34%(abs count =   1668 out of 124463)
+                  66:   1.34%(abs count =   1666 out of 124463)
+
+fn: gcd(x, 24)
+                   1:  32.83%(abs count =  40875 out of 124490)
+                  24:  10.33%(abs count =  12856 out of 124490)
+                   2:   9.33%(abs count =  11612 out of 124490)
+                   3:   8.51%(abs count =  10594 out of 124490)
+                   6:   8.16%(abs count =  10157 out of 124490)
+
+fn: lcm(x, 6)
+                   6:  23.67%(abs count =  29466 out of 124505)
+                  42:   7.20%(abs count =   8969 out of 124505)
+                   0:   6.50%(abs count =   8097 out of 124505)
+                30.0:   5.43%(abs count =   6764 out of 124505)
+                  78:   5.09%(abs count =   6338 out of 124505)
+
+fn: if_prime
+                   1:  71.33%(abs count =  88779 out of 124466)
+                   0:   5.96%(abs count =   7414 out of 124466)
+                   7:   4.52%(abs count =   5632 out of 124466)
+                  13:   3.98%(abs count =   4949 out of 124466)
+                   2:   3.43%(abs count =   4263 out of 124466)
+
+fn: x % 5
+                   1:  20.38%(abs count =  25380 out of 124523)
+                   0:  17.00%(abs count =  21164 out of 124523)
+                   2:  15.36%(abs count =  19126 out of 124523)
+                   4:  14.91%(abs count =  18564 out of 124523)
+                   3:  14.09%(abs count =  17549 out of 124523)
+
+fn: x - 25
+               -25.0:   8.00%(abs count =   9959 out of 124528)
+                 -24:   7.67%(abs count =   9557 out of 124528)
+                 -18:   4.57%(abs count =   5693 out of 124528)
+                 -12:   4.04%(abs count =   5037 out of 124528)
+                 -23:   3.53%(abs count =   4402 out of 124528)
+
+fn: x - 128
+              -128.0:   8.38%(abs count =  10436 out of 124539)
+                -127:   7.68%(abs count =   9565 out of 124539)
+                -121:   4.59%(abs count =   5712 out of 124539)
+                -115:   4.04%(abs count =   5034 out of 124539)
+                -126:   3.55%(abs count =   4424 out of 124539)
+
+fn: 151 - x
+               151.0:   8.37%(abs count =  10422 out of 124493)
+                 150:   7.69%(abs count =   9575 out of 124493)
+                 144:   4.50%(abs count =   5606 out of 124493)
+                 138:   4.07%(abs count =   5063 out of 124493)
+                 149:   3.53%(abs count =   4389 out of 124493)
+
+fn: 38 - x
+                38.0:   8.18%(abs count =  10189 out of 124501)
+                  37:   7.68%(abs count =   9559 out of 124501)
+                  31:   4.55%(abs count =   5665 out of 124501)
+                  25:   4.06%(abs count =   5058 out of 124501)
+                  36:   3.52%(abs count =   4386 out of 124501)
+
+fn: x // -6
+                  -1:  30.16%(abs count =  37563 out of 124544)
+                 0.0:  13.83%(abs count =  17228 out of 124544)
+                  -2:   9.35%(abs count =  11651 out of 124544)
+                  -3:   8.67%(abs count =  10804 out of 124544)
+                  -4:   4.63%(abs count =   5764 out of 124544)
+
+fn: -5 * x
+                  -5:   7.69%(abs count =   9580 out of 124528)
+                   0:   6.34%(abs count =   7894 out of 124528)
+                 -35:   4.59%(abs count =   5717 out of 124528)
+                 -65:   4.05%(abs count =   5042 out of 124528)
+                 -10:   3.55%(abs count =   4426 out of 124528)
+
+fn: 100 // x
+zd                  :  11.99%(abs count =  15938 out of 132909)
+                   0:   8.56%(abs count =  11374 out of 132909)
+                 100:   7.04%(abs count =   9358 out of 132909)
+                   7:   4.30%(abs count =   5720 out of 132909)
+                  14:   4.25%(abs count =   5655 out of 132909)
+
+fn: x % 25
+                   1:   8.99%(abs count =  11195 out of 124499)
+                   0:   8.27%(abs count =  10298 out of 124499)
+                   7:   5.40%(abs count =   6728 out of 124499)
+                  13:   4.99%(abs count =   6212 out of 124499)
+                  16:   4.96%(abs count =   6176 out of 124499)
+
+fn: x * (x // 4)
+                   0:  26.81%(abs count =  33385 out of 124514)
+                   7:   4.49%(abs count =   5593 out of 124514)
+                  39:   4.07%(abs count =   5064 out of 124514)
+                 4.0:   3.73%(abs count =   4643 out of 124514)
+                  64:   2.84%(abs count =   3530 out of 124514)
+
+fn: ceil(sqrt(abs(x)))
+                   1:  18.52%(abs count =  23057 out of 124466)
+                   3:  15.15%(abs count =  18859 out of 124466)
+                   2:  12.66%(abs count =  15756 out of 124466)
+                   4:  11.90%(abs count =  14811 out of 124466)
+                   5:   8.08%(abs count =  10059 out of 124466)
+
+fn: floor(log2(abs(x)))
+                   2:  14.56%(abs count =  19342 out of 132874)
+                   4:  12.70%(abs count =  16873 out of 132874)
+ve                  :  12.14%(abs count =  16131 out of 132874)
+                   3:  11.47%(abs count =  15240 out of 132874)
+                   0:  10.30%(abs count =  13680 out of 132874)
+
+fn: sin(pi * x / 2)
+                 1.0:  21.75%(abs count =  27427 out of 126128)
+                -1.0:  18.96%(abs count =  23910 out of 126128)
+                 0.0:   6.11%(abs count =   7706 out of 126128)
+1.2246467991473532e-16:   3.49%(abs count =   4398 out of 126128)
+-2.4492935982947064e-16:   3.23%(abs count =   4070 out of 126128)
+
+fn: if_greater_or_less
+                  66:  54.56%(abs count =  67903 out of 124463)
+                  42:  34.23%(abs count =  42602 out of 124463)
+                   5:  11.21%(abs count =  13958 out of 124463)
+
+fn: if_equal_or_not
+               -10.0:   7.72%(abs count =   9618 out of 124518)
+                  -9:   7.64%(abs count =   9519 out of 124518)
+                  -3:   4.56%(abs count =   5678 out of 124518)
+                   6:   4.06%(abs count =   5059 out of 124518)
+                   3:   4.04%(abs count =   5033 out of 124518)
+
+fn: for_cycle
+                  11:   7.67%(abs count =   9551 out of 124498)
+                   0:   6.38%(abs count =   7939 out of 124498)
+                  27:   4.55%(abs count =   5663 out of 124498)
+                  43:   4.07%(abs count =   5061 out of 124498)
+                  22:   3.53%(abs count =   4396 out of 124498)
+
+fn: while_cycle
+                   0:  32.40%(abs count =  40348 out of 124518)
+                   2:  12.35%(abs count =  15376 out of 124518)
+                   4:   8.99%(abs count =  11199 out of 124518)
+                   6:   5.79%(abs count =   7205 out of 124518)
+                  -2:   3.15%(abs count =   3920 out of 124518)
+
+fn: int_from_list
+te                  :  56.55%(abs count = 105022 out of 185713)
+                   5:   7.28%(abs count =  13520 out of 185713)
+                   6:   6.52%(abs count =  12105 out of 185713)
+                   1:   6.07%(abs count =  11266 out of 185713)
+                   9:   5.31%(abs count =   9865 out of 185713)
+
+fn: ints_from_list
+te                  :  56.55%(abs count = 105017 out of 185713)
+                  76:   7.20%(abs count =  13367 out of 185713)
+                  23:   6.53%(abs count =  12134 out of 185713)
+                  85:   5.80%(abs count =  10777 out of 185713)
+                   1:   5.20%(abs count =   9653 out of 185713)
+
+fn: split_by_int
+                   1:  38.29%(abs count =  47686 out of 124532)
+                  -1:  32.56%(abs count =  40544 out of 124532)
+                   0:  27.53%(abs count =  34282 out of 124532)
+                 inf:   1.48%(abs count =   1840 out of 124532)
+ve                  :   0.14%(abs count =    180 out of 124532)
+
+fn: int(str(x)[-1])
+                   0:  23.94%(abs count =  30158 out of 125987)
+                   5:  11.65%(abs count =  14679 out of 125987)
+                   6:  10.69%(abs count =  13465 out of 125987)
+                   1:  10.65%(abs count =  13421 out of 125987)
+                   3:   9.46%(abs count =  11918 out of 125987)
+
+fn: x + 0.5
+                 1.5:   7.67%(abs count =   9556 out of 124630)
+                 0.5:   7.18%(abs count =   8946 out of 124630)
+                 7.5:   4.58%(abs count =   5706 out of 124630)
+                13.5:   4.06%(abs count =   5055 out of 124630)
+                 2.5:   3.54%(abs count =   4407 out of 124630)
+
+fn: -0.5 * x
+                -0.5:   7.64%(abs count =   9517 out of 124639)
+                -0.0:   6.32%(abs count =   7874 out of 124639)
+                -3.5:   4.59%(abs count =   5726 out of 124639)
+                -6.5:   4.04%(abs count =   5032 out of 124639)
+                -1.0:   3.51%(abs count =   4377 out of 124639)
+
+fn: x / 1.5
+  0.6666666666666666:   7.68%(abs count =   9569 out of 124632)
+                 0.0:   6.35%(abs count =   7909 out of 124632)
+   4.666666666666667:   4.58%(abs count =   5704 out of 124632)
+   8.666666666666666:   4.05%(abs count =   5050 out of 124632)
+  1.3333333333333333:   3.47%(abs count =   4322 out of 124632)
+
+fn: 1 / x
+zd                  :  12.27%(abs count =  16353 out of 133226)
+                 1.0:   7.05%(abs count =   9390 out of 133226)
+ 0.14285714285714285:   4.31%(abs count =   5740 out of 133226)
+ 0.07692307692307693:   3.78%(abs count =   5038 out of 133226)
+                 0.5:   3.28%(abs count =   4371 out of 133226)
+
+fn: switch_places
+                 0.0:   8.73%(abs count =  11016 out of 126134)
+                 0.1:   8.36%(abs count =  10545 out of 126134)
+                 0.7:   4.60%(abs count =   5799 out of 126134)
+                0.13:   4.01%(abs count =   5061 out of 126134)
+                 0.2:   3.84%(abs count =   4842 out of 126134)
+
+fn: put_and_eval
+                 0.0:   8.87%(abs count =  11052 out of 124622)
+                 1.0:   7.54%(abs count =   9402 out of 124622)
+                 7.0:   4.49%(abs count =   5599 out of 124622)
+                13.0:   3.98%(abs count =   4963 out of 124622)
+                 2.0:   3.45%(abs count =   4296 out of 124622)
+
+fn: reverse
+                 0.0:  14.55%(abs count =  18128 out of 124617)
+                 1.0:   8.92%(abs count =  11110 out of 124617)
+                 7.0:   4.72%(abs count =   5877 out of 124617)
+                31.0:   4.20%(abs count =   5236 out of 124617)
+                 2.0:   4.11%(abs count =   5126 out of 124617)
+
+fn: subtract_madness
+                   0:  14.56%(abs count =  18128 out of 124510)
+                   1:  13.44%(abs count =  16739 out of 124510)
+                   2:   7.06%(abs count =   8791 out of 124510)
+                  -2:   6.80%(abs count =   8470 out of 124510)
+                  -5:   6.18%(abs count =   7692 out of 124510)
+
+fn: rec_subtract
+                 -29:   8.18%(abs count =  10427 out of 127496)
+                   0:   7.06%(abs count =   9006 out of 127496)
+re                  :   5.24%(abs count =   6680 out of 127496)
+                 -23:   5.04%(abs count =   6425 out of 127496)
+                 -24:   4.56%(abs count =   5809 out of 127496)
+
+fn: rec_divide
+                 2.0:  19.28%(abs count =  24023 out of 124608)
+                 4.0:  18.77%(abs count =  23393 out of 124608)
+                 5.0:  12.76%(abs count =  15903 out of 124608)
+                 3.0:   8.97%(abs count =  11179 out of 124608)
+                 1.0:   8.93%(abs count =  11128 out of 124608)
+
+fn: double_rec
+                   1:  19.67%(abs count =  24782 out of 125999)
+                   2:   9.35%(abs count =  11784 out of 125999)
+                  -3:   7.44%(abs count =   9374 out of 125999)
+                   0:   6.25%(abs count =   7879 out of 125999)
+                  -2:   5.85%(abs count =   7372 out of 125999)
+
+fn: rec_mul
+                   5:   7.59%(abs count =   9562 out of 126012)
+                   0:   6.28%(abs count =   7916 out of 126012)
+                  53:   4.43%(abs count =   5581 out of 126012)
+                 101:   4.01%(abs count =   5059 out of 126012)
+                   6:   3.49%(abs count =   4403 out of 126012)
+
+fn: ack
+re                  :  67.67%(abs count = 154021 out of 227615)
+                 inf:  21.23%(abs count =  48333 out of 227615)
+                   3:   4.19%(abs count =   9546 out of 227615)
+                   1:   3.52%(abs count =   8001 out of 227615)
+                   7:   1.96%(abs count =   4450 out of 227615)
+
+fn: fibb
+                   1:  10.83%(abs count =  13755 out of 127029)
+                   0:   6.40%(abs count =   8134 out of 127029)
+re                  :   4.53%(abs count =   5757 out of 127029)
+                  13:   4.49%(abs count =   5701 out of 127029)
+                 233:   3.90%(abs count =   4956 out of 127029)
+
+fn: pow(x, -x)
+ve                  :  17.13%(abs count =  24430 out of 142583)
+                 1.0:  11.88%(abs count =  16941 out of 142583)
+                 0.0:   6.17%(abs count =   8793 out of 142583)
+1.2142656789020123e-06:   4.02%(abs count =   5738 out of 142583)
+3.3016909552301194e-15:   3.54%(abs count =   5051 out of 142583)
+
+fn: 13
+                  13:  100.00%(abs count = 124463 out of 124463)
+
+fn: 7
+                   7:  100.00%(abs count = 124463 out of 124463)
+
+fns which produced certain result:
+color: green-int     ['16', '19', 'x', 'x + 5', 'x - 1', 'min(x, 7)', 'x // 3', 'max(x, 13)', 'gcd(x, 24)', 'if_prime', 'x % 5', '100 // x', 'x % 25', 'ceil(sqrt(abs(x)))', 'floor(log2(abs(x)))', 'sin(pi * x / 2)', 'if_equal_or_not', 'while_cycle', 'int_from_list', 'split_by_int', 'int(str(x)[-1])', 'put_and_eval', 'rec_divide', 'double_rec', '13', 'rec_mul', '38 - x', 'x + 11', '2 * x', 'x * (x // 4)', 'reverse', 'subtract_madness', 'fibb', 'lcm(x, 6)', 'ints_from_list', 'x / 1.5', 'for_cycle', 'ack', '1 / x', 'pow(x, -x)', 'x - 25', 'x // -6', '-0.5 * x', 'x - 128', 'if_greater_or_less', '-5 * x', 'switch_places', '7', '151 - x', 'x + 0.5']
+color: yellow-int+   ['x + 11', '2 * x', 'lcm(x, 6)', '38 - x', 'x * (x // 4)', 'if_greater_or_less', 'for_cycle', 'ints_from_list', 'reverse', 'x + 5', 'split_by_int', 'rec_mul', '100 // x', 'x - 1', 'x // 3', 'floor(log2(abs(x)))', 'while_cycle', 'x', 'max(x, 13)', 'if_equal_or_not', 'x / 1.5', 'put_and_eval', '-5 * x', 'gcd(x, 24)', 'if_prime', 'x % 25', 'x % 5', 'ack', 'x // -6', 'int(str(x)[-1])', 'x - 25', '151 - x', '1 / x', 'subtract_madness', 'pow(x, -x)', 'switch_places', 'rec_divide', 'fibb', '-0.5 * x', 'ceil(sqrt(abs(x)))', 'rec_subtract', 'min(x, 7)', 'sin(pi * x / 2)', 'double_rec', 'x - 128', 'x + 0.5']
+color: yellow-int-   ['x - 25', 'x // -6', 'subtract_madness', 'rec_subtract', '-0.5 * x', 'sin(pi * x / 2)', 'if_equal_or_not', 'split_by_int', '-5 * x', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'min(x, 7)', 'x // 3', '100 // x', 'while_cycle', 'x / 1.5', 'put_and_eval', 'rec_divide', 'double_rec', 'fibb', '2 * x', 'reverse', 'rec_mul', '1 / x', 'pow(x, -x)', 'x + 0.5', 'floor(log2(abs(x)))', 'for_cycle', 'x - 128', 'switch_places', '151 - x']
+color: red-int-      ['x - 128', '-5 * x', 'rec_subtract', 'x - 25', '-0.5 * x', '2 * x', 'if_equal_or_not', 'reverse', 'rec_mul', 'x', 'x + 5', 'x + 11', 'x - 1', 'min(x, 7)', 'x // 3', 'for_cycle', 'while_cycle', 'put_and_eval', 'fibb', '38 - x', 'x // -6', '100 // x', 'pow(x, -x)', '151 - x', 'floor(log2(abs(x)))', 'x / 1.5', 'subtract_madness', 'switch_places', 'x + 0.5', 'rec_divide', 'double_rec', '1 / x']
+color: red-int+      ['151 - x', 'rec_mul', 'lcm(x, 6)', 'fibb', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'put_and_eval', 'x * (x // 4)', '100 // x', '-5 * x', '2 * x', 'if_prime', 'reverse', 'x - 128', '-0.5 * x', 'x // 3', 'x // -6', 'ceil(sqrt(abs(x)))', 'x + 0.5', 'x / 1.5', 'rec_divide', 'floor(log2(abs(x)))', 'double_rec', '1 / x']
+color: red-float+    ['x + 0.5', 'x / 1.5', 'pow(x, -x)', 'switch_places', 'sin(pi * x / 2)', '1 / x', '-0.5 * x', 'x', 'x + 5', 'x + 11', 'x - 1', 'gcd(x, 24)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'x * (x // 4)', 'for_cycle', 'put_and_eval', 'double_rec', '-5 * x', '2 * x', 'min(x, 7)', 'fibb', 'max(x, 13)', 'if_equal_or_not', 'x - 25', 'x - 128']
+color: red-float-    ['-0.5 * x', 'sin(pi * x / 2)', 'x + 0.5', 'x / 1.5', '1 / x', 'switch_places', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', 'rec_subtract', 'x', 'x - 1', 'min(x, 7)', 'put_and_eval', 'fibb', 'x + 5', '2 * x', 'double_rec', 'for_cycle', 'x + 11', '38 - x', '151 - x']
+color: black-float+  ['1 / x', 'switch_places', 'pow(x, -x)', 'sin(pi * x / 2)', 'x + 0.5', 'put_and_eval', 'x', 'x + 5', 'x + 11', '2 * x', 'min(x, 7)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'for_cycle', 'x / 1.5', 'double_rec', 'fibb', 'gcd(x, 24)', '-5 * x', 'x * (x // 4)', '-0.5 * x', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not']
+color: black-inf     ['ack', 'x', 'x + 5', 'x + 11', 'x - 1', '2 * x', 'max(x, 13)', 'x - 25', 'x - 128', '151 - x', '38 - x', '-5 * x', 'ceil(sqrt(abs(x)))', 'floor(log2(abs(x)))', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'split_by_int', 'x + 0.5', '-0.5 * x', 'x / 1.5', 'put_and_eval', 'reverse', 'rec_divide', 'pow(x, -x)', 'min(x, 7)', 'if_prime', 'rec_subtract', 'fibb', 'x * (x // 4)', '100 // x', '1 / x', 'sin(pi * x / 2)', 'switch_places', 'subtract_madness']
+color: black-int+    ['fibb', 'ints_from_list', 'x * (x // 4)', 'pow(x, -x)', 'lcm(x, 6)', '151 - x', '-5 * x', '2 * x', 'reverse', 'rec_mul', '100 // x', '1 / x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'put_and_eval', 'x // 3', 'x - 128', 'x / 1.5', 'while_cycle', '38 - x', 'x // -6', '-0.5 * x', 'ceil(sqrt(abs(x)))', 'floor(log2(abs(x)))', 'x + 0.5', 'rec_divide', 'double_rec']
+color: black-int-    ['-5 * x', '2 * x', 'rec_mul', 'pow(x, -x)', 'reverse', 'x - 128', '100 // x', '151 - x', '38 - x', 'x // -6', 'x - 25', 'if_equal_or_not', 'min(x, 7)', 'put_and_eval', 'rec_subtract', 'fibb', 'x - 1', 'x + 5', 'x + 11', 'for_cycle', 'while_cycle', '-0.5 * x', 'x', 'x / 1.5', 'x // 3', 'x + 0.5', 'subtract_madness', 'rec_divide', 'double_rec', 'floor(log2(abs(x)))', '1 / x']
+color: black-float-  ['1 / x', 'switch_places', 'x - 1', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', '-0.5 * x', 'rec_subtract', 'sin(pi * x / 2)', 'x + 0.5', '2 * x', 'put_and_eval', 'x / 1.5', 'x', 'min(x, 7)', 'double_rec', 'fibb', 'x + 5', 'x + 11', 'for_cycle', '38 - x', '151 - x']
+color: re            ['ack', 'rec_subtract', 'double_rec', 'rec_mul', 'fibb']
+color: te            ['int_from_list', 'ints_from_list']
+color: ve            ['pow(x, -x)', 'sin(pi * x / 2)', 'int(str(x)[-1])', 'switch_places', 'floor(log2(abs(x)))', 'if_prime', 'ceil(sqrt(abs(x)))', 'for_cycle', 'while_cycle', 'split_by_int', 'reverse', 'rec_divide']
+color: black-NaN     ['x // 3', 'lcm(x, 6)', 'x % 5', 'x // -6', 'x % 25', 'x * (x // 4)', 'x', 'x + 5', 'x + 11', 'x - 1', '2 * x', 'min(x, 7)', 'max(x, 13)', 'x - 25', 'x - 128', '151 - x', '38 - x', '-5 * x', '100 // x', 'sin(pi * x / 2)', 'if_equal_or_not', 'x + 0.5', '-0.5 * x', 'x / 1.5', '1 / x', 'put_and_eval', 'pow(x, -x)']
+color: zd            ['100 // x', '1 / x']
 
 
 

@@ -56,15 +56,18 @@ jasně stanovit pořadí použitých programů.
 
 ### Speciální efekty karet:
 Pro některé vstupní hodnoty může v programu dojít k chybě:
-1. Recursion Error - nekončící rekurzivní program
-+ efekt: všichni hráči, kteří jsou mimo hru (nemají karty), se vrací do hry s jednou kartou
-2. Zero Division Error - modulo nebo dělení nulou
-+ efekt: v aktuálním kole všichni vyhrávají a ztrácí jednu kartu
-3. Type Error - použití objektu nesprávného typu
-+ efekt: hráč si s jiným hráčem vlastního výběru vymění všechny karty
-4. Value Error - použití hodnoty mimo očekávaný rozsah
-+ efekt: hráč může v dalším kole vylosovat novou vstupní hodnotu, pokud se mu ta
-původní nelíbí
+1. Type Error - použití hodnoty nesprávného typu
+    + efekt: hráč automaticky prohrává a na konci kola si bere o jednu kartu navíc
+1. Recursion Error ala Stack Overflow - nekončící rekurzivní program
+    + efekt: hráč automaticky prohrává a VŠICHNI hráči si na konci kola vezmou jednu kartu 
+1. Value Error - použití hodnoty mimo očekávaný rozsah
+    + efekt: hráč automaticky prohrává, nicméně před vyhodnocením ostatních hráčů se vylosuje
+    nová VSTUPNÍ hodnota
+    + jakékoli chyby způsobené nekonečnem či NaN (Not a Number, např. 0 * inf), se považují
+    za Value Errors 
+1. Zero Division Error - modulo nebo dělení nulou
+    + efekt: hráč automaticky prohrává, nicméně před vyhodnocením ostatních hráčů se vylosuje
+    nová VÝSTUPNÍ hodnota
 
 ### Konec hry:
 Hra končí ve chvíli, kdy se jeden z hráčů zbaví všech karet a tento se stává

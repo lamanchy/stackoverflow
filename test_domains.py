@@ -1,14 +1,17 @@
 import math
+import sys
 
-from generate_pdf import get_source_code
+import _thread
+import threading
+from time import time
+
+from generate_pdf import get_source_code, get_source_code_name
 from rules import get_rules
 from values import values
 
 
 def get_result(rule, value):
   try:
-    if value == math.inf:
-      value = 1000000000000000000000000000000000000000
     return rule(value)
   except ZeroDivisionError:
     return 'zd'
@@ -27,6 +30,14 @@ def get_value_color(value):
     return value
 
   if value == math.inf:
+    return "black-inf"
+
+  try:
+    if int(value) == value:
+      value = int(value)  # 0.0 to 0 etc
+  except ValueError:
+    return "black-NaN"
+  except OverflowError:
     return "black-inf"
 
   if isinstance(value, int):
@@ -57,7 +68,7 @@ def get_value_color(value):
 
 def view_results():
   colors = ["green", "yellow", "red", "black"]
-  for num in range(3):
+  for num in range(2, 3):
     print("stats with %s cards" % (num + 1))
     print()
     for c, color in enumerate(colors):
@@ -70,20 +81,41 @@ def view_results():
       color_values.sort()
 
       total = {}
+      fn_total = {}
       s = [0]
-      def account(value, *fns):
-        for fn in fns:
-          value = get_result(rule, value)
-          if get_value_color(value) not in colors:
-            break
+      fn_s = {}
+      value_color_fns = {}
 
-        result_color = get_value_color(value)
+      def account(_value, *rules):
+        _rule = rules[0]
+        original = _value
+        time_start = time()
+        for _rule in rules:
+          _value = get_result(_rule, _value)
+          if get_value_color(_value).split('-')[0] not in colors:
+            break
+        if time() - time_start > .1:
+          print("\n", time() - time_start, original, [get_source_code_name(fn) for fn in rules], _value)
+
+        result_color = get_value_color(_value)
         if result_color not in total:
           total[result_color] = 0
         total[result_color] += 1
         s[0] += 1
 
-      for value in color_values:
+        if result_color not in value_color_fns:
+          value_color_fns[result_color] = []
+        if _rule not in value_color_fns[result_color]:
+          value_color_fns[result_color].append(_rule)
+
+        if _rule not in fn_total: fn_total[_rule] = {}
+        if _rule not in fn_s: fn_s[_rule] = 0
+        if _value not in fn_total[_rule]:
+          fn_total[_rule][_value] = 0
+        fn_total[_rule][_value] += 1
+        fn_s[_rule] += 1
+
+      for val_num, value in enumerate(color_values):
         for i, rule in enumerate(color_rules):
           for i2, rule2 in enumerate(color_rules):
             if num == 0: break
@@ -98,6 +130,8 @@ def view_results():
               account(value, rule, rule2, rule3)
             account(value, rule, rule2)
           account(value, rule)
+      #   print(int(val_num / len(color_values) * 100), end="% ")
+      # print()
 
       for color, count in sorted(total.items(), key=lambda w: (-w[1], w[0])):
         print('{:20}'.format(color), end=': ')
@@ -105,6 +139,21 @@ def view_results():
         print('{}'.format("(abs count = "), end='')
         print('{:6}'.format(count), end=' out of ')
         print('{:6}'.format(s[0]), end=')\n')
+
+      # if num == 0 and len(colors[:c + 1]) == 4:
+      for rule in fn_total:
+        print("fn:", get_source_code_name(rule))
+        for color, count in sorted(fn_total[rule].items(), key=lambda w: -w[1])[:5]:
+          print('{:20}'.format(color), end=': ')
+          print("{: 6.2f}%".format(100 * count / fn_s[rule]), end='')
+          print('{}'.format("(abs count = "), end='')
+          print('{:6}'.format(count), end=' out of ')
+          print('{:6}'.format(fn_s[rule]), end=')\n')
+        print()
+
+      print("fns which produced certain result:")
+      for value_color in value_color_fns:
+        print("{:20}".format("color: " + value_color), [get_source_code_name(fn) for fn in value_color_fns[value_color]])
 
     print()
     print()

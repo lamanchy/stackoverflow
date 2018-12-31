@@ -1,3 +1,4 @@
+import functools
 import inspect
 import random
 from math import *
@@ -27,9 +28,9 @@ def get_rules():
 
       # 4
       lambda x: 2 * x,
-      lambda x: min(x, 17),
+      lambda x: min(x, 7),
       lambda x: x // 3,
-      lambda x: max(x, 7),
+      lambda x: max(x, 13),
 
       # 5
       lambda x: gcd(x, 24),
@@ -51,9 +52,9 @@ def get_rules():
       lambda x: x % 25,
 
       # 8
-      lambda x: x * (x // 10),
+      lambda x: x * (x // 4),
       lambda x: ceil(sqrt(abs(x))),
-      lambda x: floor(log2(x)),
+      lambda x: floor(log2(abs(x))),
       lambda x: sin(pi * x / 2),
 
       # 9
@@ -70,43 +71,49 @@ def get_rules():
 
     ],
     "red": [  # KQJ
-      # J can use floats
+      # # J can use floats
       lambda x: x + 0.5,
       lambda x: -0.5 * x,
       lambda x: x / 1.5,
       lambda x: 1 / x,
-
-      # Q float to string and back
+      #
+      # # Q float to string and back
       switch_places,
       put_and_eval,
       reverse,
       subtract_madness,
 
       # K
-      rec_sub,
+      rec_subtract,
       rec_divide,
-      d_rec,
+      double_rec,
       rec_mul,
 
     ],
     "black": [
       # A
       ack,
-      lambda x: min(x, -10000),
+      fibb,
       lambda x: pow(x, -x),
       lambda x: inf,
     ]
   }
 
 
+def sign(x):
+  return copysign(1, x)
+
+
 def is_prime(n):
   if n != int(n):  return False
+  n = int(n)
   if n <= 1:       return False
+  if n % 2 == 0 and n > 2:
+    return False
 
-  for i in range(2, n):
-    if (n % i) == 0:
+  for i in range(3, int(sqrt(n)) + 1, 2):
+    if n % i == 0:
       return False
-
   return True
 
 
@@ -121,6 +128,7 @@ def lcm(a, b):
 
 
 def if_prime(x):
+  if x > 200:  return 0
   if is_prime(x):
     return x
 
@@ -131,8 +139,8 @@ def if_prime(x):
 #  MAX FUNCTION LINES 7 !!!!!
 
 def if_greater_or_less(x):
-  if x < 10:  return 66
-  if x > 66:  return 10
+  if x < 5:   return 66
+  if x > 66:  return 5
   return 42
 
 
@@ -140,9 +148,10 @@ def if_greater_or_less(x):
 #  MAX FUNCTION LINES 7 !!!!!
 
 def if_equal_or_not(x):
-  if x == 10:   x += 66
-  elif x != 66: x -= 10
-  else:  return x // 10
+  if   x == 10:  x += 66
+  elif x != 66:  x -= 10
+  else:
+    return x // 10
 
   return x
 
@@ -161,8 +170,8 @@ def for_cycle(x):
 #  MAX LINE LENGTH 29 SIGNS!!
 #  MAX FUNCTION LINES 7 !!!!!
 def while_cycle(x):
-  while x % 4 != 0:
-    x = round(x / 5)
+  while x % 2 != 0:
+    x = round(x / 3)
 
   return x
 
@@ -184,9 +193,9 @@ def ints_from_list(x):
 
 def split_by_int(x):
   x = str(int(x) % 10)
-  string = "1975486231587962"
+  string = "37163267492"
   parts = string.split(x)
-  return len(parts)
+  return len(parts) - 2
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
@@ -196,8 +205,7 @@ def switch_places(x):
   s = "{0:.2f}".format(y)
   a, b = s.split(".")
   result = float(b + "." + a)
-  copysign(-1*x, result)
-  return result
+  return result * sign(x)
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
@@ -210,61 +218,79 @@ def put_and_eval(x):
 
 def reverse(x):
   string = str(abs(int(x)))
-  reversed = string[::-1]
-  copysign(x, string)
-  return string
+  string = string[::-1]
+  res = int(string)
+  return res * sign(x)
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
 
 def subtract_madness(x):
+  if isnan(x) or isinf(x):
+    return 0
+
   s = "{0:.2f}".format(x)
   s = s.replace('.', '--')
   return eval('-'.join(s))
 
 
-def rec_sub(x):
+def rec_subtract(x):
   if x <= 0:
     return x
 
-  return rec_sub(x - 30)
+  x -= 30
+  return rec_subtract(x)
 
 
 def rec_divide(x):
   if x == 0:
-    return -1
+    return sign(x)
 
   x = round(x / 3)
-  return -1 + rec_divide(x)
+  return sign(x) + \
+         rec_divide(x)
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
 
-def d_rec(x):
-  x = abs(x)
-  if x <= 1: return x
+@functools.lru_cache(None)
+def double_rec(x):
+  if -1 <= x <= 10: return x
 
-  return d_rec(x // 10) + \
-         d_rec(x // 100)
+  res = double_rec(x // 100)
+  res += double_rec(x // 10)
+  return res
+
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
 
 def rec_mul(x):
-  if x % 8 != 0:
+  if x % 8 == 0:
     return x
 
   return rec_mul(2 * x) - 1
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
+
+@functools.lru_cache(None)
 def ack(m, n=None):
   if n is None:  n = m
+  if isinstance(m, int) and isinstance(n, int) and m >= 4:  raise OverflowError  # DEBUG this line wont be printed
   if m == 0:     return n + 1
   if n == 0:     n = 1
   else:
     n = ack(m, n - 1)
   return ack(m - 1, n)
+
+
+@functools.lru_cache(None)
+def fibb(x):
+  if x <= 1: return x
+
+  return fibb(x - 1) + \
+         fibb(x - 2)
 
 
 #  MAX LINE LENGTH 29 SIGNS!!

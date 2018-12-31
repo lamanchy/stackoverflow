@@ -31,7 +31,7 @@ def mm_to_px(*args):
   x = args
   if len(args) == 1:
     x = args[0]
-  if isinstance(x, Number):
+  if isinstance(x, int) or isinstance(x, float):
     return int(RESOLUTION_DPI * ANTIALIASING * 0.03937 * x)
 
   return type(x)([mm_to_px(i) for i in x])
@@ -61,7 +61,16 @@ def get_source_code(fn):
   source_code = inspect.getsource(fn)
 
   # remove leading and ending spaces
-  source_code = source_code.strip()
+  source_code = source_code.strip().split('\n')
+
+  for i in range(len(source_code)-1, -1, -1):
+    if "# DEBUG this line wont be printed" in source_code[i]:
+      source_code = source_code[:i] + source_code[i+1:]
+
+    if source_code[i].startswith('@'):
+      source_code = source_code[:i] + source_code[i + 1:]
+
+  source_code = '\n'.join(source_code)
 
   if source_code.startswith("lambda") and source_code[-1] == ',':
     source_code = source_code[:-1]
@@ -69,12 +78,17 @@ def get_source_code(fn):
   return source_code
 
 
+def get_source_code_name(fn):
+  source_code = get_source_code(fn)
+  return re.match('^(?:def |lambda x: )(.*)(?:$|\(.+\):)', source_code).group(1)
+
+
 color_regexes = [
   (r".*", "white"),  # default color
   (r"\d", "blue"),
   (r"(pi|inf)", "blue"),
   (
-    r'(?:^|\s|\()(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str|pow|float|eval|copysign)(?=\()',
+    r'(?:^|\s|\()(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str|pow|float|eval|sign|isnan|isinf)(?=\()',
     "violet"),
   (r'(?:^|\s)(lambda|def|if|while|and|or|else|elif|for|in|return)(?:\W)', "orange"),
   (r'def (\w*)', "yellow"),
@@ -210,6 +224,8 @@ def get_source_code_position_n_size(source_code, draw):
     size = draw.textsize(source_code, get_font(min_font_size))
 
     if size[0] >= available_size[0] or size[1] >= available_size[1] or min_font_size - 1 == max_font_size:
+      if min_font_size - 1 < 15:
+        print("too small font size, fn {}, font size {}".format(source_code.split('\n')[0], size))
       return min_font_size - 1
 
     min_font_size += 1
