@@ -273,7 +273,7 @@ def get_fn_card_front(order, fn, color):
   # for color in name_colloring:
   #   draw.text((mm_to_px(15), H - h - mm_to_px(5)), name_colloring[color], font=font, fill=color_codes[color])
   #
-  # card.paste(base, mask=base)
+  card.paste(base, mask=base)
 
   return card
 
