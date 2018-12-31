@@ -55,7 +55,7 @@ def get_rules():
       lambda x: x * (x // 4),
       lambda x: ceil(sqrt(abs(x))),
       lambda x: floor(log2(abs(x))),
-      lambda x: sin(pi * x / 2),
+      lambda x: 3 * sin(pi * x / 2),
 
       # 9
       if_greater_or_less,
@@ -67,7 +67,7 @@ def get_rules():
       int_from_list,
       ints_from_list,
       split_by_int,
-      lambda x: int(str(x)[-1]),
+      lambda x: int(str(abs(x))[0]),
 
     ],
     "red": [  # KQJ
@@ -87,7 +87,7 @@ def get_rules():
       rec_subtract,
       rec_divide,
       double_rec,
-      rec_mul,
+      rec_multiply,
 
     ],
     "black": [
@@ -130,9 +130,9 @@ def lcm(a, b):
 def if_prime(x):
   if x > 200:  return 0
   if is_prime(x):
-    return x
+    return 1
 
-  return 1
+  return x
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
@@ -193,7 +193,8 @@ def ints_from_list(x):
 
 def split_by_int(x):
   x = str(int(x) % 10)
-  string = "37163267492"
+
+  string = "376326492"
   parts = string.split(x)
   return len(parts) - 2
 
@@ -237,7 +238,7 @@ def rec_subtract(x):
   if x <= 0:
     return x
 
-  x -= 30
+  x -= 60
   return rec_subtract(x)
 
 
@@ -254,21 +255,21 @@ def rec_divide(x):
 
 @functools.lru_cache(None)
 def double_rec(x):
-  if -1 <= x <= 10: return x
+  if -1 <= x <= 10: return -x
 
   res = double_rec(x // 100)
   res += double_rec(x // 10)
   return res
 
-
-
 #  MAX LINE LENGTH 29 SIGNS!!
 
-def rec_mul(x):
+
+def rec_multiply(x):
   if x % 8 == 0:
     return x
 
-  return rec_mul(2 * x) - 1
+  res = rec_multiply(2 * x)
+  return res - 1
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
@@ -280,7 +281,7 @@ def ack(m, n=None):
   if m == 0:     return n + 1
   if n == 0:     n = 1
   else:
-    n = ack(m, n - 1)
+     n = ack(m, n - 1)
   return ack(m - 1, n)
 
 

@@ -78,9 +78,28 @@ def get_source_code(fn):
   return source_code
 
 
-def get_source_code_name(fn):
-  source_code = get_source_code(fn)
-  return re.match('^(?:def |lambda x: )(.*)(?:$|\(.+\):)', source_code).group(1)
+def get_source_code_name(source_code):
+  if not isinstance(source_code, str):
+    source_code = get_source_code(fn)
+
+  source_code = source_code.split('\n')[0]
+  colloring = get_source_code_coloring(source_code)
+
+  if source_code.startswith("def"):
+    start = len("def ")
+    end = len(source_code) - 1
+    while source_code[end] != '(':
+      end -= 1
+
+  else:
+    start = len("lambda x: ")
+    end = len(source_code)
+
+  source_code = source_code[start:end]
+  for color in colloring:
+    colloring[color] = colloring[color][start:end]
+
+  return source_code, colloring
 
 
 color_regexes = [
@@ -90,7 +109,7 @@ color_regexes = [
   (
     r'(?:^|\s|\()(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str|pow|float|eval|sign|isnan|isinf)(?=\()',
     "violet"),
-  (r'(?:^|\s)(lambda|def|if|while|and|or|else|elif|for|in|return)(?:\W)', "orange"),
+  (r'(?:^|\s|=)(lambda|def|if|while|and|or|else|elif|for|in|return|None|is)(?=\W|:|\))', "orange"),
   (r'def (\w*)', "yellow"),
   (r"'[^']*'", "green"),
   (r'"[^"]*"', "green"),
@@ -247,7 +266,14 @@ def get_fn_card_front(order, fn, color):
   for color in colors:
     draw.text((mm_to_px(10), (H - h) // 2 - mm_to_px(3)), colors[color], font=font, fill=color_codes[color])
 
-  card.paste(base, mask=base)
+  # name, name_colloring = get_source_code_name(fn)
+  # font = get_font(10)
+  # w, h = draw.textsize(name, font)
+  #
+  # for color in name_colloring:
+  #   draw.text((mm_to_px(15), H - h - mm_to_px(5)), name_colloring[color], font=font, fill=color_codes[color])
+  #
+  # card.paste(base, mask=base)
 
   return card
 
@@ -349,9 +375,9 @@ if __name__ == "__main__":
       cards.pop(0)
 
 
-  for i, (v, c) in enumerate(get_all_values()):
-      cards.append(get_value_card(i, v, c))
-      generate_pdf(False)
+  # for i, (v, c) in enumerate(get_all_values()):
+  #     cards.append(get_value_card(i, v, c))
+  #     generate_pdf(False)
 
 
   # cards.append(get_fn_card(0, get_all_functions()[24][0], "yellow"))

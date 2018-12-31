@@ -85,6 +85,7 @@ def view_results():
       s = [0]
       fn_s = {}
       value_color_fns = {}
+      total_values = {}
 
       def account(_value, *rules):
         _rule = rules[0]
@@ -95,7 +96,7 @@ def view_results():
           if get_value_color(_value).split('-')[0] not in colors:
             break
         if time() - time_start > .1:
-          print("\n", time() - time_start, original, [get_source_code_name(fn) for fn in rules], _value)
+          print("\n", time() - time_start, original, [get_source_code_name(fn)[0] for fn in rules], _value)
 
         result_color = get_value_color(_value)
         if result_color not in total:
@@ -114,6 +115,10 @@ def view_results():
           fn_total[_rule][_value] = 0
         fn_total[_rule][_value] += 1
         fn_s[_rule] += 1
+
+        if _value not in total_values:
+          total_values[_value] = 0
+        total_values[_value] += 1
 
       for val_num, value in enumerate(color_values):
         for i, rule in enumerate(color_rules):
@@ -142,7 +147,7 @@ def view_results():
 
       # if num == 0 and len(colors[:c + 1]) == 4:
       for rule in fn_total:
-        print("fn:", get_source_code_name(rule))
+        print("fn:", get_source_code_name(rule)[0])
         for color, count in sorted(fn_total[rule].items(), key=lambda w: -w[1])[:5]:
           print('{:20}'.format(color), end=': ')
           print("{: 6.2f}%".format(100 * count / fn_s[rule]), end='')
@@ -153,8 +158,13 @@ def view_results():
 
       print("fns which produced certain result:")
       for value_color in value_color_fns:
-        print("{:20}".format("color: " + value_color), [get_source_code_name(fn) for fn in value_color_fns[value_color]])
+        print("{:20}".format("color: " + value_color), [get_source_code_name(fn)[0] for fn in value_color_fns[value_color]])
 
+      print()
+
+      print("most common values globally:")
+      for value, count in sorted(total_values.items(), key=lambda w: -w[1])[:20]:
+        print("{:20}".format("value: " + str(value)), count / s[0] * 100)
     print()
     print()
 
