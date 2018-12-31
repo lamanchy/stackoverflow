@@ -375,9 +375,9 @@ if __name__ == "__main__":
       cards.pop(0)
 
 
-  # for i, (v, c) in enumerate(get_all_values()):
-  #     cards.append(get_value_card(i, v, c))
-  #     generate_pdf(False)
+  for i, (v, c) in enumerate(get_all_values()):
+      cards.append(get_value_card(i, v, c))
+      generate_pdf(False)
 
 
   # cards.append(get_fn_card(0, get_all_functions()[24][0], "yellow"))
