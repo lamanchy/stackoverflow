@@ -79,6 +79,65 @@ def is_prime(n):
       if (n % i) == 0: return False
   return True\
 """,
+  """\
+# basic functions:
+# +=
+x = 1   # x has a value of 1
+x += 3  # value 1 was added to x
+x == 4  # value of x is equal to 4
+x -= 2  # 2 is subtracted from x
+x == 2  # value of x is equal to 2
+x *= 3  # x is multiplied by 3
+x == 4  # x is equal to 4
+
+# >= > <= < ==
+3 > 2 == True
+2 <= 2 == True
+5 < 3 == False
+(1 == 2) == False
+
+# /
+# division without rounding
+5 / 2 == 2.5
+- 5 / 2 == -2.5
+
+# //
+# division with rounding
+a // b == floor(a / b)  # see fn floor lower
+5 // 3 == 1
+- 5 // 3 == - 2
+
+# round, floor, ceil
+floor(2.9) == 2    # floor always down
+floor(-1.5) == -2
+ceil(1.1) == 2     # ceil always up
+round(2.49) == 2   # round to closest (0.5 up)
+round(2.5) == round(3.49) == 3
+
+# %
+# remainder (even for not whole numbers)
+5 % 3 == 8 % 3 == 2
+- 5 % 3 == 4 % 3 == 1
+1.4 % 0.3 == 0.2
+- 1.4 % 0.3 == 0.1
+
+# min, max
+min(2, 7) == 2
+min(20, -3) == -3
+max(2, -10) == 2
+
+# gcd, lcm
+# greatest common divisor, least common multiple
+def gcd(a, b):
+  while abs(b) > 0:
+    a, b = b, a % b
+  return abs(a)
+
+def lcm(a, b):
+  return abs(a * b) // gcd(a, b)  
+
+
+"""
 ]
 
 

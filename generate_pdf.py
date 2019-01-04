@@ -17,6 +17,7 @@ ANTIALIASING = 3  # do not set bigger that 32 :D
 RESOLUTION_DPI = 300
 CARD_SIZE_MM = (87, 57)
 
+
 def do_antialiasing(img):
   return img.resize((img.size[0] // ANTIALIASING, img.size[1] // ANTIALIASING), ANTIALIAS)
 
@@ -24,8 +25,8 @@ def do_antialiasing(img):
 def show(img):
   do_antialiasing(img).show()
 
-
 # dasda
+
 
 def mm_to_px(*args):
   x = args
@@ -51,7 +52,7 @@ color_codes = {
   "violet": "rgb(169,168,255)",
   "orange": "rgb(230,142,71)",
   "yellow": "#FFC66D",
-  "green": "rgb(100,163,70)",
+  "green": "rgb(100,183,70)",
   "grey": "rgb(166,166,166)",
   "red": "rgb(216,69,65)",
 }
@@ -120,7 +121,7 @@ card_colors_to_real_colors = {
   "green": "green",
   "yellow": "yellow",
   "red": "red",
-  "black": "true_black",
+  "black": "white",
 }
 
 
@@ -148,15 +149,17 @@ def get_source_code_coloring(string):
   return result
 
 
-def get_round_rectangle(size=CARD_SIZE_MM, color="black", radius=10):
-  rectangle = Image.new('RGBA', mm_to_px(size), (*ImageColor.getrgb(color_codes[color]), 0))
+def get_round_rectangle(size=CARD_SIZE_MM, color="black", radius=10.0):
+  if isinstance(color, str): color = ImageColor.getrgb(color_codes[color])
+  if not isinstance(color, tuple): color = tuple(color)
+  rectangle = Image.new('RGBA', mm_to_px(size), (*color, 0))
   draw = ImageDraw.Draw(rectangle)
-  draw.rectangle(mm_to_px(radius // 2, 0, size[0] - (radius // 2), size[1]), fill=color_codes[color])
-  draw.rectangle(mm_to_px(0, radius // 2, size[0], size[1] - (radius // 2)), fill=color_codes[color])
-  draw.ellipse(mm_to_px(0, 0, radius, radius), fill=color_codes[color])
-  draw.ellipse(mm_to_px(size[0] - radius, 0, size[0], radius), fill=color_codes[color])
-  draw.ellipse(mm_to_px(0, size[1] - radius, radius, size[1]), fill=color_codes[color])
-  draw.ellipse(mm_to_px(size[0] - radius, size[1] - radius, size[0], size[1]), fill=color_codes[color])
+  draw.rectangle(mm_to_px(radius / 2, 0, size[0] - (radius / 2), size[1]), fill=color)
+  draw.rectangle(mm_to_px(0, radius / 2, size[0], size[1] - (radius / 2)), fill=color)
+  draw.ellipse(mm_to_px(0, 0, radius, radius), fill=color)
+  draw.ellipse(mm_to_px(size[0] - radius, 0, size[0], radius), fill=color)
+  draw.ellipse(mm_to_px(0, size[1] - radius, radius, size[1]), fill=color)
+  draw.ellipse(mm_to_px(size[0] - radius, size[1] - radius, size[0], size[1]), fill=color)
   return rectangle
 
 
@@ -191,43 +194,54 @@ def get_order_sign_n_color(order):
 
 def get_card_base_with_color(order, color):
   card = get_card_base()
-  draw = ImageDraw.Draw(card)
-  base_size = 10
-  move_up = 3.5
-  move_left = 3.5
-  smaller_by = -.5
-  draw.ellipse(mm_to_px(
-    move_left + smaller_by,
-    CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
-    base_size + move_left - smaller_by,
-    CARD_SIZE_MM[1] - move_up - smaller_by
-  ), fill=color_codes["lighter_black"])
-  smaller_by = .5
-  draw.ellipse(mm_to_px(
-    move_left + smaller_by,
-    CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
-    base_size + move_left - smaller_by,
-    CARD_SIZE_MM[1] - move_up - smaller_by
-  ), fill=color_codes[card_colors_to_real_colors[color]])
-  smaller_by = 1
-  draw.ellipse(mm_to_px(
-    move_left + smaller_by,
-    CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
-    base_size + move_left - smaller_by,
-    CARD_SIZE_MM[1] - move_up - smaller_by
-  ), fill=color_codes["true_black"])
+  smaller_by = 0
+  border_color = list(ImageColor.getrgb(color_codes[card_colors_to_real_colors[color]]))
+  for i in range(len(border_color)): border_color[i] //= 1.5
+  for i in range(len(border_color)): border_color[i] = int(border_color[i])
+  border = get_round_rectangle((CARD_SIZE_MM[0] - 7 - smaller_by, CARD_SIZE_MM[1] - 7 - smaller_by), border_color, radius=5-smaller_by)
+  card.paste(border, mm_to_px(3.5+smaller_by/2, 3.5+smaller_by/2), mask=border)
+  # border = get_round_rectangle((CARD_SIZE_MM[0] - 6, CARD_SIZE_MM[1] - 6), "lighter_black", radius=6)
+  # card.paste(border, mm_to_px(4, 3), mask=border)
+  background = get_round_rectangle((CARD_SIZE_MM[0] - 8, CARD_SIZE_MM[1] - 8), "black", radius=4)
+  card.paste(background, mm_to_px(4, 4), mask=background)
+  # background = get_round_rectangle((CARD_SIZE_MM[0] - 9, CARD_SIZE_MM[1] - 9), "black", radius=3)
+  # card.paste(background, mm_to_px(4.5, 4.5), mask=background)
+  # draw = ImageDraw.Draw(card)
+  # base_size = 10
+  # move_up = 3.5
+  # move_left = 3.5
+  # smaller_by = -.5
+  # draw.ellipse(mm_to_px(
+  #   move_left + smaller_by,
+  #   CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
+  #   base_size + move_left - smaller_by,
+  #   CARD_SIZE_MM[1] - move_up - smaller_by
+  # ), fill=color_codes["lighter_black"])
+  # smaller_by = .5
+  # draw.ellipse(mm_to_px(
+  #   move_left + smaller_by,
+  #   CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
+  #   base_size + move_left - smaller_by,
+  #   CARD_SIZE_MM[1] - move_up - smaller_by
+  # ), fill=color_codes[card_colors_to_real_colors[color]])
+  # smaller_by = 1
+  # draw.ellipse(mm_to_px(
+  #   move_left + smaller_by,
+  #   CARD_SIZE_MM[1] - base_size - move_up + smaller_by,
+  #   base_size + move_left - smaller_by,
+  #   CARD_SIZE_MM[1] - move_up - smaller_by
+  # ), fill=color_codes["true_black"])
 
-  font = get_font(15, FONT_BOLD)
-
-  sign, color = get_order_sign_n_color(order)
-  w, _ = draw.textsize(sign, font)
-  _, h = draw.textsize("8", font)
-  draw.text(
-    (
-      mm_to_px(move_left + base_size // 2) - w // 2 - mm_to_px(.1),
-      mm_to_px(CARD_SIZE_MM[1] - base_size // 2 - move_up) - h // 2 - mm_to_px(.45)
-    ),
-    sign, font=font, fill=color_codes[color])
+  # font = get_font(15, FONT_BOLD)
+  # sign, color = get_order_sign_n_color(order)
+  # w, _ = draw.textsize(sign, font)
+  # _, h = draw.textsize("8", font)
+  # draw.text(
+  #   (
+  #     mm_to_px(move_left + base_size // 2) - w // 2 - mm_to_px(.1),
+  #     mm_to_px(CARD_SIZE_MM[1] - base_size // 2 - move_up) - h // 2 - mm_to_px(.45)
+  #   ),
+  #   sign, font=font, fill=color_codes[color])
 
   return card
 
@@ -264,7 +278,7 @@ def get_fn_card_front(order, fn, color):
   w, h = draw.textsize(source_code, font)
 
   for color in colors:
-    draw.text((mm_to_px(10), (H - h) // 2 - mm_to_px(3)), colors[color], font=font, fill=color_codes[color])
+    draw.text((mm_to_px(10), (H - h) // 2 - mm_to_px(1)), colors[color], font=font, fill=color_codes[color], spacing=mm_to_px(0.8))
 
   # name, name_colloring = get_source_code_name(fn)
   # font = get_font(10)
@@ -285,18 +299,34 @@ def get_value_card_front(order, value, color):
   font = get_font(50)
   W, H = mm_to_px(CARD_SIZE_MM)
   w, h = draw.textsize(value, font)
+  if value[0] in '-':
+    w += draw.textsize('-', font)[0]
 
-  draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(3)), value, font=font, fill=color_codes["blue"])
+  # draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(3)), value, font=font, fill=color_codes["blue"])
+  draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(1)), value, font=font, fill=color_codes["blue"])
 
   return card
 
 
 def get_card_back(color):
+  # card = get_card_base()
+  # for i, text in enumerate(["Stack\n", "Overflow\n"]):
+  #   invisible = Image.new('RGBA', mm_to_px(CARD_SIZE_MM), (0, 0, 0, 0))
+  #   draw = ImageDraw.Draw(invisible)
+  #   W, H = mm_to_px(CARD_SIZE_MM)
+  #   # font = get_font(17)
+  #   font = get_font(25)
+  #   w, h = draw.textsize(text, font)
+  #   draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(1)), text, font=font, fill=color_codes[color])
+  #
+  #   invisible = invisible.rotate(i*180)
+  #   card.paste(invisible, mask=invisible)
+
   card = get_card_base()
   draw = ImageDraw.Draw(card)
   text = "Stack Overflow"
   W, H = mm_to_px(CARD_SIZE_MM)
-  font = get_font(17)
+  font = get_font(20)
   w, h = draw.textsize(text, font)
   draw.text(((W - w) // 2, (H - h) // 2), text, font=font, fill=color_codes[color])
   return card
@@ -375,6 +405,8 @@ if __name__ == "__main__":
       cards.pop(0)
 
 
+
+  # for i, (v, c) in enumerate(get_all_values()[0:2] + get_all_values()[16:18] + get_all_values()[-8:-6] + get_all_values()[-2:]):
   for i, (v, c) in enumerate(get_all_values()):
       cards.append(get_value_card(i, v, c))
       generate_pdf(False)
@@ -385,12 +417,13 @@ if __name__ == "__main__":
   # cards.append(get_fn_card(0, get_all_functions()[31][0], "yellow"))
   # generate_pdf(False)
 
+  # for i, (fn, c) in enumerate(get_all_functions()[0:2] + get_all_functions()[16:18] + get_all_functions()[-8:-6] + get_all_functions()[-2:]):
   for i, (fn, c) in enumerate(get_all_functions()):
     cards.append(get_fn_card(i, fn, c))
     generate_pdf(False)
-
-  for i, (help1, help2) in enumerate(get_all_help_cards()):
-    cards.append((get_help_card(i, help1), get_help_card(i, help2)))
-    generate_pdf(False)
+  #
+  # for i, (help1, help2) in enumerate(get_all_help_cards()):
+  #   cards.append((get_help_card(i, help1), get_help_card(i, help2)))
+  #   generate_pdf(False)
 
   generate_pdf(True)
