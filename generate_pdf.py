@@ -427,3 +427,11 @@ if __name__ == "__main__":
   #   generate_pdf(False)
 
   generate_pdf(True)
+
+  i = Image.open("developing/napoveda_lic.jpg")
+  i.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
+              resolution=300, append=True)
+  i = Image.open("developing/napoveda_rub.jpg")
+  i.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
+         resolution=300, append=True)
+

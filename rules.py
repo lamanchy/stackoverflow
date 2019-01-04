@@ -2,6 +2,7 @@ import functools
 import inspect
 import random
 from math import *
+import numpy
 
 
 # yvetsit values
@@ -118,17 +119,22 @@ def is_prime(n):
 
 
 def gcd(a, b):
-  while abs(b) > 0:
+  a = abs(a)
+  b = abs(b)
+  if a == 0: return b
+  if b == 0: return a
+  while b > 0:
     a, b = b, a % b
-  return abs(a)
+  return a
 
 
 def lcm(a, b):
+  if a == 0 or b == 0: return 0
   return abs(a * b) // gcd(a, b)
 
 
 def if_prime(x):
-  if x > 200:  return 0
+  if x > 200: return 0
   if is_prime(x):
     return 1
 
