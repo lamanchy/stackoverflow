@@ -192,8 +192,8 @@ def int_from_list(x):
 def ints_from_list(x):
   # index:  0123456789
   string = "176485923074"
-  a = x % 9
-  b = a + (a % 3) + 1
+  a = x % 10
+  b = a + (x % 3) + 1
   return int(string[a:b])
 
 

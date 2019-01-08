@@ -15,6 +15,10 @@ FONT_BOLD = "fonts/DejaVuSansMono-Bold.ttf"
 
 ANTIALIASING = 3  # do not set bigger that 32 :D
 RESOLUTION_DPI = 300
+TEXTURE = "textures/moulin.png"
+TEXTURE = "textures/slash_it.png"
+TEXTURE = "textures/what-the-hex-dark.png"
+# TEXTURE = "textures/zig zag wool.png"
 CARD_SIZE_MM = (87, 57)
 
 
@@ -149,7 +153,16 @@ def get_source_code_coloring(string):
   return result
 
 
-def get_round_rectangle(size=CARD_SIZE_MM, color="black", radius=10.0):
+def apply_texture(image, texture):
+  texture = Image.open(texture)
+  texture = texture.resize((texture.size[0] * ANTIALIASING, texture.size[1] * ANTIALIASING))
+  texture = texture.point(lambda p: p * 2)
+  for x in range(0, image.size[0], texture.size[0]):
+    for y in range(0, image.size[1], texture.size[1]):
+      image.paste(texture, (x, y), mask=image.crop((x, y, x + texture.size[0], y + texture.size[1])))
+
+
+def get_round_rectangle(size=CARD_SIZE_MM, color="black", radius=10.0, texture=None):
   if isinstance(color, str): color = ImageColor.getrgb(color_codes[color])
   if not isinstance(color, tuple): color = tuple(color)
   rectangle = Image.new('RGBA', mm_to_px(size), (*color, 0))
@@ -160,6 +173,9 @@ def get_round_rectangle(size=CARD_SIZE_MM, color="black", radius=10.0):
   draw.ellipse(mm_to_px(size[0] - radius, 0, size[0], radius), fill=color)
   draw.ellipse(mm_to_px(0, size[1] - radius, radius, size[1]), fill=color)
   draw.ellipse(mm_to_px(size[0] - radius, size[1] - radius, size[0], size[1]), fill=color)
+  if texture is not None:
+    apply_texture(rectangle, texture)
+
   return rectangle
 
 
@@ -323,6 +339,32 @@ def get_card_back(color):
   #   card.paste(invisible, mask=invisible)
 
   card = get_card_base()
+
+  smaller_by = -2
+  border_color = list(ImageColor.getrgb(color_codes[color]))
+  for i in range(len(border_color)): border_color[i] /= 1.2
+  for i in range(len(border_color)): border_color[i] = int(max(border_color[i] - 100, 0))
+  # smaller_by = -7
+  # border = get_round_rectangle((CARD_SIZE_MM[0] - 7 - smaller_by, CARD_SIZE_MM[1] - 7 - smaller_by), border_color, radius=5-smaller_by)
+  # card.paste(border, mm_to_px(3.5+smaller_by/2, 3.5+smaller_by/2), mask=border)
+  # smaller_by = -6
+  # border = get_round_rectangle((CARD_SIZE_MM[0] - 7 - smaller_by, CARD_SIZE_MM[1] - 7 - smaller_by), "true_black", radius=5-smaller_by)
+  # card.paste(border, mm_to_px(3.5+smaller_by/2, 3.5+smaller_by/2), mask=border)
+  # border = get_round_rectangle((CARD_SIZE_MM[0] - 6, CARD_SIZE_MM[1] - 6), "lighter_black", radius=6)
+  # card.paste(border, mm_to_px(4, 3), mask=border)
+  smaller_by = -1
+  border = get_round_rectangle((CARD_SIZE_MM[0] - 7 - smaller_by, CARD_SIZE_MM[1] - 7 - smaller_by), border_color,
+                               radius=5 - smaller_by)
+  card.paste(border, mm_to_px(3.5 + smaller_by / 2, 3.5 + smaller_by / 2), mask=border)
+  smaller_by = 0
+  border = get_round_rectangle((CARD_SIZE_MM[0] - 7 - smaller_by, CARD_SIZE_MM[1] - 7 - smaller_by), "lighter_black",
+                               radius=5 - smaller_by)
+  card.paste(border, mm_to_px(3.5 + smaller_by / 2, 3.5 + smaller_by / 2), mask=border)
+  smaller_by = 1
+  border = get_round_rectangle((CARD_SIZE_MM[0] - 7 - smaller_by, CARD_SIZE_MM[1] - 7 - smaller_by), "black",
+                               radius=5 - smaller_by)
+  card.paste(border, mm_to_px(3.5 + smaller_by / 2, 3.5 + smaller_by / 2), mask=border)
+
   draw = ImageDraw.Draw(card)
   text = "Stack Overflow"
   W, H = mm_to_px(CARD_SIZE_MM)
