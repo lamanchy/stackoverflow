@@ -1,6 +1,7 @@
 import inspect
 import os
 import re
+from math import ceil
 from numbers import Number
 
 from PIL import Image, ImageFont, ImageDraw, ImageColor
@@ -59,6 +60,8 @@ color_codes = {
   "green": "rgb(100,183,70)",
   "grey": "rgb(166,166,166)",
   "red": "rgb(216,69,65)",
+  "cyan": "rgb(82,187,186)",
+  "magenta": "rgb(194,158,211)",
 }
 
 
@@ -85,7 +88,7 @@ def get_source_code(fn):
 
 def get_source_code_name(source_code):
   if not isinstance(source_code, str):
-    source_code = get_source_code(fn)
+    source_code = get_source_code(source_code)
 
   source_code = source_code.split('\n')[0]
   colloring = get_source_code_coloring(source_code)
@@ -109,12 +112,12 @@ def get_source_code_name(source_code):
 
 color_regexes = [
   (r".*", "white"),  # default color
-  (r"\d", "blue"),
+  (r"(?:\W)(\d+)", "blue"),
   (r"(pi|inf)", "blue"),
   (
     r'(?:^|\s|\()(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str|pow|float|eval|sign|isnan|isinf)(?=\()',
     "violet"),
-  (r'(?:^|\s|=)(lambda|def|if|while|and|or|else|elif|for|in|return|None|is)(?=\W|:|\))', "orange"),
+  (r'(?:^|\s|=)(lambda|def|if|while|and|or|else|elif|for|in|return|None|global|is)(?=\W|:|\))', "orange"),
   (r'def (\w*)', "yellow"),
   (r"'[^']*'", "green"),
   (r'"[^"]*"', "green"),
@@ -126,6 +129,8 @@ card_colors_to_real_colors = {
   "yellow": "yellow",
   "red": "red",
   "black": "white",
+  "magenta": "magenta",
+  "cyan": "cyan",
 }
 
 
@@ -179,11 +184,12 @@ def get_round_rectangle(size=CARD_SIZE_MM, color="black", radius=10.0, texture=N
   return rectangle
 
 
-def get_card_base():
-  card = get_round_rectangle(CARD_SIZE_MM, "true_black")
-  border = get_round_rectangle((CARD_SIZE_MM[0] - 6, CARD_SIZE_MM[1] - 6), "lighter_black", radius=6)
+def get_card_base(multipler=(1, 1)):
+  size = (CARD_SIZE_MM[0]*multipler[0], CARD_SIZE_MM[1]*multipler[1])
+  card = get_round_rectangle(size, "true_black")
+  border = get_round_rectangle((size[0] - 6, size[1] - 6), "lighter_black", radius=6)
   card.paste(border, mm_to_px(3, 3), mask=border)
-  background = get_round_rectangle((CARD_SIZE_MM[0] - 8, CARD_SIZE_MM[1] - 8), "black", radius=4)
+  background = get_round_rectangle((size[0] - 8, size[1] - 8), "black", radius=4)
   card.paste(background, mm_to_px(4, 4), mask=background)
   return card
 
@@ -208,17 +214,17 @@ def get_order_sign_n_color(order):
   return sign + number, "orange" if (order // 2) % 2 == 1 else "blue"
 
 
-def get_card_base_with_color(order, color):
-  card = get_card_base()
+def get_card_base_with_color(order, color, multipler=(1, 1)):
+  card = get_card_base(multipler)
   smaller_by = 0
   border_color = list(ImageColor.getrgb(color_codes[card_colors_to_real_colors[color]]))
   for i in range(len(border_color)): border_color[i] //= 1.5
   for i in range(len(border_color)): border_color[i] = int(border_color[i])
-  border = get_round_rectangle((CARD_SIZE_MM[0] - 7 - smaller_by, CARD_SIZE_MM[1] - 7 - smaller_by), border_color, radius=5-smaller_by)
+  border = get_round_rectangle((CARD_SIZE_MM[0]*multipler[0] - 7 - smaller_by, CARD_SIZE_MM[1]*multipler[1] - 7 - smaller_by), border_color, radius=5-smaller_by)
   card.paste(border, mm_to_px(3.5+smaller_by/2, 3.5+smaller_by/2), mask=border)
   # border = get_round_rectangle((CARD_SIZE_MM[0] - 6, CARD_SIZE_MM[1] - 6), "lighter_black", radius=6)
   # card.paste(border, mm_to_px(4, 3), mask=border)
-  background = get_round_rectangle((CARD_SIZE_MM[0] - 8, CARD_SIZE_MM[1] - 8), "black", radius=4)
+  background = get_round_rectangle((CARD_SIZE_MM[0]*multipler[0] - 8, CARD_SIZE_MM[1]*multipler[1] - 8), "black", radius=4)
   card.paste(background, mm_to_px(4, 4), mask=background)
   # background = get_round_rectangle((CARD_SIZE_MM[0] - 9, CARD_SIZE_MM[1] - 9), "black", radius=3)
   # card.paste(background, mm_to_px(4.5, 4.5), mask=background)
@@ -262,20 +268,21 @@ def get_card_base_with_color(order, color):
   return card
 
 
-def get_source_code_position_n_size(source_code, draw):
+def get_source_code_position_n_size(card, source_code, draw):
   # width is exactly half the height
 
   min_font_size = 1
   max_font_size = 25
-  available_size = list(mm_to_px(CARD_SIZE_MM[0] - 10, CARD_SIZE_MM[1] - 30))
+  height_multipler = card.size[1] // mm_to_px(CARD_SIZE_MM[1])
+  available_size = list((card.size[0] - mm_to_px(10), card.size[1] - mm_to_px(5 + 30)))
 
   while True:
-    size = draw.textsize(source_code, get_font(min_font_size))
+    size = draw.textsize(source_code, get_font(min_font_size + 1), spacing=mm_to_px(.13))
 
-    if size[0] >= available_size[0] or size[1] >= available_size[1] or min_font_size - 1 == max_font_size:
-      if min_font_size - 1 < 15:
-        print("too small font size, fn {}, font size {}".format(source_code.split('\n')[0], size))
-      return min_font_size - 1
+    if size[0] >= available_size[0] or size[1] >= available_size[1] or min_font_size == max_font_size:
+      if (height_multipler == 1 and min_font_size < 15) or (height_multipler == 2 and min_font_size < 11) or True:
+        print("too small font size, fn {}, font size {}".format(source_code.split('\n')[0], min_font_size))
+      return min_font_size
 
     min_font_size += 1
     available_size[0] *= .99
@@ -288,7 +295,7 @@ def get_fn_card_front(order, fn, color):
   card = get_card_base_with_color(order, color)
   base = Image.new("RGBA", mm_to_px(CARD_SIZE_MM), (0, 0, 0, 0))
   draw = ImageDraw.Draw(base)
-  sc_size = get_source_code_position_n_size(source_code, draw)
+  sc_size = get_source_code_position_n_size(card, source_code, draw)
   font = get_font(sc_size)
   W, H = mm_to_px(CARD_SIZE_MM)
   w, h = draw.textsize(source_code, font)
@@ -371,29 +378,35 @@ def get_card_back(color):
   font = get_font(20)
   w, h = draw.textsize(text, font)
   draw.text(((W - w) // 2, (H - h) // 2), text, font=font, fill=color_codes[color])
-  return card
+  return card.rotate(180)
 
 
 def get_fn_card(order, fn, color):
   return get_fn_card_front(order, fn, color), get_card_back("yellow")
 
 
-def get_help_card(order, help_text):
-  source_code = help_text
+def get_help_card(help_text):
+  title, source_code = help_text.split('\n', 1)
+  # print(source_code)
   colors = get_source_code_coloring(source_code)
+  color = "cyan" if "PLAY THIS GAME" in title else "magenta"
 
-  card = get_card_base()
-  base = Image.new("RGBA", mm_to_px(CARD_SIZE_MM), (0, 0, 0, 0))
-  draw = ImageDraw.Draw(base)
-  sc_size = get_source_code_position_n_size(source_code, draw)
+  card = get_card_base_with_color(1, color, (1, 2))
+  # card = get_card_base((1, 2))
+  draw = ImageDraw.Draw(card)
+
+  font = get_font(13)
+  W, H = card.size
+  w, h = draw.textsize(title, font)
+  print(title, w, h, W, H)
+  draw.text((W - mm_to_px(6) - w, mm_to_px(5)), title, font=font, fill=color_codes[color])
+
+  sc_size = get_source_code_position_n_size(card, source_code, draw)
   font = get_font(sc_size)
-  W, H = mm_to_px(CARD_SIZE_MM)
-  w, h = draw.textsize(source_code, font)
+  w, h = draw.textsize(source_code, font, spacing=mm_to_px(0.6))
 
   for color in colors:
-    draw.text((mm_to_px(10), (H - h) // 2 - mm_to_px(2)), colors[color], font=font, fill=color_codes[color])
-
-  card.paste(base, mask=base)
+    draw.text((mm_to_px(10), (H - h) // 2 - mm_to_px(2)), colors[color], font=font, fill=color_codes[color], spacing=mm_to_px(0.8))
 
   return card
 
@@ -422,12 +435,15 @@ if __name__ == "__main__":
                  int(mm_to_px(297) / 2 - 2.5 * mm_to_px(CARD_SIZE_MM[1]) - mm_to_px(.2))
 
     for i, card in enumerate(cards[:10]):
+      if card[0].size[0] == 0: continue
       offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 1 else 0
       offset_y = mm_to_px(CARD_SIZE_MM[1] + .1) * (i // 2)
 
       front_canvas.paste(card[0], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[0])
       offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 0 else 0
-      background = get_round_rectangle((CARD_SIZE_MM[0]+2, CARD_SIZE_MM[1]+2), "true_black")
+      background = get_round_rectangle((
+        (card[1].size[0] // mm_to_px(CARD_SIZE_MM[0]))*CARD_SIZE_MM[0]+2,
+        (card[1].size[1] // mm_to_px(CARD_SIZE_MM[1]))*CARD_SIZE_MM[1]+2), "true_black")
       back_canvas.paste(background, (base_point[0] + offset_x - mm_to_px(1), base_point[1] + offset_y - mm_to_px(1)), mask=background)
       back_canvas.paste(card[1], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[1])
 
@@ -448,32 +464,43 @@ if __name__ == "__main__":
 
 
 
-  # for i, (v, c) in enumerate(get_all_values()[0:2] + get_all_values()[16:18] + get_all_values()[-8:-6] + get_all_values()[-2:]):
-  for i, (v, c) in enumerate(get_all_values()):
-      cards.append(get_value_card(i, v, c))
+  def get_card():
+    # for i, (v, c) in enumerate(get_all_values()[0:2] + get_all_values()[16:18] + get_all_values()[-8:-6] + get_all_values()[-2:]):
+    # for i, (v, c) in enumerate(get_all_values()):
+    #     yield get_value_card(i, v, c)
+
+    # for i, (fn, c) in enumerate(get_all_functions()[0:2] + get_all_functions()[16:18] + get_all_functions()[-8:-6] + get_all_functions()[-2:]):
+    # for i, (fn, c) in enumerate(get_all_functions()):
+    #   yield get_fn_card(i, fn, c)
+
+    while True:
+      yield (Image.new("RGB", (0, 0)), Image.new("RGB", (0, 0)))
+
+  card_generator = get_card()
+
+  for page in range(int(ceil(len(get_all_help_cards())/4))):
+    for i, (help1, help2) in enumerate(get_all_help_cards()[page*4:page*4+4]):
+      cards.append((get_help_card(help1), get_help_card(help2)))
+      if i in [1, 3]:
+        for _ in range(2):
+          cards.append((Image.new("RGB", (0, 0)), Image.new("RGB", (0, 0))))
+        if i == 3:
+          for _ in range(2):
+            cards.append(card_generator.__next__())
       generate_pdf(False)
 
-
-  # cards.append(get_fn_card(0, get_all_functions()[24][0], "yellow"))
-  # cards.append(get_fn_card(0, get_all_functions()[28][0], "yellow"))
-  # cards.append(get_fn_card(0, get_all_functions()[31][0], "yellow"))
-  # generate_pdf(False)
-
-  # for i, (fn, c) in enumerate(get_all_functions()[0:2] + get_all_functions()[16:18] + get_all_functions()[-8:-6] + get_all_functions()[-2:]):
-  for i, (fn, c) in enumerate(get_all_functions()):
-    cards.append(get_fn_card(i, fn, c))
+  while True:
+    card = card_generator.__next__()
+    if card[0].size[0] == 0: break
+    cards.append(card)
     generate_pdf(False)
-  #
-  # for i, (help1, help2) in enumerate(get_all_help_cards()):
-  #   cards.append((get_help_card(i, help1), get_help_card(i, help2)))
-  #   generate_pdf(False)
 
   generate_pdf(True)
 
-  i = Image.open("developing/napoveda_lic.jpg")
-  i.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
-              resolution=300, append=True)
-  i = Image.open("developing/napoveda_rub.jpg")
-  i.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
-         resolution=300, append=True)
+  # i = Image.open("developing/napoveda_lic.jpg")
+  # i.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
+  #             resolution=300, append=True)
+  # i = Image.open("developing/napoveda_rub.jpg")
+  # i.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",
+  #        resolution=300, append=True)
 
