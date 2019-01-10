@@ -400,35 +400,32 @@ lambda x: ceil(x / 3)  # ceil rounds up
 """,
   """\
 # HELP FOR č CARDS
-lambda x: -0.5 * x
-č 2.2 -> -1.1
+# well, functions might get bit tricky
+# down the road, so if you are in need of
+# more examples or you want to see full
+# definition, go to:
+# https://repl.it/@OndrejLomic/StackO
 
 def switch_places
+# sign(x) return 1 if x > 0, -1 if x < 0
+# and 0 if x == 0
+# "{0:.2f}".format(x) always returns x
+# to two decimal places
 č 123.456 -> 45.123, -3 -> -0.3
 
 def put_and_eval
+# eval("2-1") executes string as if it
+# was python, returning 1
 č 1.1 -> 0, -2.3 -> 5, 0.5 -> -5
 
 def reverse
+# "abcd"[::-1] == "dcba"
 č 123.5 -> 321, -43 -> -34
 
 def subtract_madness
+# '-'.join("123") == "1-2-3"
 č 1 -> 1, 1.1 -> 0, 1.11 -> -1, 2.1 -> 1
-
-def rec_subtract
-č 55 -> -5
-
-def rec_divide
-č 1 -> 0, 2 -> 1, -4 -> -1, -5 -> -2
-ř inf -> RecursionError
-
-def double_rec
-č -10 -> 2, 16 -> -1, 260 -> -4
-ř inf -> RecursionError
-
-def rec_multiply
-č 1 -> 5, 2 -> 6, -2 -> -10, 1.5 -> 20
-ř π -> inf, inf -> inf\
+ř inf -> ValueError\
 """,
   """\
 # HELP FOR ě CARDS 2
@@ -462,12 +459,36 @@ def if_prime
 ř 200 -> 200, 201 -> 0, 0.5 -> 0.5\
 """,
   """\
-# HELP FOR ř CARDS
-# you dont need help if you got 
-# this far :P
+# HELP FOR č and ř CARDS
+def rec_subtract
+# beware, this function calls itself!
+č 55 -> -5
 
-# (just kidding, it's just not finished yet)
-\
+def rec_divide
+č 1 -> 0, 2 -> 1, -4 -> -1, -5 -> -2
+ř inf -> RecursionError
+
+def double_rec
+č -10 -> 2, 16 -> -1, 260 -> -4
+ř inf -> RecursionError
+
+def rec_multiply
+č 1 -> 5, 2 -> 6, -2 -> -10, 1.5 -> 20
+ř π -> inf, inf -> inf
+
+def ack # no help for you, you can 
+        # figure it out, i believe in you
+
+def fibb      # i warned you, don't use
+ř 2.5 -> 0.5  # it if you can't handle it
+
+# just for sake of sanity, huge numbers
+# are interpreted as inf, OverflowError
+# does not exist etc. But if you made it
+# this far, you'll manage on your own.
+
+# thank you player, and have a lot of fun
+#                                     B.\
 """]
 
 

@@ -123,16 +123,16 @@ card_colors_to_real_colors = {
 color_regexes = [
   (r".*", "white"),  # default color
   (r"(?:\W)(\d+)", "blue"),
-  (r"(pi|inf)", "blue"),
+  (r"(π|pi|inf)", "blue"),
   (
     r'(?:^|\s|\(|\[)(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str'
     r'|pow|float|eval|sign|isnan|input|get_all_cards|shuffle|all|enumerate'
-    r'|isinf|ZeroDivisionError|ValueError|TypeError|RecursionError|Exception)(?=\(|:|\s|\)|,)',
+    r'|isinf|ZeroDivisionError|ValueError|TypeError|RecursionError|Exception)(?=\(|:|\s|\)|,|$)',
     "violet"),
   (r'(?:^|\s|=)(lambda|def|if|while|and|or|else|elif|for|in|return|None|global'
    r'|is|except|as)(?=\W|:|\))', "orange"),
   (r'def (\w*)', "yellow"),
-  (r"'[^']*'", "green"),
+  (r"'[^'\n]*'", "green"),
   (r'"[^"]*"', "green"),
   (r'#\s.*', "grey"),
   (r'ě', "green"),

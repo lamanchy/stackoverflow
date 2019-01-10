@@ -1,8 +1,6 @@
 import functools
 import inspect
-import random
 from math import *
-import numpy
 
 
 # yvetsit values
@@ -235,7 +233,7 @@ def reverse(x):
 
 def subtract_madness(x):
   if isnan(x) or isinf(x): # DEBUG this line wont be printed
-    return 0 # DEBUG this line wont be printed
+    raise ValueError # DEBUG this line wont be printed
   s = "{0:.2f}".format(x)
   s = s.replace('.', '--')
   return eval('-'.join(s))
