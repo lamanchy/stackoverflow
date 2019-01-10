@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import inspect
 import os
 import re
@@ -110,20 +111,6 @@ def get_source_code_name(source_code):
   return source_code, colloring
 
 
-color_regexes = [
-  (r".*", "white"),  # default color
-  (r"(?:\W)(\d+)", "blue"),
-  (r"(pi|inf)", "blue"),
-  (
-    r'(?:^|\s|\()(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str|pow|float|eval|sign|isnan|isinf)(?=\()',
-    "violet"),
-  (r'(?:^|\s|=)(lambda|def|if|while|and|or|else|elif|for|in|return|None|global|is)(?=\W|:|\))', "orange"),
-  (r'def (\w*)', "yellow"),
-  (r"'[^']*'", "green"),
-  (r'"[^"]*"', "green"),
-  (r'#\s.*', "grey"),
-]
-
 card_colors_to_real_colors = {
   "green": "green",
   "yellow": "yellow",
@@ -132,6 +119,27 @@ card_colors_to_real_colors = {
   "magenta": "magenta",
   "cyan": "cyan",
 }
+
+color_regexes = [
+  (r".*", "white"),  # default color
+  (r"(?:\W)(\d+)", "blue"),
+  (r"(pi|inf)", "blue"),
+  (
+    r'(?:^|\s|\(|\[)(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str'
+    r'|pow|float|eval|sign|isnan|input|get_all_cards|shuffle|all|enumerate'
+    r'|isinf|ZeroDivisionError|ValueError|TypeError|RecursionError|Exception)(?=\(|:|\s|\)|,)',
+    "violet"),
+  (r'(?:^|\s|=)(lambda|def|if|while|and|or|else|elif|for|in|return|None|global'
+   r'|is|except|as)(?=\W|:|\))', "orange"),
+  (r'def (\w*)', "yellow"),
+  (r"'[^']*'", "green"),
+  (r'"[^"]*"', "green"),
+  (r'#\s.*', "grey"),
+  (r'ě', "green"),
+  (r'š', "yellow"),
+  (r'č', "red"),
+  (r'ř', card_colors_to_real_colors["black"]),
+]
 
 
 def get_source_code_coloring(string):
@@ -151,6 +159,7 @@ def get_source_code_coloring(string):
   for color in set(colors):
     result[color] = ""
     for char, char_color in zip(string, colors):
+      if char in "ěščř": char = "⧫" # ●∙
       if not re.match(r'\s', char) and char_color != color:
         char = " "
       result[color] += char
@@ -274,14 +283,15 @@ def get_source_code_position_n_size(card, source_code, draw):
   min_font_size = 1
   max_font_size = 25
   height_multipler = card.size[1] // mm_to_px(CARD_SIZE_MM[1])
-  available_size = list((card.size[0] - mm_to_px(10), card.size[1] - mm_to_px(5 + 30)))
+  available_size = list((card.size[0] - mm_to_px(10), card.size[1] - mm_to_px(5*(height_multipler-1) + 30)))
 
   while True:
     size = draw.textsize(source_code, get_font(min_font_size + 1), spacing=mm_to_px(.13))
 
     if size[0] >= available_size[0] or size[1] >= available_size[1] or min_font_size == max_font_size:
-      if (height_multipler == 1 and min_font_size < 15) or (height_multipler == 2 and min_font_size < 11) or True:
+      if (height_multipler == 1 and min_font_size < 15) or (height_multipler == 2 and min_font_size < 11):
         print("too small font size, fn {}, font size {}".format(source_code.split('\n')[0], min_font_size))
+        print(size[0], available_size[0])
       return min_font_size
 
     min_font_size += 1
@@ -388,7 +398,6 @@ def get_fn_card(order, fn, color):
 def get_help_card(help_text):
   title, source_code = help_text.split('\n', 1)
   # print(source_code)
-  colors = get_source_code_coloring(source_code)
   color = "cyan" if "PLAY THIS GAME" in title else "magenta"
 
   card = get_card_base_with_color(1, color, (1, 2))
@@ -398,12 +407,14 @@ def get_help_card(help_text):
   font = get_font(13)
   W, H = card.size
   w, h = draw.textsize(title, font)
-  print(title, w, h, W, H)
-  draw.text((W - mm_to_px(6) - w, mm_to_px(5)), title, font=font, fill=color_codes[color])
+  colors = get_source_code_coloring(title)
+  for color in colors:
+    draw.text((W - mm_to_px(6) - w, mm_to_px(5)), colors[color], font=font, fill=color_codes[color])
 
   sc_size = get_source_code_position_n_size(card, source_code, draw)
   font = get_font(sc_size)
   w, h = draw.textsize(source_code, font, spacing=mm_to_px(0.6))
+  colors = get_source_code_coloring(source_code)
 
   for color in colors:
     draw.text((mm_to_px(10), (H - h) // 2 - mm_to_px(2)), colors[color], font=font, fill=color_codes[color], spacing=mm_to_px(0.8))
@@ -462,16 +473,18 @@ if __name__ == "__main__":
     for i in range(min(len(cards), 10)):
       cards.pop(0)
 
+  # for i, (fn, c) in enumerate(get_all_functions()):
+  #   print(c, get_source_code(fn))
 
 
   def get_card():
     # for i, (v, c) in enumerate(get_all_values()[0:2] + get_all_values()[16:18] + get_all_values()[-8:-6] + get_all_values()[-2:]):
-    # for i, (v, c) in enumerate(get_all_values()):
-    #     yield get_value_card(i, v, c)
+    for i, (v, c) in enumerate(get_all_values()):
+        yield get_value_card(i, v, c)
 
     # for i, (fn, c) in enumerate(get_all_functions()[0:2] + get_all_functions()[16:18] + get_all_functions()[-8:-6] + get_all_functions()[-2:]):
-    # for i, (fn, c) in enumerate(get_all_functions()):
-    #   yield get_fn_card(i, fn, c)
+    for i, (fn, c) in enumerate(get_all_functions()):
+      yield get_fn_card(i, fn, c)
 
     while True:
       yield (Image.new("RGB", (0, 0)), Image.new("RGB", (0, 0)))
@@ -496,6 +509,8 @@ if __name__ == "__main__":
     generate_pdf(False)
 
   generate_pdf(True)
+
+
 
   # i = Image.open("developing/napoveda_lic.jpg")
   # i.save("stack_overflow.pdf", save_all=True, title="Stack Overflow card game",

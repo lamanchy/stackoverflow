@@ -1,4 +1,5 @@
 import math
+import os
 import sys
 
 import _thread
@@ -12,7 +13,10 @@ from values import values
 
 def get_result(rule, value):
   try:
-    return rule(value)
+    value = rule(value)
+    value = round(value, 5)
+    if value == int(value): value = int(value)
+    return value
   except ZeroDivisionError:
     return 'zd'
   except ValueError:
@@ -71,7 +75,8 @@ def view_results():
   for num in range(2, 3):
     print("stats with %s cards" % (num + 1))
     print()
-    for c, color in enumerate(colors):
+    # for c in range(len(colors)):
+    for c in [2]:
       print(colors[:c + 1])
       color_values = []
       color_rules = []
@@ -95,7 +100,7 @@ def view_results():
           _value = get_result(_rule, _value)
           if get_value_color(_value).split('-')[0] not in colors:
             break
-        if time() - time_start > .1:
+        if time() - time_start > .01:
           print("\n", time() - time_start, original, [get_source_code_name(fn)[0] for fn in rules], _value)
 
         result_color = get_value_color(_value)
@@ -135,8 +140,9 @@ def view_results():
               account(value, rule, rule2, rule3)
             account(value, rule, rule2)
           account(value, rule)
-      #   print(int(val_num / len(color_values) * 100), end="% ")
-      # print()
+        print(int(val_num / len(color_values) * 100), end="% ")
+        sys.stdout.flush()
+      print()
 
       for color, count in sorted(total.items(), key=lambda w: (-w[1], w[0])):
         print('{:20}'.format(color), end=': ')
@@ -146,7 +152,7 @@ def view_results():
         print('{:6}'.format(s[0]), end=')\n')
 
       # if num == 0 and len(colors[:c + 1]) == 4:
-      for rule in fn_total:
+      for rule, _ in sorted(fn_total.items(), key=lambda ww: -sorted(ww[1].items(), key=lambda w: -w[1])[0][1]):
         print("fn:", get_source_code_name(rule)[0])
         for color, count in sorted(fn_total[rule].items(), key=lambda w: -w[1])[:5]:
           print('{:20}'.format(color), end=': ')
@@ -163,7 +169,7 @@ def view_results():
       print()
 
       print("most common values globally:")
-      for value, count in sorted(total_values.items(), key=lambda w: -w[1])[:20]:
+      for value, count in sorted(total_values.items(), key=lambda w: -w[1])[:40]:
         print("{:20}".format("value: " + str(value)), count / s[0] * 100)
     print()
     print()

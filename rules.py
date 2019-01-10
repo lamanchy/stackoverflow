@@ -16,9 +16,9 @@ def get_rules():
     "green": [  # 16 very simple  .... 2-5
       # 2
       # these four constants are missing in values
+      lambda x: 15,
       lambda x: 7,
       lambda x: 13,
-      lambda x: 16,
       lambda x: 19,
       # 3
       lambda x: x,
@@ -29,15 +29,15 @@ def get_rules():
 
       # 4
       lambda x: 2 * x,
-      lambda x: min(x, 7),
-      lambda x: x // 3,
-      lambda x: max(x, 13),
+      lambda x: min(x, 11),
+      lambda x: ceil(x / 3),
+      lambda x: max(x, 9),
 
       # 5
       lambda x: gcd(x, 24),
       lambda x: lcm(x, 6),
       if_prime,
-      lambda x: x % 5,
+      lambda x: (x % 5) + 1,
     ],
     "yellow": [  # 12 math, 8 very simple programs ... 6-10
       # 6
@@ -56,7 +56,7 @@ def get_rules():
       lambda x: x * (x // 4),
       lambda x: ceil(sqrt(abs(x))),
       lambda x: floor(log2(abs(x))),
-      lambda x: 3 * sin(pi * x / 2),
+      lambda x: sin(pi * x / 2) - 2,
 
       # 9
       if_greater_or_less,
@@ -68,7 +68,7 @@ def get_rules():
       int_from_list,
       ints_from_list,
       split_by_int,
-      lambda x: int(str(abs(x))[0]),
+      lambda x: int(str(int(x))[-1]),
 
     ],
     "red": [  # KQJ
@@ -102,6 +102,7 @@ def get_rules():
 
 
 def sign(x):
+  if x == 0: return 0
   return copysign(1, x)
 
 
@@ -136,7 +137,7 @@ def lcm(a, b):
 def if_prime(x):
   if x > 200: return 0
   if is_prime(x):
-    return 1
+    return 17
 
   return x
 
@@ -167,7 +168,7 @@ def if_equal_or_not(x):
 
 def for_cycle(x):
   num = floor(x) % 5
-  for i in range(num):
+  for _ in range(num):
     x += 10
 
   return x
@@ -183,9 +184,9 @@ def while_cycle(x):
 
 
 def int_from_list(x):
-  # index:  012345678
-  string = "957812463"
-  return int(string[x % 9])
+  # index:  0123456789
+  string = "9578124630"
+  return int(string[x % 10])
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
@@ -202,7 +203,7 @@ def split_by_int(x):
 
   string = "376326492"
   parts = string.split(x)
-  return len(parts) - 2
+  return len(parts) - 4
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
@@ -240,14 +241,17 @@ def subtract_madness(x):
   return eval('-'.join(s))
 
 
+@functools.lru_cache(None)
 def rec_subtract(x):
   if x <= 0:
     return x
 
   x -= 60
+  if x >= 0: x %= 60  # DEBUG this line wont be printed
   return rec_subtract(x)
 
 
+@functools.lru_cache(None)
 def rec_divide(x):
   if x == 0:
     return sign(x)
@@ -270,6 +274,7 @@ def double_rec(x):
 #  MAX LINE LENGTH 29 SIGNS!!
 
 
+@functools.lru_cache(None)
 def rec_multiply(x):
   if x % 8 == 0:
     return x
@@ -283,6 +288,7 @@ def rec_multiply(x):
 @functools.lru_cache(None)
 def ack(m, n=None):
   if n is None:  n = m
+  if isinstance(m, float) and m != int(m): raise RecursionError  # DEBUG this line wont be printed
   if isinstance(m, int) and isinstance(n, int) and m >= 4:  raise OverflowError  # DEBUG this line wont be printed
   if m == 0:     return n + 1
   if n == 0:     n = 1
