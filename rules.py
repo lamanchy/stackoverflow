@@ -66,7 +66,7 @@ def get_rules():
       int_from_list,
       ints_from_list,
       split_by_int,
-      lambda x: int(str(int(x))[-1]),
+      last_digit,
 
     ],
     "red": [  # KQJ
@@ -202,6 +202,10 @@ def split_by_int(x):
   string = "376326492"
   parts = string.split(x)
   return len(parts) - 4
+
+
+def last_digit(x):
+  return int(str(int(x))[-1])
 
 
 #  MAX LINE LENGTH 29 SIGNS!!

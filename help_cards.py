@@ -11,6 +11,10 @@ from rules import get_all_functions
 help_cards = [
   """\
 # HOW TO PLAY THIS GAME 1
+# DONT'T PANIC
+
+# read comments (grey text),
+# it's gonna be ok
 def game():
   # firstly select difficulty
   select_difficulty()
@@ -27,10 +31,7 @@ def game():
   # play round as long
   # as nobody has won
   while nobody_won():  
-    play_round()
-
-# when somebody wins, game
-# ends\
+    play_round()\
 """,
   """\
 # HOW TO PLAY THIS GAME 5
@@ -362,7 +363,7 @@ def split_by_int
 # len(list) == number of items in list
 š 0 -> -3, 2 -> -1, 7 -> -2
 
-lambda x: int(str(int(x))[-1])
+def last_digit
 # -1 takes last item from list
 š 2 -> 2, 31 -> 1, -23 -> 3\
 """,
