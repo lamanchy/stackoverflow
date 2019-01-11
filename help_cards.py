@@ -11,7 +11,8 @@ from rules import get_all_functions
 help_cards = [
   """\
 # HOW TO PLAY THIS GAME 1
-# DONT'T PANIC
+
+# DON'T PANIC
 
 # read comments (grey text),
 # it's gonna be ok
@@ -155,7 +156,7 @@ def get_winners(computed_values):
     abs(output_value - value)
       for value in computed_values]
 
-  # all players with distance equal to
+  # all players with a distance equal to
   # minimum distance win the round
   winners = [i for i in range(players)
     if distances[i] == min(distances)]
@@ -211,8 +212,8 @@ def play_round():
 """,
   """\
 # HOW TO PLAY THIS GAME 8
-# exceptions occur rarely 
-# at easy difficulty
+# exceptions never occur on green 
+# difficulty and rarely on a yellow one 
 def handle_exception(i, ex):
   # sqrt(-2) or log2(0) raises ValueError
   if isinstance(ex, ValueError):
@@ -478,12 +479,12 @@ def rec_multiply
 ř π -> inf, inf -> inf
 
 def ack # no help for you, you can 
-        # figure it out, i believe in you
+        # figure it out, I believe in you
 
 def fibb      # i warned you, don't use
 ř 2.5 -> 0.5  # it if you can't handle it
 
-# just for sake of sanity, huge numbers
+# Just for sake of sanity, huge numbers
 # are interpreted as inf, OverflowError
 # does not exist etc. But if you made it
 # this far, you'll manage on your own.

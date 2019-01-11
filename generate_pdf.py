@@ -22,6 +22,7 @@ TEXTURE = "textures/slash_it.png"
 TEXTURE = "textures/what-the-hex-dark.png"
 # TEXTURE = "textures/zig zag wool.png"
 CARD_SIZE_MM = (87, 57)
+# CARD_SIZE_MM = (93, 69)
 
 
 def do_antialiasing(img):
@@ -122,8 +123,9 @@ card_colors_to_real_colors = {
 
 color_regexes = [
   (r".*", "white"),  # default color
-  (r"(?:\W)(\d+)", "blue"),
-  (r"(π|pi|inf)", "blue"),
+  (r"(?:\W|^)(\d+)", "blue"),
+  (r"(-|\.)(?=\d)", "blue"),
+  (r"(√|π|pi|inf)", "blue"),
   (
     r'(?:^|\s|\(|\[)(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|sqrt|ceil|log2|sin|int|str'
     r'|pow|float|eval|sign|isnan|input|get_all_cards|shuffle|all|enumerate'
@@ -336,7 +338,10 @@ def get_value_card_front(order, value, color):
     w += draw.textsize('-', font)[0]
 
   # draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(3)), value, font=font, fill=color_codes["blue"])
-  draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(1)), value, font=font, fill=color_codes["blue"])
+  colors = get_source_code_coloring(value)
+  for color in colors:
+    draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(1)), colors[color], font=font, fill=color_codes[color], spacing=mm_to_px(0.8))
+  # draw.text(((W - w) // 2, (H - h) // 2 - mm_to_px(1)), value, font=font, fill=color_codes["blue"])
 
   return card
 
@@ -478,13 +483,13 @@ if __name__ == "__main__":
 
 
   def get_card():
-    # for i, (v, c) in enumerate(get_all_values()[0:2] + get_all_values()[16:18] + get_all_values()[-8:-6] + get_all_values()[-2:]):
-    for i, (v, c) in enumerate(get_all_values()):
-        yield get_value_card(i, v, c)
-
     # for i, (fn, c) in enumerate(get_all_functions()[0:2] + get_all_functions()[16:18] + get_all_functions()[-8:-6] + get_all_functions()[-2:]):
     for i, (fn, c) in enumerate(get_all_functions()):
       yield get_fn_card(i, fn, c)
+
+    # for i, (v, c) in enumerate(get_all_values()[0:2] + get_all_values()[16:18] + get_all_values()[-8:-6] + get_all_values()[-2:]):
+    for i, (v, c) in enumerate(get_all_values()):
+        yield get_value_card(i, v, c)
 
     while True:
       yield (Image.new("RGB", (0, 0)), Image.new("RGB", (0, 0)))
