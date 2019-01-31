@@ -132,7 +132,7 @@ color_regexes = [
     r'|isinf|ZeroDivisionError|ValueError|TypeError|RecursionError|Exception)(?=\(|:|\s|\)|,|$)',
     "violet"),
   (r'(?:^|\s|=)(lambda|def|if|while|and|or|else|elif|for|in|return|None|global'
-   r'|is|except|as)(?=\W|:|\))', "orange"),
+   r'|is|except|try|as)(?=\W|:|\))', "orange"),
   (r'def (\w*)', "yellow"),
   (r"'[^'\n]*'", "green"),
   (r'"[^"]*"', "green"),
@@ -484,12 +484,12 @@ if __name__ == "__main__":
 
   def get_card():
     # for i, (fn, c) in enumerate(get_all_functions()[0:2] + get_all_functions()[16:18] + get_all_functions()[-8:-6] + get_all_functions()[-2:]):
-    for i, (fn, c) in enumerate(get_all_functions()):
-      yield get_fn_card(i, fn, c)
+    # for i, (fn, c) in enumerate(get_all_functions()):
+    #   yield get_fn_card(i, fn, c)
 
     # for i, (v, c) in enumerate(get_all_values()[0:2] + get_all_values()[16:18] + get_all_values()[-8:-6] + get_all_values()[-2:]):
-    for i, (v, c) in enumerate(get_all_values()):
-        yield get_value_card(i, v, c)
+    # for i, (v, c) in enumerate(get_all_values()):
+    #     yield get_value_card(i, v, c)
 
     while True:
       yield (Image.new("RGB", (0, 0)), Image.new("RGB", (0, 0)))

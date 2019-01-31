@@ -86,7 +86,7 @@ def select_difficulty():
     card for card in cards
       if card.back_color == "blue"]
       
-  # correspondingly select functions
+  # functions' back is orange
   global function_deck = [
     card for card in cards
       if card.back_color == "orange"]
@@ -113,7 +113,10 @@ def compute_outputs(selected):
 
     # rarely, at higher difficulty,
     # exception can happen, e.g. when you
-    # try to divide with zero
+    # try to divide with zero, which
+    # causes player to loose round and
+    # has additional effect described
+    # in handle exception function 
     except Exception as e:
       handle_exception(i, e)
       res[i] = inf
@@ -128,18 +131,18 @@ def prepare_game():
   shuffle(values_deck)
   shuffle(function_deck)
 
-  # select output value from the top
-  # of value deck, it stays the same
+  # select one output value from the top
+  # of value_deck, it stays the same
   # for a whole game
   global output_value = values_deck.pop()
   
-  # how many players are playing?
+  # this game is for two or more players
   players_num = input("Enter number "
      "of players, 2 or more")
   global players = []
 
   # at the beginning of game, each player
-  # gets 4 fn cards from function_deck
+  # gets 4 func. cards from function_deck
   for _ in range(players_num):
     players.append([function_deck.pop() 
                       for i in range(4)])
@@ -150,8 +153,8 @@ def prepare_game():
   """\
 # HOW TO PLAY THIS GAME 7
 def get_winners(computed_values):
-  # determine distances between computed
-  # values and output value
+  # determine distances between players'
+  # computed values and output value
   distances = [
     abs(output_value - value)
       for value in computed_values]
@@ -177,20 +180,20 @@ def get_new_functions(selected, winners):
       cards.append(function_deck.pop())
 
   # if function_deck gets empty at any
-  # point, use shuffled used fn cards\
+  # point, use shuffled used func. cards\
 """,
   """\
 # HOW TO PLAY THIS GAME 4
 def nobody_won():
   # if any player has no function cards
   # in hand, the game ends
-  return all([len(fns) > 0
-                for fns in players])
+  return all([len(funcs) > 0
+                for funcs in players])
 
 
 def play_round():
-  # get input value (only for this round)
-  # from the top of value deck
+  # get one input value (only for this
+  # round) from the top of value_deck
   global input_value = value_deck.pop()
 
   # all players select function card(s)
@@ -242,35 +245,35 @@ def handle_exception(i, ex):
 """,
   """\
 # HOW TO USE A FUNCTION
-fn1 = lambda x: x + 5
-fn1(3) == (3+5) == 8
-#        3 == input
+func_add = lambda x: x + 5
+func_add(3) == (3+5) == 8
+#        3 <- input
 #        ↓
 # lambda 3: 3 + 5
 #             ↓
-#             8 == output
-fn1(4) == (4+5) == 9 
-fn1(1) == (1+5) == 6 
+#             8 -> output
+func_add(4) == (4+5) == 9 
+func_add(1) == (1+5) == 6 
 
-def fn2(x):
+def func_double(x):
  return x * 2
 
-fn2(2) == (2*2) == 4
-fn1(fn2(2)) == (2*2)+5 == 9 
+func_multiply(3) == (3*2) == 6
+func_add(func_double(3)) == (3*2)+5 == 11 
 #
-#        2 == input
-#        ↓
-#    fn2(2):
-#      return 2 * 2
-#               ↓
-#               4
-#               ↓
-#        lambda 4: 4 + 5
-#                    ↓
-#          output == 9
-fn2(fn1(2)) == (2+5)*2 == 14
-fn2(fn1(3)) == (3+5)*2 == 16
-fn2(fn2(3)) == (3*2)*2 == 12\
+#             3 <- input
+#             ↓
+# func_double(3):
+#   return 3 * 2
+#            ↓
+#            6
+#            ↓
+#     lambda 6: 6 + 5
+#                 ↓
+#                 11 -> output
+func_double(func_add(2)) == (2+5)*2 == 14
+func_double(func_add(3)) == (3+5)*2 == 16
+func_add(func_add(3)) == (3+5)+5 == 13\
 """,
   """\
 # HELP FOR š CARDS 1
@@ -306,7 +309,7 @@ def if_greater_or_less
 """,
   """\
 # PROGRAM STATEMENTS (IF, FOR, WHILE)
-def if_fn(x):
+def if_func(x):
   if x > 3:
     x += 1
     # this is executed only if condition
@@ -322,8 +325,8 @@ def if_fn(x):
     # conditions are false
   return x + 10 # this is executed always
 
-if_fn(4) == 15 and if_fn(0) == 12
-if_fn(2) == 15
+if_func(4) == 15 and func(0) == 12
+if_func(2) == 15
 
 if x > 3: x = 1 # one line eqivalent of
                 # the first if statement
@@ -375,11 +378,11 @@ lambda x: 15
 # any input value
 ě 1 -> 15, -2 -> 15
 # 1 -> 15 is an example, this function
-# for input value 1 returns value 15
-# green sign ě shows, that this example
+# for input value 1 returns value 15.
+# Green sign ě shows, that this example
 # is relevant for green difficulty, you
 # can ignore examples for higher
-# difficulties than you play
+# difficulties than you play.
 
 lambda x: x
 ě 1 -> 1, 2 -> 2, 12 -> 12
@@ -434,18 +437,18 @@ def subtract_madness
 lambda x: max(x, 9)
 ě 1 -> 9, 10 -> 10
 
-lambda x: gcd(x, 24)
+lambda x: gcd(x, 12)
 # greatest common divisor
-ě 10 -> 2, 12 -> 12, 16 -> 8
-š 0 -> 24, -5 -> 1
+ě 10 -> 2, 6 -> 6, 16 -> 4
+š 0 -> 12, -5 -> 1
 č 1.5 -> 1.5, -3.5 -> 0.5
-ř √2 -> ValueError, inf -> 24
+ř √2 -> ValueError, inf -> 12
 
-lambda x: lcm(x, 6)
+lambda x: lcm(x, 4)
 # lowest common multipler
-ě 2 -> 6, 8 -> 24, 7 -> 42
-š 0 -> 0, -5 -> 30
-č 1.5 -> 6, 2.5 -> 30
+ě 2 -> 4, 3 -> 12, 6 -> 12
+š 0 -> 0, -5 -> 20
+č 1.5 -> 12, 2.5 -> 20
 ř √2 -> ValueError, inf -> inf
 
 lambda x: (x % 5) + 1  # remainder
