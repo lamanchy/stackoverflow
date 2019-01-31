@@ -259,7 +259,7 @@ def func_double(x):
  return x * 2
 
 func_multiply(3) == (3*2) == 6
-func_add(func_double(3)) == (3*2)+5 == 11 
+func_add(func_double(3)) == (3*2)+5 == 11
 #
 #             3 <- input
 #             ↓
