@@ -126,8 +126,8 @@ def compute_outputs(selected):
   """\
 # HOW TO PLAY THIS GAME 3
 def prepare_game():
-  # shuffle both decks (prepared 
-  # in select_difficulty function)
+  # shuffle both decks separately
+  # (prepared in select_difficulty func)
   shuffle(values_deck)
   shuffle(function_deck)
 
@@ -185,7 +185,7 @@ def get_new_functions(selected, winners):
   """\
 # HOW TO PLAY THIS GAME 4
 def nobody_won():
-  # if any player has no function cards
+  # if some player has no function cards
   # in hand, the game ends
   return all([len(funcs) > 0
                 for funcs in players])
