@@ -280,7 +280,7 @@ func_add(func_add(3)) == (3+5)+5 == 13\
 # just a reminder, some combinations
 # of cards might get ugly results, so
 # if you cannot calculate something
-# in your head, then just dont use it
+# in your head, then just don't use it
 
 lambda x: x // -6
 # x // y is eqivalent to floor(x / y),
@@ -373,12 +373,12 @@ def last_digit
 """,
   """\
 # HELP FOR ě CARDS 1
-lambda x: 15
-# constant function, it returns 15 for
-# any input value
+lambda x: 15  # constant function,
+# returns 15 for any input value
 ě 1 -> 15, -2 -> 15
 # 1 -> 15 is an example, this function
 # for input value 1 returns value 15.
+
 # Green sign ě shows, that this example
 # is relevant for green difficulty, you
 # can ignore examples for higher
