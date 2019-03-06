@@ -8,7 +8,7 @@
 #  MAX FUNCTION LINES 29 !!!!!!!!!!!!!!!!
 from rules import get_all_functions
 
-help_cards = [
+how_to_play_this_game = [
   """\
 # HOW TO PLAY THIS GAME 1
 
@@ -33,28 +33,6 @@ def game():
   # as nobody has won
   while nobody_won():  
     play_round()\
-""",
-  """\
-# HOW TO PLAY THIS GAME 5
-def select_cards():
-  # each player selects one or more
-  # function cards from hand
-  selected = []
-  for cards in players:
-    to_use = input("Enter indicies of "
-                "function cards to use")
-
-    selected.append([cards[i]
-            for i in to_use.split(", ")])
-
-  # after all players selected function
-  # cards to play, show them to others
-  for i, cards in enumerate(selected):
-    for card in cards:
-      players[i].remove(card)
-      # ala remove card from your hand :)
-
-  return selected\
 """,
 
 # for font 15
@@ -96,6 +74,86 @@ def select_difficulty():
   # difficulty\
 """,
   """\
+# HOW TO PLAY THIS GAME 3
+def prepare_game():
+  # shuffle both decks separately
+  # (prepared in select_difficulty func)
+  shuffle(values_deck)
+  shuffle(function_deck)
+
+  # select one output value from the top
+  # of value_deck, it stays the same
+  # for a whole game
+  global output_value = values_deck.pop()
+  
+  # this game is for two or more players
+  players_num = input("Enter number "
+     "of players, 2 or more")
+  global players = []
+
+  # at the beginning of game, each player
+  # gets 4 func. cards from function_deck
+  for _ in range(players_num):
+    players.append([function_deck.pop() 
+                      for i in range(4)])
+  
+# now you are ready to play the first
+# round of game\
+""",
+  """\
+# HOW TO PLAY THIS GAME 4
+def nobody_won():
+  # if some player has no function cards
+  # in hand, the game ends
+  return all([len(funcs) > 0
+                for funcs in players])
+
+
+def play_round():
+  # get one input value (only for this
+  # round) from the top of value_deck
+  global input_value = value_deck.pop()
+
+  # all players select function card(s)
+  # from their hand, which they will use
+  selected = select_cards()
+  
+  # based on selected cards, determine 
+  # computed value for each player
+  values = compute_outputs(selected)
+
+  # based on input value, output_value
+  # and computed values, winners of this
+  # round are determined
+  winners = get_winners(values)
+
+  # all players get new function cards,
+  # winners get one less
+  get_new_functions(selected, winners)\
+""",
+  """\
+# HOW TO PLAY THIS GAME 5
+def select_cards():
+  # each player selects one or more
+  # function cards from hand
+  selected = []
+  for cards in players:
+    to_use = input("Enter indicies of "
+                "function cards to use")
+
+    selected.append([cards[i]
+            for i in to_use.split(", ")])
+
+  # after all players selected function
+  # cards to play, show them to others
+  for i, cards in enumerate(selected):
+    for card in cards:
+      players[i].remove(card)
+      # ala remove card from your hand :)
+
+  return selected\
+""",
+  """\
 # HOW TO PLAY THIS GAME 6
 def compute_outputs(selected):
   # first card transforms input value to
@@ -122,33 +180,6 @@ def compute_outputs(selected):
       res[i] = inf
 
   return res\
-""",
-  """\
-# HOW TO PLAY THIS GAME 3
-def prepare_game():
-  # shuffle both decks separately
-  # (prepared in select_difficulty func)
-  shuffle(values_deck)
-  shuffle(function_deck)
-
-  # select one output value from the top
-  # of value_deck, it stays the same
-  # for a whole game
-  global output_value = values_deck.pop()
-  
-  # this game is for two or more players
-  players_num = input("Enter number "
-     "of players, 2 or more")
-  global players = []
-
-  # at the beginning of game, each player
-  # gets 4 func. cards from function_deck
-  for _ in range(players_num):
-    players.append([function_deck.pop() 
-                      for i in range(4)])
-  
-# now you are ready to play the first
-# round of game\
 """,
   """\
 # HOW TO PLAY THIS GAME 7
@@ -183,37 +214,6 @@ def get_new_functions(selected, winners):
   # point, use shuffled used func. cards\
 """,
   """\
-# HOW TO PLAY THIS GAME 4
-def nobody_won():
-  # if some player has no function cards
-  # in hand, the game ends
-  return all([len(funcs) > 0
-                for funcs in players])
-
-
-def play_round():
-  # get one input value (only for this
-  # round) from the top of value_deck
-  global input_value = value_deck.pop()
-
-  # all players select function card(s)
-  # from their hand, which they will use
-  selected = select_cards()
-  
-  # based on selected cards, determine 
-  # computed value for each player
-  values = compute_outputs(selected)
-
-  # based on input value, output_value
-  # and computed values, winners of this
-  # round are determined
-  winners = get_winners(values)
-
-  # all players get new function cards,
-  # winners get one less
-  get_new_functions(selected, winners)\
-""",
-  """\
 # HOW TO PLAY THIS GAME 8
 # exceptions never occur on green 
 # difficulty and rarely on a yellow one 
@@ -242,7 +242,10 @@ def handle_exception(i, ex):
     # all players get extra function card
     for cards in players:
       cards += [function_deck.pop()]\
-""",
+"""]
+
+
+quick_help = [
   """\
 # HOW TO USE A FUNCTION
 func_add = lambda x: x + 5
@@ -276,38 +279,6 @@ func_double(func_add(3)) == (3+5)*2 == 16
 func_add(func_add(3)) == (3+5)+5 == 13\
 """,
   """\
-# HELP FOR š CARDS 1
-# just a reminder, some combinations
-# of cards might get ugly results, so
-# if you cannot calculate something
-# in your head, then just don't use it
-
-lambda x: x // -6
-# x // y is eqivalent to floor(x / y),
-# floor rounds down
-š 0 -> 0, 1 -> -1, 6 -> -1, 7 -> -2
-č 6.1 -> -2
-
-lambda x: 100 // x
-š 3 -> 33, -5 -> -20
-č -3.3 -> -30
-
-lambda x: ceil(sqrt(abs(x)))
-# sqrt == √, abs(3) == abs(-3) == 3
-š 4 -> 2, 16 -> 4, -10 -> 4
-
-lambda x: floor(log2(abs(x)))
-š 0 -> ValueError, 1 -> 0, 2 -> 1, 4 -> 2
-
-lambda x: sin(pi * x / 2) - 2
-š 0 -> -2, 1 -> -1, 2 -> -2, 3 -> -3
-č 2.2 -> #metoo
-ř inf -> ValueError
-
-def if_greater_or_less
-š 0 -> 66, 5 -> 42, 42 -> 42, 99 -> 5\
-""",
-  """\
 # PROGRAM STATEMENTS (IF, FOR, WHILE)
 def if_func(x):
   if x > 3:
@@ -316,8 +287,8 @@ def if_func(x):
     # is true (x is bigger then 3)
   elif x < 1:
     x += 2
-    # this is exectued only if previous
-    # if condifiton is false, and this
+    # this is executed only if previous
+    # if condition is false, and this
     # condition is true
   else:
     x += 3
@@ -328,7 +299,7 @@ def if_func(x):
 if_func(4) == 15 and func(0) == 12
 if_func(2) == 15
 
-if x > 3: x = 1 # one line eqivalent of
+if x > 3: x = 1 # one line equivalent of
                 # the first if statement
 
 while x > 0: x -= 1
@@ -340,49 +311,17 @@ for _ in range(num):
          # num-times\
 """,
   """\
-# HELP FOR š CARDS 2
-def if_equal_or_not
-š 10 -> 76, 20 -> 10, 66 -> 6
-
-def for_cycle  # see PROGRAM STATEMENTS
-š 0 -> 0, 1 -> 11, 9 -> 44, 10 -> 10
-
-def while_cycle
-š 2 -> 2, 5 -> 2, 3 -> 0, 11 -> 4
-č 2.2 -> 0, -4.9 -> -2
-
-def int_from_list
-# "abc"[0] == "a", "abc"[1] == "b"
-š 0 -> 9, 1 -> 5, 12 -> 7
-č 3.1 -> TypeError
-ř inf -> TypeError
-
-def ints_from_list
-# "abc"[0:1] == "a", "abc"[0:2] == "ab"
-š 0 -> 1, 1 -> 76, 2 -> 781, 3 -> 4
-č 1.1 -> TypeError
-
-def split_by_int
-# "abac".split("a") == ["", "b", "c"]
-# len(list) == number of items in list
-š 0 -> -3, 2 -> -1, 7 -> -2
-
-def last_digit
-# -1 takes last item from list
-š 2 -> 2, 31 -> 1, -23 -> 3\
-""",
-  """\
 # HELP FOR ě CARDS 1
 lambda x: 15  # constant function,
 # returns 15 for any input value
 ě 1 -> 15, -2 -> 15
 # 1 -> 15 is an example, this function
-# for input value 1 returns value 15.
+# for input value 1 returns value 15
 
-# Green sign ě shows, that this example
+# green sign ě shows, that this example
 # is relevant for green difficulty, you
 # can ignore examples for higher
-# difficulties than you play.
+# difficulties than you play
 
 lambda x: x
 ě 1 -> 1, 2 -> 2, 12 -> 12
@@ -404,35 +343,6 @@ lambda x: ceil(x / 3)  # ceil rounds up
 š -3 -> -1, -2 -> 0, 0 -> 0\
 """,
   """\
-# HELP FOR č CARDS
-# well, functions might get bit tricky
-# down the road, so if you are in need of
-# more examples or you want to see full
-# definition, go to:
-# https://repl.it/@OndrejLomic/StackO
-
-def switch_places
-# sign(x) return 1 if x > 0, -1 if x < 0
-# and 0 if x == 0
-# "{0:.2f}".format(x) always returns x
-# to two decimal places
-č 123.456 -> 45.123, -3 -> -0.3
-
-def put_and_eval
-# eval("2-1") executes string as if it
-# was python, returning 1
-č 1.1 -> 0, -2.3 -> 5, 0.5 -> -5
-
-def reverse
-# "abcd"[::-1] == "dcba"
-č 123.5 -> 321, -43 -> -34
-
-def subtract_madness
-# '-'.join("123") == "1-2-3"
-č 1 -> 1, 1.1 -> 0, 1.11 -> -1, 2.1 -> 1
-ř inf -> ValueError\
-""",
-  """\
 # HELP FOR ě CARDS 2
 lambda x: max(x, 9)
 ě 1 -> 9, 10 -> 10
@@ -445,7 +355,7 @@ lambda x: gcd(x, 12)
 ř √2 -> ValueError, inf -> 12
 
 lambda x: lcm(x, 4)
-# lowest common multipler
+# lowest common multiplier
 ě 2 -> 4, 3 -> 12, 6 -> 12
 š 0 -> 0, -5 -> 20
 č 1.5 -> 12, 2.5 -> 20
@@ -462,6 +372,101 @@ def if_prime
 ě 1 -> 1, 2 -> 17, 4 -> 4, 5 -> 17
 č 0 -> 0, -5 -> -5
 ř 200 -> 200, 201 -> 0, 0.5 -> 0.5\
+""",
+  """\
+# HELP FOR š CARDS
+# just a reminder, some combinations
+# of cards might get ugly results, so
+# if you cannot calculate something
+# in your head, then just don't use it
+
+lambda x: x // -6
+# x // y is equivalent to floor(x / y),
+# floor rounds down
+š 0 -> 0, 1 -> -1, 6 -> -1, 7 -> -2
+č 6.1 -> -2
+
+lambda x: 100 // x
+š 3 -> 33, -5 -> -20
+č -3.3 -> -30
+
+lambda x: sin(pi * x / 2) - 2
+š 0 -> -2, 1 -> -1, 2 -> -2, 3 -> -3
+č 2.2 -> #metoo
+ř inf -> ValueError
+
+def if_greater_or_less
+š 0 -> 66, 5 -> 42, 42 -> 42, 99 -> 5
+
+def if_equal_or_not
+š 10 -> 76, 20 -> 10, 66 -> 6
+
+def for_cycle  # see PROGRAM STATEMENTS
+š 0 -> 0, 1 -> 11, 9 -> 44, 10 -> 10\
+""",
+  """\
+# HELP FOR š AND č CARDS
+def while_cycle
+š 2 -> 2, 5 -> 2, 3 -> 0, 11 -> 4
+č 2.2 -> 0, -4.9 -> -2
+
+def split_by_int
+# "abac".split("a") == ["", "b", "c"]
+# len(list) == number of items in list
+š 0 -> -3, 2 -> -1, 7 -> -2
+
+def last_digit_negative
+# [-1] takes last item from a list
+š 2 -> -2, 31 -> -1, -23 -> -3
+
+# well, functions might get bit tricky
+# down the road, so if you are in need of
+# more examples or you want to see full
+# definition, go to:
+# https://repl.it/@OndrejLomic/StackO
+
+def int_from_list
+# "abc"[0] == "a", "abc"[1] == "b"
+š 0 -> 9, 1 -> 5, 12 -> 7
+č 3.1 -> TypeError
+ř inf -> TypeError
+
+def ints_from_list
+# "abc"[0:1] == "a", "abc"[0:2] == "ab"
+š 0 -> 1, 1 -> 76, 2 -> 781, 3 -> 4
+č 1.1 -> TypeError\
+""",
+  """\
+# HELP FOR č CARDS
+lambda x: ceil(sqrt(x))
+# sqrt == √, abs(3) == abs(-3) == 3
+č 4 -> 2, 5 -> 3, -10 -> ValueError
+
+lambda x: floor(log2(x))
+č 0 -> ValueError, 1 -> 0, 2 -> 1, 3 -> 2
+
+def switch_places
+# sign(x) return 1 if x > 0, -1 if x < 0
+# and 0 if x == 0
+# "{0:.2f}".format(x) always returns x
+# to two decimal places
+# abs(3) == abs(-3) == 3
+č 123.456 -> 45.123, -3 -> -0.3
+
+def increment_digits
+# "abaa".replace("a", "c") == "cbcc"
+č 10 -> 21.11, -9.09 -> -1.11
+
+def reverse
+# "abcd"[::-1] == "dcba"
+č 123.5 -> 321, -43 -> -34
+
+def subtract_madness
+# '-'.join("123") == "1-2-3"
+# eval("2-1") executes string as if it
+# was python, returning 1
+č 1 -> 1, 1.1 -> 0, 1.11 -> -1, 2.1 -> 1
+ř inf -> ValueError\
 """,
   """\
 # HELP FOR č and ř CARDS
@@ -494,12 +499,14 @@ def fibb      # i warned you, don't use
 
 # thank you player, and have a lot of fun
 #                                     B.\
-"""]
+"""
+]
 
 
 def get_all_help_cards():
   tmp = []
   help = []
+  help_cards = [card for pair in zip(how_to_play_this_game, quick_help) for card in pair]
   for i, card in enumerate(help_cards):
     tmp.append(card)
 

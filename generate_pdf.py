@@ -293,7 +293,7 @@ def get_source_code_position_n_size(card, source_code, draw):
     if size[0] >= available_size[0] or size[1] >= available_size[1] or min_font_size == max_font_size:
       if (height_multipler == 1 and min_font_size < 15) or (height_multipler == 2 and min_font_size < 11):
         print("too small font size, fn {}, font size {}".format(source_code.split('\n')[0], min_font_size))
-        print(size[0], available_size[0])
+        print(size, available_size)
       return min_font_size
 
     min_font_size += 1

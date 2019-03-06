@@ -23,7 +23,7 @@ def get_rules():
       lambda x: x + 5,
       lambda x: x + 11,
       lambda x: x - 1,
-      # I would not substract more, so the result is never negative (0 in worst case)
+      # I would not subtract more, so the result is never negative (0 in worst case)
 
       # 4
       lambda x: 2 * x,
@@ -37,7 +37,7 @@ def get_rules():
       if_prime,
       lambda x: (x % 5) + 1,
     ],
-    "yellow": [  # 12 math, 8 very simple programs ... 6-10
+    "yellow": [  # 16 6-9
       # 6
       lambda x: x - 25,
       lambda x: x - 128,
@@ -52,9 +52,9 @@ def get_rules():
 
       # 8
       lambda x: x * (x // 4),
-      lambda x: ceil(sqrt(abs(x))),
-      lambda x: floor(log2(abs(x))),
       lambda x: sin(pi * x / 2) - 2,
+      split_by_int,
+      last_digit_negative,
 
       # 9
       if_greater_or_less,
@@ -62,14 +62,15 @@ def get_rules():
       for_cycle,
       while_cycle,
 
-      # 10
-      int_from_list,
-      ints_from_list,
-      split_by_int,
-      last_digit,
 
     ],
-    "red": [  # KQJ
+    "red": [  # 16 10KQJ
+      # 10
+      lambda x: ceil(sqrt(10+x)),
+      lambda x: floor(log2(100-x)),
+      int_from_list,
+      ints_from_list,
+
       # # J can use floats
       lambda x: x + 0.5,
       lambda x: -0.5 * x,
@@ -78,7 +79,7 @@ def get_rules():
       #
       # # Q float to string and back
       switch_places,
-      put_and_eval,
+      increment_digits,
       reverse,
       subtract_madness,
 
@@ -204,8 +205,9 @@ def split_by_int(x):
   return len(parts) - 4
 
 
-def last_digit(x):
-  return int(str(int(x))[-1])
+def last_digit_negative(x):
+  digit = str(int(x))[-1]
+  return -1 * int(digit)
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
@@ -220,10 +222,12 @@ def switch_places(x):
 
 #  MAX LINE LENGTH 29 SIGNS!!
 
-def put_and_eval(x):
-  res = "{0:.2f}".format(x)
-  res.replace('.', '-')
-  return eval(res)
+def increment_digits(x):
+  s = "{0:.2f}".format(x)
+  for i in "9876543210":
+    add = str(1 + int(i))[-1]
+    s = s.replace(i, add)
+  return float(s)
 
 
 def reverse(x):
