@@ -458,9 +458,9 @@ if __name__ == "__main__":
       front_canvas.paste(card[0], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[0])
       offset_x = mm_to_px(CARD_SIZE_MM[0] + .1) if i % 2 == 0 else 0
       background = get_round_rectangle((
-        (card[1].size[0] // mm_to_px(CARD_SIZE_MM[0]))*CARD_SIZE_MM[0]+2,
-        (card[1].size[1] // mm_to_px(CARD_SIZE_MM[1]))*CARD_SIZE_MM[1]+2), "true_black")
-      back_canvas.paste(background, (base_point[0] + offset_x - mm_to_px(1), base_point[1] + offset_y - mm_to_px(1)), mask=background)
+        (card[1].size[0] // mm_to_px(CARD_SIZE_MM[0]))*CARD_SIZE_MM[0]+4,
+        (card[1].size[1] // mm_to_px(CARD_SIZE_MM[1]))*CARD_SIZE_MM[1]+4), "true_black")
+      back_canvas.paste(background, (base_point[0] + offset_x - mm_to_px(2), base_point[1] + offset_y - mm_to_px(2)), mask=background)
       back_canvas.paste(card[1], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[1])
 
     def save_canvas(canvas):
