@@ -62,12 +62,11 @@ def get_rules():
       for_cycle,
       while_cycle,
 
-
     ],
     "red": [  # 16 10KQJ
       # 10
-      lambda x: ceil(sqrt(10+x)),
-      lambda x: floor(log2(100-x)),
+      lambda x: ceil(sqrt(10 + x)),
+      lambda x: floor(log2(99 - x)),
       int_from_list,
       ints_from_list,
 
@@ -240,8 +239,8 @@ def reverse(x):
 #  MAX LINE LENGTH 29 SIGNS!!
 
 def subtract_madness(x):
-  if isnan(x) or isinf(x): # DEBUG this line wont be printed
-    raise ValueError # DEBUG this line wont be printed
+  if isnan(x) or isinf(x):  # DEBUG this line wont be printed
+    raise ValueError  # DEBUG this line wont be printed
   s = "{0:.2f}".format(x)
   s = s.replace('.', '--')
   return eval('-'.join(s))
@@ -276,6 +275,7 @@ def double_rec(x):
   res = double_rec(x // 100)
   res += double_rec(x // 10)
   return res
+
 
 #  MAX LINE LENGTH 29 SIGNS!!
 

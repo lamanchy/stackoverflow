@@ -1,4 +1,3 @@
-
 # for font 15
 #  MAX LINE LENGTH 29 SIGNS!!
 #  MAX FUNCTION LINES 21 !!!!
@@ -35,13 +34,13 @@ def game():
     play_round()\
 """,
 
-# for font 15
-#  MAX LINE LENGTH 29 SIGNS!!
-#  MAX FUNCTION LINES 21 !!!!
+  # for font 15
+  #  MAX LINE LENGTH 29 SIGNS!!
+  #  MAX FUNCTION LINES 21 !!!!
 
-# for font 11
-#  MAX LINE LENGTH 41 SIGNS!!!!!!!!!!!!!!
-#  MAX FUNCTION LINES 29 !!!!!!!!!!!!!!!!
+  # for font 11
+  #  MAX LINE LENGTH 41 SIGNS!!!!!!!!!!!!!!
+  #  MAX FUNCTION LINES 29 !!!!!!!!!!!!!!!!
   """\
 # HOW TO PLAY THIS GAME 2
 def select_difficulty():
@@ -243,7 +242,6 @@ def handle_exception(i, ex):
     for cards in players:
       cards += [function_deck.pop()]\
 """]
-
 
 quick_help = [
   """\

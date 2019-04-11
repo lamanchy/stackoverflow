@@ -15,8 +15,8 @@ from values import get_all_values
 FONT = "fonts/DejaVuSansMono.ttf"
 FONT_BOLD = "fonts/DejaVuSansMono-Bold.ttf"
 
-ANTIALIASING = 3  # do not set bigger that 32 :D
-RESOLUTION_DPI = 300
+ANTIALIASING = 2  # do not set bigger that 32 :D
+RESOLUTION_DPI = 100
 TEXTURE = "textures/moulin.png"
 TEXTURE = "textures/slash_it.png"
 TEXTURE = "textures/what-the-hex-dark.png"
