@@ -2,26 +2,39 @@ from math import inf
 from random import shuffle
 
 
+class Card(object):
+  face_color = "green"
+  back_color = "blue"
+
+
 def get_all_cards(): return []
 
 
+value_deck = []
+function_deck = []
+input_value = None
+output_value = None
+players = []
+
+
 def play_game():
-  values, functions = select_difficulty()
+  select_difficulty()
+
   prepare_game()
   while nobody_won():
     play_round()
 
 
 def select_difficulty():
-  difficulty = input("Enter number 1-4, 1 is the easiest difficulty")
+  global value_deck, function_deck
+  difficulty = int(input("Enter number 1-4, 1 is the easiest difficulty"))
 
   colors = ["green", "yellow", "red", "white"][:difficulty]
 
   cards = [card for card in get_all_cards() if card.face_color in colors]
-  values = [card for card in cards if card.back_color == "blue"]
-  functions = [card for card in cards if card.back_color == "orange"]
 
-  return values, functions
+  value_deck = [card for card in cards if card.back_color == "blue"]
+  function_deck = [card for card in cards if card.back_color == "orange"]
 
 
 def prepare_game():
@@ -33,8 +46,11 @@ def prepare_game():
 
   players_num = int(input("Enter number of players, 2 or more"))
 
-  for _ in range(players_num):
-    players.append([function_deck.pop() for _ in range(4)])
+  players.append = [
+    [
+      function_deck.pop() for _ in range(4)
+    ] for _ in range(players_num)
+  ]
 
 
 def nobody_won():
@@ -116,8 +132,5 @@ def handle_exception(i, ex):
       cards += [function_deck.pop()]
 
 
-value_deck = []
-function_deck = []
-input_value = None
-output_value = None
-players = []
+if __name__ == "__main__":
+  play_game()

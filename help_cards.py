@@ -504,7 +504,7 @@ def fibb      # i warned you, don't use
 def get_all_help_cards():
   tmp = []
   help = []
-  help_cards = [card for pair in zip(how_to_play_this_game, quick_help) for card in pair]
+  help_cards = list(range(10)) + [card for pair in zip(how_to_play_this_game, quick_help) for card in pair]
   for i, card in enumerate(help_cards):
     tmp.append(card)
 
