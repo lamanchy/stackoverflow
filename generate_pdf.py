@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import random
+import sys
 from datetime import datetime
 from math import ceil
 
@@ -32,6 +33,7 @@ if __name__ == "__main__":
         global counter
         counter += 1
         print("{} Generating {}. card".format(datetime.now(), counter))
+        sys.stdout.flush()
 
         card = card.get_card()
         if card[0].size[0] == 0: continue

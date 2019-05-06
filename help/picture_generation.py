@@ -82,7 +82,7 @@ def get_first_image():
                                   expand=False, center=mm_to_px(Card.base_height - corner_size // 2, corner_size // 2))
   cropped_fn_corner.paste(cropped_fn_corner_back, mm_to_px(00, 45), cropped_fn_corner_back)
 
-  plane = Image.new("RGBA", mm_to_px(200, 150), (*background, 255))
+  plane = Image.new("RGB", mm_to_px(200, 150), (*background,))
   blank = Image.new("RGBA", mm_to_px(200, 150), (*background, 255))
   for height in range(16):
     ratio = .8
@@ -119,7 +119,7 @@ def get_first_image():
 
 def get_chain_image(cards, x, y, scale):
   background = ImageColor.getrgb(color_codes["lighter_black"])
-  plane = Image.new("RGBA", mm_to_px(200, 200), (*background, 255))
+  plane = Image.new("RGB", mm_to_px(200, 200), (*background,))
 
   for i in range(len(cards)):
     card = Image.new("RGBA", mm_to_px(200, 200), (*background, 0))
@@ -185,7 +185,7 @@ def get_play(
     front_played_count=0, right_played_count=0
 ):
   background = ImageColor.getrgb(color_codes["lighter_black"])
-  base = Image.new("RGBA", mm_to_px(87 - PictureHelpCard.DX, 87 - PictureHelpCard.DX), (*background, 255))
+  base = Image.new("RGB", mm_to_px(87 - PictureHelpCard.DX, 87 - PictureHelpCard.DX), (*background,))
 
   x1 = 30
   x2 = 230
