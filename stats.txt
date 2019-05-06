@@ -6,7 +6,7 @@ green-int           :  81.25%(abs count =  47009 out of  57856)
 yellow-int+         :  17.28%(abs count =   9995 out of  57856)
 red-int+            :   1.19%(abs count =    691 out of  57856)
 yellow-int-         :   0.20%(abs count =    113 out of  57856)
-black-int+          :   0.08%(abs count =     48 out of  57856)
+white-int+          :   0.08%(abs count =     48 out of  57856)
 fn: 16
                   16:  100.00%(abs count =   3616 out of   3616)
 
@@ -107,7 +107,7 @@ fns which produced certain result:
 color: green-int     ['16', '19', 'x', 'x + 5', 'x - 1', 'min(x, 7)', 'x // 3', 'max(x, 13)', 'gcd(x, 24)', 'if_prime', 'x % 5', '13', 'x + 11', '2 * x', 'lcm(x, 6)', '7']
 color: yellow-int+   ['x + 11', '2 * x', 'lcm(x, 6)', 'x + 5', 'x - 1', 'x // 3', 'x', 'max(x, 13)', 'gcd(x, 24)', 'x % 5', 'min(x, 7)', 'if_prime']
 color: red-int+      ['lcm(x, 6)', '2 * x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'if_prime']
-color: black-int+    ['2 * x', 'lcm(x, 6)', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)']
+color: white-int+    ['2 * x', 'lcm(x, 6)', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)']
 color: yellow-int-   ['x - 1', 'x', '2 * x', 'min(x, 7)', 'x // 3']
 ['green', 'yellow']
 green-int           :  52.02%(abs count = 826596 out of 1588896)
@@ -115,8 +115,8 @@ yellow-int+         :  21.11%(abs count = 335472 out of 1588896)
 yellow-int-         :   8.75%(abs count = 138970 out of 1588896)
 red-int-            :   7.23%(abs count = 114914 out of 1588896)
 red-int+            :   4.16%(abs count =  66138 out of 1588896)
-black-int+          :   2.91%(abs count =  46218 out of 1588896)
-black-int-          :   0.93%(abs count =  14730 out of 1588896)
+white-int+          :   2.91%(abs count =  46218 out of 1588896)
+white-int-          :   0.93%(abs count =  14730 out of 1588896)
 red-float+          :   0.90%(abs count =  14347 out of 1588896)
 red-float-          :   0.84%(abs count =  13410 out of 1588896)
 te                  :   0.41%(abs count =   6474 out of 1588896)
@@ -362,8 +362,8 @@ color: red-int-      ['x - 128', '-5 * x', 'x - 25', '2 * x', 'if_equal_or_not',
 color: red-int+      ['151 - x', 'lcm(x, 6)', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'x * (x // 4)', '2 * x', '-5 * x', 'if_prime', 'x // 3', 'x // -6', 'x - 128', 'ceil(sqrt(abs(x)))']
 color: red-float-    ['sin(pi * x / 2)', 'x', 'x - 1', '2 * x', 'min(x, 7)', 'if_equal_or_not', '-5 * x', 'x - 25', 'x + 5', 'for_cycle', 'x - 128', 'x + 11']
 color: red-float+    ['sin(pi * x / 2)', 'x + 5', 'x + 11', 'x % 5', '-5 * x', 'x * (x // 4)', '2 * x', 'min(x, 7)', 'gcd(x, 24)', 'x % 25', 'for_cycle', 'x', '38 - x', 'x - 1', 'if_equal_or_not', '151 - x', 'max(x, 13)', 'x - 25']
-color: black-int+    ['ints_from_list', 'x * (x // 4)', 'lcm(x, 6)', '151 - x', '-5 * x', '2 * x', '100 // x', '38 - x', 'x + 11', 'for_cycle', 'x + 5', 'x', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not', 'while_cycle', 'x // 3', 'ceil(sqrt(abs(x)))', 'x // -6']
-color: black-int-    ['-5 * x', '2 * x', 'x - 128', '100 // x', '151 - x', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'min(x, 7)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'x // -6', 'x // 3']
+color: white-int+    ['ints_from_list', 'x * (x // 4)', 'lcm(x, 6)', '151 - x', '-5 * x', '2 * x', '100 // x', '38 - x', 'x + 11', 'for_cycle', 'x + 5', 'x', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not', 'while_cycle', 'x // 3', 'ceil(sqrt(abs(x)))', 'x // -6']
+color: white-int-    ['-5 * x', '2 * x', 'x - 128', '100 // x', '151 - x', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'min(x, 7)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'x // -6', 'x // 3']
 color: te            ['int_from_list', 'ints_from_list']
 color: zd            ['100 // x']
 color: ve            ['floor(log2(abs(x)))']
@@ -376,10 +376,10 @@ red-int-            :   6.25%(abs count = 318164 out of 5091840)
 red-float-          :   3.99%(abs count = 202950 out of 5091840)
 red-int+            :   2.94%(abs count = 149469 out of 5091840)
 te                  :   2.87%(abs count = 146274 out of 5091840)
-black-int+          :   2.83%(abs count = 144106 out of 5091840)
-black-float+        :   2.39%(abs count = 121720 out of 5091840)
-black-int-          :   1.06%(abs count =  54004 out of 5091840)
-black-float-        :   1.01%(abs count =  51357 out of 5091840)
+white-int+          :   2.83%(abs count = 144106 out of 5091840)
+white-float+        :   2.39%(abs count = 121720 out of 5091840)
+white-int-          :   1.06%(abs count =  54004 out of 5091840)
+white-float-        :   1.01%(abs count =  51357 out of 5091840)
 zd                  :   0.53%(abs count =  26887 out of 5091840)
 ve                  :   0.26%(abs count =  13260 out of 5091840)
 re                  :   0.01%(abs count =    724 out of 5091840)
@@ -707,32 +707,32 @@ color: red-int-      ['x - 128', '-5 * x', 'rec_subtract', 'x - 25', '-0.5 * x',
 color: red-int+      ['151 - x', 'rec_mul', 'lcm(x, 6)', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'put_and_eval', 'x * (x // 4)', '100 // x', '-5 * x', '2 * x', 'if_prime', 'reverse', '-0.5 * x', 'x // 3', 'x - 128', 'x // -6', 'ceil(sqrt(abs(x)))', 'x + 0.5', 'x / 1.5', 'double_rec', 'floor(log2(abs(x)))']
 color: red-float+    ['x + 0.5', 'x / 1.5', 'switch_places', 'sin(pi * x / 2)', '1 / x', '-0.5 * x', 'x', 'x + 5', 'x + 11', 'x - 1', 'gcd(x, 24)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'x * (x // 4)', 'for_cycle', 'put_and_eval', 'double_rec', '-5 * x', '2 * x', 'min(x, 7)', 'max(x, 13)', 'if_equal_or_not', 'x - 25', 'x - 128']
 color: red-float-    ['-0.5 * x', 'sin(pi * x / 2)', 'x + 0.5', 'x / 1.5', '1 / x', 'switch_places', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', 'rec_subtract', 'x', 'x - 1', 'min(x, 7)', 'put_and_eval', 'x + 5', '2 * x', 'double_rec', 'for_cycle', 'x + 11', '38 - x', '151 - x']
-color: black-float+  ['1 / x', 'switch_places', 'sin(pi * x / 2)', 'x + 0.5', 'put_and_eval', 'x', 'x + 5', 'x + 11', '2 * x', 'min(x, 7)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'for_cycle', 'x / 1.5', 'double_rec', 'gcd(x, 24)', '-5 * x', 'x * (x // 4)', '-0.5 * x', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not']
-color: black-int+    ['ints_from_list', 'x * (x // 4)', 'lcm(x, 6)', '151 - x', '-5 * x', '2 * x', 'reverse', 'rec_mul', '100 // x', '38 - x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'x / 1.5', 'put_and_eval', 'x // 3', 'x', 'x // -6', '-0.5 * x', 'ceil(sqrt(abs(x)))', '1 / x', 'x + 0.5', 'double_rec']
-color: black-int-    ['-5 * x', '2 * x', 'rec_mul', 'reverse', 'x - 128', '100 // x', 'x - 25', 'if_equal_or_not', 'min(x, 7)', 'put_and_eval', 'rec_subtract', 'x - 1', 'x + 5', 'x + 11', 'for_cycle', 'while_cycle', '151 - x', '38 - x', '-0.5 * x', 'x // -6', 'x', 'x / 1.5', 'x // 3', 'x + 0.5', 'double_rec', '1 / x']
-color: black-float-  ['1 / x', 'switch_places', 'x - 1', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', '-0.5 * x', 'rec_subtract', 'sin(pi * x / 2)', 'x + 0.5', '2 * x', 'put_and_eval', 'x / 1.5', 'x', 'min(x, 7)', 'double_rec', 'x + 5', 'x + 11', 'for_cycle', '38 - x', '151 - x']
+color: white-float+  ['1 / x', 'switch_places', 'sin(pi * x / 2)', 'x + 0.5', 'put_and_eval', 'x', 'x + 5', 'x + 11', '2 * x', 'min(x, 7)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'for_cycle', 'x / 1.5', 'double_rec', 'gcd(x, 24)', '-5 * x', 'x * (x // 4)', '-0.5 * x', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not']
+color: white-int+    ['ints_from_list', 'x * (x // 4)', 'lcm(x, 6)', '151 - x', '-5 * x', '2 * x', 'reverse', 'rec_mul', '100 // x', '38 - x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'x / 1.5', 'put_and_eval', 'x // 3', 'x', 'x // -6', '-0.5 * x', 'ceil(sqrt(abs(x)))', '1 / x', 'x + 0.5', 'double_rec']
+color: white-int-    ['-5 * x', '2 * x', 'rec_mul', 'reverse', 'x - 128', '100 // x', 'x - 25', 'if_equal_or_not', 'min(x, 7)', 'put_and_eval', 'rec_subtract', 'x - 1', 'x + 5', 'x + 11', 'for_cycle', 'while_cycle', '151 - x', '38 - x', '-0.5 * x', 'x // -6', 'x', 'x / 1.5', 'x // 3', 'x + 0.5', 'double_rec', '1 / x']
+color: white-float-  ['1 / x', 'switch_places', 'x - 1', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', '-0.5 * x', 'rec_subtract', 'sin(pi * x / 2)', 'x + 0.5', '2 * x', 'put_and_eval', 'x / 1.5', 'x', 'min(x, 7)', 'double_rec', 'x + 5', 'x + 11', 'for_cycle', '38 - x', '151 - x']
 color: te            ['int_from_list', 'ints_from_list']
 color: zd            ['100 // x', '1 / x']
 color: ve            ['floor(log2(abs(x)))']
 color: re            ['rec_subtract']
-['green', 'yellow', 'red', 'black']
+['green', 'yellow', 'red', 'white']
 green-int           :  37.90%(abs count = 2513806 out of 6632652)
 yellow-int+         :  16.20%(abs count = 1074760 out of 6632652)
 yellow-int-         :   8.96%(abs count = 594012 out of 6632652)
 red-float+          :   7.72%(abs count = 512100 out of 6632652)
 red-int-            :   5.61%(abs count = 372211 out of 6632652)
-black-int+          :   3.71%(abs count = 246337 out of 6632652)
+white-int+          :   3.71%(abs count = 246337 out of 6632652)
 red-float-          :   3.69%(abs count = 244620 out of 6632652)
 te                  :   3.17%(abs count = 210039 out of 6632652)
 re                  :   2.62%(abs count = 173467 out of 6632652)
-black-float+        :   2.56%(abs count = 169822 out of 6632652)
+white-float+        :   2.56%(abs count = 169822 out of 6632652)
 red-int+            :   2.54%(abs count = 168583 out of 6632652)
-black-inf           :   1.40%(abs count =  92952 out of 6632652)
-black-int-          :   1.28%(abs count =  84786 out of 6632652)
-black-float-        :   1.13%(abs count =  74954 out of 6632652)
+white-inf           :   1.40%(abs count =  92952 out of 6632652)
+white-int-          :   1.28%(abs count =  84786 out of 6632652)
+white-float-        :   1.13%(abs count =  74954 out of 6632652)
 ve                  :   0.79%(abs count =  52174 out of 6632652)
 zd                  :   0.49%(abs count =  32291 out of 6632652)
-black-NaN           :   0.24%(abs count =  15738 out of 6632652)
+white-NaN           :   0.24%(abs count =  15738 out of 6632652)
 fn: 16
                   16:  100.00%(abs count = 124463 out of 124463)
 
@@ -1080,15 +1080,15 @@ color: red-int-      ['x - 128', '-5 * x', 'rec_subtract', 'x - 25', '-0.5 * x',
 color: red-int+      ['151 - x', 'rec_mul', 'lcm(x, 6)', 'fibb', '38 - x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'put_and_eval', 'x * (x // 4)', '100 // x', '-5 * x', '2 * x', 'if_prime', 'reverse', 'x - 128', '-0.5 * x', 'x // 3', 'x // -6', 'ceil(sqrt(abs(x)))', 'x + 0.5', 'x / 1.5', 'rec_divide', 'floor(log2(abs(x)))', 'double_rec', '1 / x']
 color: red-float+    ['x + 0.5', 'x / 1.5', 'pow(x, -x)', 'switch_places', 'sin(pi * x / 2)', '1 / x', '-0.5 * x', 'x', 'x + 5', 'x + 11', 'x - 1', 'gcd(x, 24)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'x * (x // 4)', 'for_cycle', 'put_and_eval', 'double_rec', '-5 * x', '2 * x', 'min(x, 7)', 'fibb', 'max(x, 13)', 'if_equal_or_not', 'x - 25', 'x - 128']
 color: red-float-    ['-0.5 * x', 'sin(pi * x / 2)', 'x + 0.5', 'x / 1.5', '1 / x', 'switch_places', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', 'rec_subtract', 'x', 'x - 1', 'min(x, 7)', 'put_and_eval', 'fibb', 'x + 5', '2 * x', 'double_rec', 'for_cycle', 'x + 11', '38 - x', '151 - x']
-color: black-float+  ['1 / x', 'switch_places', 'pow(x, -x)', 'sin(pi * x / 2)', 'x + 0.5', 'put_and_eval', 'x', 'x + 5', 'x + 11', '2 * x', 'min(x, 7)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'for_cycle', 'x / 1.5', 'double_rec', 'fibb', 'gcd(x, 24)', '-5 * x', 'x * (x // 4)', '-0.5 * x', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not']
-color: black-inf     ['ack', 'x', 'x + 5', 'x + 11', 'x - 1', '2 * x', 'max(x, 13)', 'x - 25', 'x - 128', '151 - x', '38 - x', '-5 * x', 'ceil(sqrt(abs(x)))', 'floor(log2(abs(x)))', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'split_by_int', 'x + 0.5', '-0.5 * x', 'x / 1.5', 'put_and_eval', 'reverse', 'rec_divide', 'pow(x, -x)', 'min(x, 7)', 'if_prime', 'rec_subtract', 'fibb', 'x * (x // 4)', '100 // x', '1 / x', 'sin(pi * x / 2)', 'switch_places', 'subtract_madness']
-color: black-int+    ['fibb', 'ints_from_list', 'x * (x // 4)', 'pow(x, -x)', 'lcm(x, 6)', '151 - x', '-5 * x', '2 * x', 'reverse', 'rec_mul', '100 // x', '1 / x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'put_and_eval', 'x // 3', 'x - 128', 'x / 1.5', 'while_cycle', '38 - x', 'x // -6', '-0.5 * x', 'ceil(sqrt(abs(x)))', 'floor(log2(abs(x)))', 'x + 0.5', 'rec_divide', 'double_rec']
-color: black-int-    ['-5 * x', '2 * x', 'rec_mul', 'pow(x, -x)', 'reverse', 'x - 128', '100 // x', '151 - x', '38 - x', 'x // -6', 'x - 25', 'if_equal_or_not', 'min(x, 7)', 'put_and_eval', 'rec_subtract', 'fibb', 'x - 1', 'x + 5', 'x + 11', 'for_cycle', 'while_cycle', '-0.5 * x', 'x', 'x / 1.5', 'x // 3', 'x + 0.5', 'subtract_madness', 'rec_divide', 'double_rec', 'floor(log2(abs(x)))', '1 / x']
-color: black-float-  ['1 / x', 'switch_places', 'x - 1', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', '-0.5 * x', 'rec_subtract', 'sin(pi * x / 2)', 'x + 0.5', '2 * x', 'put_and_eval', 'x / 1.5', 'x', 'min(x, 7)', 'double_rec', 'fibb', 'x + 5', 'x + 11', 'for_cycle', '38 - x', '151 - x']
+color: white-float+  ['1 / x', 'switch_places', 'pow(x, -x)', 'sin(pi * x / 2)', 'x + 0.5', 'put_and_eval', 'x', 'x + 5', 'x + 11', '2 * x', 'min(x, 7)', 'x % 5', '151 - x', '38 - x', 'x % 25', 'for_cycle', 'x / 1.5', 'double_rec', 'fibb', 'gcd(x, 24)', '-5 * x', 'x * (x // 4)', '-0.5 * x', 'x - 1', 'max(x, 13)', 'x - 25', 'x - 128', 'if_equal_or_not']
+color: white-inf     ['ack', 'x', 'x + 5', 'x + 11', 'x - 1', '2 * x', 'max(x, 13)', 'x - 25', 'x - 128', '151 - x', '38 - x', '-5 * x', 'ceil(sqrt(abs(x)))', 'floor(log2(abs(x)))', 'if_equal_or_not', 'for_cycle', 'while_cycle', 'split_by_int', 'x + 0.5', '-0.5 * x', 'x / 1.5', 'put_and_eval', 'reverse', 'rec_divide', 'pow(x, -x)', 'min(x, 7)', 'if_prime', 'rec_subtract', 'fibb', 'x * (x // 4)', '100 // x', '1 / x', 'sin(pi * x / 2)', 'switch_places', 'subtract_madness']
+color: white-int+    ['fibb', 'ints_from_list', 'x * (x // 4)', 'pow(x, -x)', 'lcm(x, 6)', '151 - x', '-5 * x', '2 * x', 'reverse', 'rec_mul', '100 // x', '1 / x', 'x', 'x + 5', 'x + 11', 'x - 1', 'max(x, 13)', 'x - 25', 'if_equal_or_not', 'for_cycle', 'put_and_eval', 'x // 3', 'x - 128', 'x / 1.5', 'while_cycle', '38 - x', 'x // -6', '-0.5 * x', 'ceil(sqrt(abs(x)))', 'floor(log2(abs(x)))', 'x + 0.5', 'rec_divide', 'double_rec']
+color: white-int-    ['-5 * x', '2 * x', 'rec_mul', 'pow(x, -x)', 'reverse', 'x - 128', '100 // x', '151 - x', '38 - x', 'x // -6', 'x - 25', 'if_equal_or_not', 'min(x, 7)', 'put_and_eval', 'rec_subtract', 'fibb', 'x - 1', 'x + 5', 'x + 11', 'for_cycle', 'while_cycle', '-0.5 * x', 'x', 'x / 1.5', 'x // 3', 'x + 0.5', 'subtract_madness', 'rec_divide', 'double_rec', 'floor(log2(abs(x)))', '1 / x']
+color: white-float-  ['1 / x', 'switch_places', 'x - 1', 'x - 25', 'x - 128', '-5 * x', 'if_equal_or_not', '-0.5 * x', 'rec_subtract', 'sin(pi * x / 2)', 'x + 0.5', '2 * x', 'put_and_eval', 'x / 1.5', 'x', 'min(x, 7)', 'double_rec', 'fibb', 'x + 5', 'x + 11', 'for_cycle', '38 - x', '151 - x']
 color: re            ['ack', 'rec_subtract', 'double_rec', 'rec_mul', 'fibb']
 color: te            ['int_from_list', 'ints_from_list']
 color: ve            ['pow(x, -x)', 'sin(pi * x / 2)', 'int(str(x)[-1])', 'switch_places', 'floor(log2(abs(x)))', 'if_prime', 'ceil(sqrt(abs(x)))', 'for_cycle', 'while_cycle', 'split_by_int', 'reverse', 'rec_divide']
-color: black-NaN     ['x // 3', 'lcm(x, 6)', 'x % 5', 'x // -6', 'x % 25', 'x * (x // 4)', 'x', 'x + 5', 'x + 11', 'x - 1', '2 * x', 'min(x, 7)', 'max(x, 13)', 'x - 25', 'x - 128', '151 - x', '38 - x', '-5 * x', '100 // x', 'sin(pi * x / 2)', 'if_equal_or_not', 'x + 0.5', '-0.5 * x', 'x / 1.5', '1 / x', 'put_and_eval', 'pow(x, -x)']
+color: white-NaN     ['x // 3', 'lcm(x, 6)', 'x % 5', 'x // -6', 'x % 25', 'x * (x // 4)', 'x', 'x + 5', 'x + 11', 'x - 1', '2 * x', 'min(x, 7)', 'max(x, 13)', 'x - 25', 'x - 128', '151 - x', '38 - x', '-5 * x', '100 // x', 'sin(pi * x / 2)', 'if_equal_or_not', 'x + 0.5', '-0.5 * x', 'x / 1.5', '1 / x', 'put_and_eval', 'pow(x, -x)']
 color: zd            ['100 // x', '1 / x']
 
 

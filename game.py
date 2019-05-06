@@ -2,10 +2,6 @@ from math import inf
 from random import shuffle
 
 
-class Card(object):
-  face_color = "green"
-  back_color = "blue"
-
 
 def get_all_cards(): return []
 

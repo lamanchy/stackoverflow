@@ -1,13 +1,9 @@
 import math
-import os
 import sys
-
-import _thread
-import threading
 from time import time
 
-from generate_pdf import get_source_code, get_source_code_name
 from rules import get_rules
+from source_code_helpers import get_source_code_name
 from values import values
 
 
@@ -34,15 +30,15 @@ def get_value_color(value):
     return value
 
   if value == math.inf:
-    return "black-inf"
+    return "white-inf"
 
   try:
     if int(value) == value:
       value = int(value)  # 0.0 to 0 etc
   except ValueError:
-    return "black-NaN"
+    return "white-NaN"
   except OverflowError:
-    return "black-inf"
+    return "white-inf"
 
   if isinstance(value, int):
     if 0 < value < 21:
@@ -56,8 +52,8 @@ def get_value_color(value):
       if value < 0: return "red-int-"
       return "red-int+"
 
-    if value < 0: return "black-int-"
-    return "black-int+"
+    if value < 0: return "white-int-"
+    return "white-int+"
 
   if (int(value * 100) % 10) == 0 or \
       value % (1 / 8) < 0.001 or \
@@ -66,12 +62,12 @@ def get_value_color(value):
     if value < 0: return "red-float-"
     return "red-float+"
 
-  if value < 0: return "black-float-"
-  return "black-float+"
+  if value < 0: return "white-float-"
+  return "white-float+"
 
 
 def view_results():
-  colors = ["green", "yellow", "red", "black"]
+  colors = ["green", "yellow", "red", "white"]
   for num in range(2, 3):
     print("stats with %s cards" % (num + 1))
     print()

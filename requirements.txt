@@ -2,3 +2,4 @@ pip
 setuptools
 pillow
 numpy
+img2pdf

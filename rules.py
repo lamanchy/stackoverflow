@@ -1,13 +1,15 @@
 import functools
-import inspect
 from math import *
-
 
 # yvetsit values
 # zvetsit text na programech
 # type error, value error, stack overflow, zero division, timeout error
 # co delat pri chybe
 # napisu program aby delal stack overflow
+from cards.function_card import FunctionCard
+from cards.playing_card_back import PlayingCardBack
+from cards.two_sided_card import TwoSidedCard
+
 
 def get_rules():
   return {
@@ -89,7 +91,7 @@ def get_rules():
       rec_multiply,
 
     ],
-    "black": [
+    "white": [
       # A
       ack,
       fibb,
@@ -317,25 +319,8 @@ def fibb(x):
 
 def get_all_functions():
   fns = []
-  for color in ["green", "yellow", "red", "black"]:
+  for color in ["green", "yellow", "red", "white"]:
     for fn in get_rules()[color]:
-      fns.append((fn, color))
+      fns.append(TwoSidedCard(FunctionCard(color, fn), PlayingCardBack("yellow")))
 
   return fns
-
-
-if __name__ == "__main__":
-  from timeit import timeit
-
-  for fn, color in get_all_functions():
-
-    source_code = inspect.getsource(fn)
-
-    # remove leading and ending spaces
-    source_code = source_code.strip()
-
-    if source_code.startswith("lambda") and source_code[-1] == ',':
-      source_code = source_code[:-1]
-
-    print(source_code)
-    print(timeit("fn(3)", number=1000000, globals=globals()))

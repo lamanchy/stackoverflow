@@ -5,7 +5,10 @@
 # for font 11
 #  MAX LINE LENGTH 41 SIGNS!!!!!!!!!!!!!!
 #  MAX FUNCTION LINES 29 !!!!!!!!!!!!!!!!
-from rules import get_all_functions
+from cards.picture_help_card import PictureHelpCard
+from cards.text_help_card import TextHelpCard
+from cards.two_sided_card import TwoSidedCard
+from help.picture_cards import picture_help_cards
 
 how_to_play_this_game = [
   """\
@@ -503,21 +506,17 @@ def fibb      # i warned you, don't use
 
 def get_all_help_cards():
   tmp = []
-  help = []
-  help_cards = list(range(10)) + [card for pair in zip(how_to_play_this_game, quick_help) for card in pair]
+  res = []
+  help_cards = [PictureHelpCard(*arg) for arg in picture_help_cards]
+  help_cards += [TextHelpCard(card) for pair in zip(how_to_play_this_game, quick_help) for card in pair]
   for i, card in enumerate(help_cards):
     tmp.append(card)
 
     if i + 1 == len(help_cards) or len(tmp) == 2:
       if len(tmp) == 1:
-        tmp.append("")
+        tmp.append(TextHelpCard(""))
 
-      help.append(tuple(tmp))
+      res.append(TwoSidedCard(tmp[0], tmp[1]))
       tmp = []
 
-  return help
-
-
-if __name__ == "__main__":
-  for fn, color in get_all_functions():
-    print(color, fn)
+  return res
