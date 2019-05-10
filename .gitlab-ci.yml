@@ -35,7 +35,7 @@ build:
     - git submodule status
     - ls
     - ls pil_quality_pdf
-    - git submodule update --remote --merge
+    - git submodule update --init --recursive --remote --merge
     - virtualenv venv
     - source venv/bin/activate
     - pip install -r requirements.txt
