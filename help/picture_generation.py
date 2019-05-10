@@ -9,9 +9,9 @@ from cards.picture_help_card import PictureHelpCard
 from cards.playing_card_back import PlayingCardBack
 from cards.value_card import ValueCard
 from colors import color_codes
-from image_lib.quality_constants import HIGH_QUALITY
-from image_lib.rendering import mm_to_px
-from image_lib.transformation import rotate, transform, resize
+from pil_quality_pdf.quality_constants import HIGH_QUALITY
+from pil_quality_pdf.rendering import mm_to_px
+from pil_quality_pdf.transformation import rotate, transform, resize
 from rules import get_rules
 from values import values
 

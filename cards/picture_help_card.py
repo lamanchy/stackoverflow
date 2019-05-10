@@ -2,8 +2,8 @@ from PIL import Image, ImageDraw
 
 from cards.help_card import HelpCard
 from colors import getrgb
-from image_lib.fonts import get_font
-from image_lib.rendering import mm_to_px
+from pil_quality_pdf.fonts import get_font
+from pil_quality_pdf.rendering import mm_to_px
 
 
 class PictureHelpCard(HelpCard):

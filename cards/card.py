@@ -3,7 +3,7 @@ import functools
 from PIL import Image, ImageDraw
 
 from colors import getrgb
-from image_lib.rendering import mm_to_px
+from pil_quality_pdf.rendering import mm_to_px
 
 
 class Card(object):

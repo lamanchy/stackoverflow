@@ -3,9 +3,9 @@ from PIL import ImageDraw
 from cards.card_face import CardFace
 from cards.colored_card import ColoredCard
 from colors import getrgb
-from image_lib.fonts import get_font
-from image_lib.rendering import mm_to_px
-from image_lib.transformation import rotate
+from pil_quality_pdf.fonts import get_font
+from pil_quality_pdf.rendering import mm_to_px
+from pil_quality_pdf.transformation import rotate
 
 
 class BackCard(ColoredCard):

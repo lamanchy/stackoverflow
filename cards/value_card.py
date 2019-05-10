@@ -2,8 +2,8 @@ from PIL import ImageDraw
 
 from cards.playing_card_front import PlayingCardFront
 from colors import getrgb
-from image_lib.fonts import get_font
-from image_lib.rendering import mm_to_px
+from pil_quality_pdf.fonts import get_font
+from pil_quality_pdf.rendering import mm_to_px
 from source_code_helpers import get_source_code_coloring
 
 

@@ -3,8 +3,8 @@ import re
 
 from cards.card import Card
 from colors import color_regexes
-from image_lib.fonts import get_font
-from image_lib.rendering import mm_to_px
+from pil_quality_pdf.fonts import get_font
+from pil_quality_pdf.rendering import mm_to_px
 
 
 def get_source_code(fn):

@@ -9,7 +9,7 @@ from PIL import Image
 from cards.card import Card
 from cards.two_sided_card import TwoSidedCard
 from help_cards import get_all_help_cards
-from image_lib.rendering import mm_to_px, PdfWriter
+from pil_quality_pdf.rendering import mm_to_px, PdfWriter
 from rules import get_all_functions
 from values import get_all_values
 
