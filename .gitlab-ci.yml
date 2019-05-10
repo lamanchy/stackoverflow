@@ -32,6 +32,7 @@ build:
   before_script:
     - python -V               # Print out python version for debugging
     - pip install virtualenv
+    - git submodule status
     - git submodule update --remote --merge
     - virtualenv venv
     - source venv/bin/activate
