@@ -33,6 +33,8 @@ build:
     - python -V               # Print out python version for debugging
     - pip install virtualenv
     - git submodule status
+    - ls
+    - ls pil_quality_pdf
     - git submodule update --remote --merge
     - virtualenv venv
     - source venv/bin/activate
