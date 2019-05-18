@@ -8,9 +8,19 @@ from PIL import Image
 
 from cards.card import Card
 from cards.two_sided_card import TwoSidedCard
+from help.function_tutorial import function_tutorial
 from help.green_tutorial import green_tutorial
 from help.red_tutorial import red_tutorial
 from pil_quality_pdf.rendering import mm_to_px, PdfWriter
+from rules import get_all_functions
+from values import get_all_values
+
+BROCHURE = True
+
+try:
+  from local_pdf_settings import *
+except ImportError:
+  pass
 
 
 def generate_pdf(name, cards):
@@ -49,23 +59,27 @@ def generate_pdf(name, cards):
                             mask=background)
           back_canvas.paste(card[1], (base_point[0] + offset_x, base_point[1] + offset_y), mask=card[1])
 
-      writer.write(front_canvas)
-      writer.write(back_canvas)
+      if not all([p == (255, 255, 255) for p in front_canvas.getdata()]):
+        writer.write(front_canvas)
+      if not all([p == (255, 255, 255) for p in back_canvas.getdata()]):
+        writer.write(back_canvas)
 
 
 def prepare_help_cards_to_print(help_cards):
   while len(help_cards) % 4 != 0: help_cards.append(Card.empty_card())
 
-  # brochure = help_cards
-  brochure = []
-  while len(help_cards) > 0:
-    brochure.append(help_cards.pop(1))
-    brochure.append(help_cards.pop(0))
-    brochure.append(help_cards.pop(-2))
-    brochure.append(help_cards.pop(-1))
+  brochure = help_cards
+  if BROCHURE:
+    brochure = []
+    while len(help_cards) > 0:
+      brochure.append(help_cards.pop(1))
+      brochure.append(help_cards.pop(0))
+      brochure.append(help_cards.pop(-2))
+      brochure.append(help_cards.pop(-1))
 
   pairs = [TwoSidedCard(brochure[2 * i], brochure[2 * i + 1]) for i in range(len(brochure) // 2)]
-  # pairs = [TwoSidedCard(brochure[i], Card.empty_card()) for i in range(len(brochure))]
+  if not BROCHURE:
+    pairs = [TwoSidedCard(brochure[i], Card.empty_card()) for i in range(len(brochure))]
   cards = []
   for page in range(int(ceil(len(pairs) / 4))):
     for i, help_card in enumerate(pairs[page * 4:page * 4 + 4]):
@@ -78,11 +92,16 @@ def prepare_help_cards_to_print(help_cards):
 
 
 if __name__ == "__main__":
-  # generate_pdf("stack_overflow_cards", get_all_functions() + get_all_values())
+  generate_pdf("stack_overflow_cards", get_all_functions() + get_all_values())
 
   n = datetime.now()
-  tutorial_cards = green_tutorial[2:3] + list(reversed(red_tutorial[:0]))
+  if BROCHURE:
+    tutorial_cards = green_tutorial + list(reversed(red_tutorial))
+  else:
+    tutorial_cards = green_tutorial + red_tutorial
+    for card in tutorial_cards: card.is_upside_down = False
 
   generate_pdf("stack_overflow_tutorial", prepare_help_cards_to_print(tutorial_cards))
-  print(datetime.now() - n)
-  # generate_pdf("stack_overflow_functions", prepare_help_cards_to_print(function_tutorial))
+  generate_pdf("stack_overflow_functions", prepare_help_cards_to_print(function_tutorial))
+
+  print("generation took:", datetime.now() - n)
