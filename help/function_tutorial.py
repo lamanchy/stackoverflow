@@ -214,11 +214,11 @@ def last_digit_negative
 # definition, go to:
 # https://repl.it/@OndrejLomic/StackO
 
-# also, function can now raise exception,
-# e.g. when you try to divide number by
-# zero, and it has special effect
-# on cards, see last page of tutorial
-# for programmers for more info
+# also, function now can raise
+# an exception, e.g. when you try 
+# to divide number by zero, and it has
+# some special effect, see last page
+# of tutorial for programmers
 
 lambda x: 2 * x
 ③ 2.2 -> 4.4, 3.5 -> 7, inf -> inf
@@ -247,7 +247,7 @@ def ints_from_list
 ③ 1.1 -> TypeError
 
 lambda x: ceil(sqrt(x))
-# sqrt stands for √
+# sqrt(2) stands for √2
 ③ 4 -> 2, 5 -> 3, -10 -> ValueError
 
 lambda x: floor(log2(x))
@@ -256,8 +256,8 @@ lambda x: floor(log2(x))
 
 def switch_places
 # "{0:.2f}".format(x) always returns x
-# to two decimal places (1 / 3 as "3.33",
-# -2.5 as "-2.50")
+# with two decimal places 
+# (1 / 3 as "3.33", -2.5 as "-2.50")
 ③ 123.456 -> 45.123, -3 -> -0.3
 
 def increment_digits
