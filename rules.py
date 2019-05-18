@@ -68,7 +68,7 @@ def get_rules():
     "red": [  # 16 10KQJ
       # 10
       lambda x: ceil(sqrt(10 + x)),
-      lambda x: floor(log2(99 - x)),
+      lambda x: floor(log2(90 - x)),
       int_from_list,
       ints_from_list,
 
@@ -82,21 +82,16 @@ def get_rules():
       switch_places,
       increment_digits,
       reverse,
-      subtract_madness,  #####
+      # subtract_madness,  #####
 
       # K
       rec_subtract,
-      rec_divide,  #####
+      rec_divide,
       double_rec,
       rec_multiply,
 
-    ],
-    "white": [
       # A
-      ack,  #####
-      fibb,  #####
-      lambda x: pow(x, -x),  #####
-      lambda x: inf,  #####
+      lambda x: inf,
     ]
   }
 
@@ -261,9 +256,9 @@ def rec_subtract(x):
 @functools.lru_cache(None)
 def rec_divide(x):
   if x == 0:
-    return sign(x)
+    return 0
 
-  x = round(x / 3)
+  x = floor(x / 3)
   return sign(x) + \
          rec_divide(x)
 
@@ -291,35 +286,9 @@ def rec_multiply(x):
   return res - 1
 
 
-#  MAX LINE LENGTH 29 SIGNS!!
-
-@functools.lru_cache(None)
-def ack(m, n=None):
-  if n is None:  n = m
-  if isinstance(m, float) and m != int(m): raise RecursionError  # DEBUG this line wont be printed
-  if isinstance(m, int) and isinstance(n, int) and m >= 4:  raise OverflowError  # DEBUG this line wont be printed
-  if m == 0:     return n + 1
-  if n == 0:     n = 1
-  else:
-     n = ack(m, n - 1)
-  return ack(m - 1, n)
-
-
-@functools.lru_cache(None)
-def fibb(x):
-  if x <= 1: return x
-
-  return fibb(x - 1) + \
-         fibb(x - 2)
-
-
-#  MAX LINE LENGTH 29 SIGNS!!
-#  MAX FUNCTION LINES 7 !!!!!
-
-
 def get_all_functions():
   fns = []
-  for color in ["green", "yellow", "red", "white"]:
+  for color in ["green", "yellow", "red"]:
     for fn in get_rules()[color]:
       fns.append(TwoSidedCard(FunctionCard(color, fn), PlayingCardBack("yellow")))
 

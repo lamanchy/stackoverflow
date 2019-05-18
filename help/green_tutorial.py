@@ -141,8 +141,7 @@ green_tutorial = [
 # Play the round as long as somebody has
 # no cards, that player wins the game.
 # When you manage green cards, you can
-# add yellow ones, then red and finally
-# white ones.\
+# add yellow ones, finally the red  ones.\
 """,
                   lambda: get_play(
                     fns_count=6,

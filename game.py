@@ -25,7 +25,7 @@ def select_difficulty():
   global value_deck, function_deck
   difficulty = int(input("Enter number 1-4, 1 is the easiest difficulty"))
 
-  colors = ["green", "yellow", "red", "white"][:difficulty]
+  colors = ["green", "yellow", "red"][:difficulty]
 
   cards = [card for card in get_all_cards() if card.face_color in colors]
 

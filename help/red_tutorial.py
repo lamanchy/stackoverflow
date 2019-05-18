@@ -40,7 +40,7 @@ def select_difficulty():
     "1 is the easiest difficulty")
 
   colors = ["green", "yellow",
-            "red", "white"][:difficulty]
+            "red"][:difficulty]
   # at easiest difficulty, you play only
   # with green cards, at difficulty 2,
   # you play with green and yellow

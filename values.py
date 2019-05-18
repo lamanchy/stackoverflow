@@ -1,5 +1,3 @@
-from math import *
-
 from cards.playing_card_back import PlayingCardBack
 from cards.two_sided_card import TwoSidedCard
 from cards.value_card import ValueCard
@@ -9,7 +7,7 @@ values = {
   "yellow": [-20, -16, -11, -5, -4, -3, -1, 0, 22, 27, 30, 33, 42, 49, 76, 81, 97, 100],  # 6-10
   "red": [-200, -144, -66, -30, 121, 150, 169, 199, (1 / 2, "0.5"), 5.5, (-1 / 8, "-0.125"), (-3 / 2, "-1.5"),
           -0.1, 10.1, (100.5, "100.5"), (-20.5, "-20.5")],  # 16 KQJ
-  "white": [(pi, "π"), 1024, (sqrt(2), "√2"), -17.76],  # 4 esa
+  # "white": [(pi, "π"), 1024, (sqrt(2), "√2"), -17.76],  # 4 esa
 }
 
 for c in values:
@@ -20,7 +18,7 @@ for c in values:
 
 def get_all_values():
   vals = []
-  for c in ["green", "yellow", "red", "white"]:
+  for c in ["green", "yellow", "red"]:
     # for color in ["green", "yellow"]:
     for value in values[c]:
       vals.append(TwoSidedCard(ValueCard(c, value), PlayingCardBack("blue")))

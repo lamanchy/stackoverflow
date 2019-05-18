@@ -17,15 +17,6 @@ color_codes = {
   "magenta": "rgb(194,158,211)",
 }
 
-card_colors_to_real_colors = {
-  "green": "green",
-  "yellow": "yellow",
-  "red": "red",
-  "black": "white",
-  "magenta": "magenta",
-  "cyan": "cyan",
-}
-
 color_regexes = [
   (r".*", "white"),  # default color
   (r"(?:\W|^)(\d+)", "blue"),

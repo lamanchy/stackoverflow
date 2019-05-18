@@ -125,7 +125,7 @@ if x > 5:  # two line equivalent
 # if you cannot calculate something
 # in your head, then just don't use it
 
-# signs ①②③④ shows, that the example is
+# signs ①②③ shows, that the example is
 # relevant for specific difficulty only,
 # you can ignore examples for higher
 # difficulties than you play
@@ -150,25 +150,21 @@ lambda x: 100 // x
   TextHelpCard("yellow", "", """\
 lambda x: gcd(x, 12)  # green cards
 ② 0 -> 12, -5 -> 1    # might get tricky
-③ 1.5 -> 1.5, -3.5 -> 0.5
-④ √2 -> ValueError, inf -> 12
+③ 1.5 -> 1.5, -3.5 -> 0.5, inf -> 12
 
 lambda x: lcm(x, 4)
 ② 0 -> 0, -5 -> 20
-③ 1.5 -> 12, 2.5 -> 20
-④ √2 -> ValueError, inf -> inf
+③ 1.5 -> 12, 2.5 -> 20, inf -> inf
 
 lambda x: sin(pi * x / 2) - 2
 # sin(0) is 0, sin(pi/2) is 1
 # sin(pi) is 0, sin(3*pi/2) is -1
 ② 0 -> -2, 4 -> -2, 5 -> -1, -1 -> -3
-③ 2.2 -> -2 > result > -3
-④ inf -> ValueError
+③ 2.2 -> -2 > res > -3, inf -> ValueError
 
 lambda x: (x % 5) + 1
 ② -2 -> 4, -9 -> 2
-③ 5.5 -> 1.5, -9.5 -> 1.5
-④ inf -> 1
+③ 5.5 -> 1.5, -9.5 -> 1.5, inf -> 1
 
 def if_greater_or_less
 # see if statements two pages back
@@ -221,8 +217,7 @@ def last_digit_negative
 def int_from_list
 # "123"[0] == "1", "123"[1] == "2"
 ② 0 -> 9, 1 -> 5, 12 -> 7
-③ 3.1 -> TypeError
-④ inf -> TypeError
+③ 3.1 -> TypeError, inf -> TypeError
 
 def ints_from_list
 # "123"[0:1] == "1", "123"[1:3] == "23"
@@ -254,14 +249,7 @@ def increment_digits
 
 def reverse
 # "abcd"[::-1] == "dcba"
-③ 123.5 -> 321, -43 -> -34
-
-def subtract_madness
-# '-'.join("123") == "1-2-3"
-# eval("2-1") executes string as if it
-# was python, returning 1
-③ 1 -> 1, 1.1 -> 0, 1.11 -> -1, 2.1 -> 1
-④ inf -> ValueError\
+③ 123.5 -> 321, -43 -> -34\
 """),
   TextHelpCard("red", "", """\
 def rec_subtract
@@ -270,21 +258,15 @@ def rec_subtract
 
 def rec_divide
 ③ 1 -> 0, 2 -> 1, -4 -> -1, -5 -> -2
-④ inf -> RecursionError
+③ -2 -> RecursionError
 
 def double_rec
 ③ -10 -> 2, 16 -> -1, 260 -> -4
-④ inf -> RecursionError
+③ inf -> RecursionError
 
 def rec_multiply
 ③ 1 -> 5, 2 -> 6, -2 -> -10, 1.5 -> 20
-④ π -> inf, inf -> inf
-
-def ack # no help for you, you can 
-        # figure it out, I believe in you
-
-def fibb      # i warned you, don't use
-③ 2.5 -> 0.5  # it if you can't handle it
+③ inf -> inf
 
 # Just for sake of sanity, huge numbers
 # are interpreted as inf, OverflowError

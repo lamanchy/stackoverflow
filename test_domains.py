@@ -67,12 +67,12 @@ def get_value_color(value):
 
 
 def view_results():
-  colors = ["green", "yellow", "red", "white"]
+  colors = ["green", "yellow", "red"]
   for num in range(2, 3):
     print("stats with %s cards" % (num + 1))
     print()
-    for c in range(len(colors)):
-    # for c in [2]:
+    # for c in range(len(colors)):
+    for c in [2]:
       print(colors[:c + 1])
       color_values = []
       color_rules = []
