@@ -18,7 +18,7 @@ from values import get_all_values
 BROCHURE = True
 
 try:
-  from local_pdf_settings import *
+  from local_generate_settings import *
 except ImportError:
   pass
 
