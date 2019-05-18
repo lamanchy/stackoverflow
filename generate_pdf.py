@@ -80,7 +80,9 @@ def prepare_help_cards_to_print(help_cards):
 if __name__ == "__main__":
   # generate_pdf("stack_overflow_cards", get_all_functions() + get_all_values())
 
-  tutorial_cards = green_tutorial + list(reversed(red_tutorial))
+  n = datetime.now()
+  tutorial_cards = green_tutorial[2:3] + list(reversed(red_tutorial[:0]))
 
   generate_pdf("stack_overflow_tutorial", prepare_help_cards_to_print(tutorial_cards))
+  print(datetime.now() - n)
   # generate_pdf("stack_overflow_functions", prepare_help_cards_to_print(function_tutorial))
