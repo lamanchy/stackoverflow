@@ -9,7 +9,6 @@ from cards.picture_help_card import PictureHelpCard
 from cards.playing_card_back import PlayingCardBack
 from cards.value_card import ValueCard
 from colors import color_codes
-from pil_quality_pdf.quality_constants import HIGH_QUALITY
 from pil_quality_pdf.rendering import mm_to_px
 from pil_quality_pdf.transformation import rotate, transform, resize
 from rules import get_rules
@@ -160,18 +159,14 @@ def get_play_board():
 
 def transform_play_board(board, height):
   scale = 5
-  if not HIGH_QUALITY:
-    board = resize(board, (int(board.width / scale), int(board.height / scale)))
-    height /= 5
+  board = resize(board, (int(board.width / scale), int(board.height / scale)))
+  height /= 5
 
   coeffs = get_main_plane_coeffs(board.size, .5, height)
   res = get_play_board()
 
   board = rotate(board, 80)
   board = transform(board, board.size, Image.PERSPECTIVE, coeffs)
-
-  if HIGH_QUALITY:
-    board = resize(board, (int(board.width / scale), int(board.height / scale)))
 
   res.paste(board, mm_to_px(-15, 10), mask=board)
   return res

@@ -5,9 +5,9 @@ from cards.card import Card
 
 class TwoSidedCard(Card):
   def __init__(self, front: Card, back: Card):
-    assert front.width == back.width
-    assert front.height == back.height
-    assert front.is_round == back.is_round
+    # assert front.width == back.width
+    # assert front.height == back.height
+    # assert front.is_round == back.is_round
 
     super().__init__(front.width, front.height, front.is_round)
 
@@ -20,3 +20,6 @@ class TwoSidedCard(Card):
   @staticmethod
   def empty_card():
     return TwoSidedCard(Card.empty_card(), Card.empty_card())
+
+  def __repr__(self):
+    return self.front.__repr__() + " " + self.back.__repr__()

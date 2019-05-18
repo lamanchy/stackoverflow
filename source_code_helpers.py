@@ -74,7 +74,7 @@ def get_source_code_coloring(string):
   for color in set(colors):
     result[color] = ""
     for char, char_color in zip(string, colors):
-      if char in "ěščř": char = "⧫"  # ●∙
+      if char in "①②③④": char = "⧫"  # ●∙
       if not re.match(r'\s', char) and char_color != color:
         char = " "
       result[color] += char
@@ -83,13 +83,14 @@ def get_source_code_coloring(string):
 
 
 # TODO i should refactor this
-def get_source_code_position_n_size(card, source_code, draw):
+def get_source_code_position_n_size(card, source_code, draw, extra_top=0):
   # width is exactly half the height
 
   min_font_size = 1
   max_font_size = 25
   height_multipler = card.size[1] // mm_to_px(Card.base_height)
-  available_size = list((card.size[0] - mm_to_px(10), card.size[1] - mm_to_px(5 * (height_multipler - 1) + 30)))
+  available_size = list(
+    (card.size[0] - mm_to_px(10), card.size[1] - extra_top - mm_to_px(5 * (height_multipler - 1) + 30)))
 
   while True:
     size = draw.textsize(source_code, get_font(min_font_size + 1), spacing=mm_to_px(.13))

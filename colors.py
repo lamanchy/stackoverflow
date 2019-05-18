@@ -41,11 +41,11 @@ color_regexes = [
   (r'def (\w*)', "yellow"),
   (r"'[^'\n]*'", "green"),
   (r'"[^"]*"', "green"),
-  (r'#\s.*', "grey"),
-  (r'ě', "green"),
-  (r'š', "yellow"),
-  (r'č', "red"),
-  (r'ř', "white"),
+  (r'#.*', "grey"),
+  (r'①', "green"),
+  (r'②', "yellow"),
+  (r'③', "red"),
+  (r'④', "white"),
 ]
 
 

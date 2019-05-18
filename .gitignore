@@ -1,4 +1,11 @@
 /.idea
-/stack_overflow.pdf
 /venv
+
+/stack_overflow.pdf
 /stack_overflow_dir
+/stack_overflow_cards.pdf
+/stack_overflow_cards_dir
+/stack_overflow_functions.pdf
+/stack_overflow_functions_dir
+/stack_overflow_tutorial.pdf
+/stack_overflow_tutorial_dir

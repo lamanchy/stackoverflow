@@ -42,17 +42,21 @@ build:
     
   artifacts:
     paths:
-      - stack_overflow.pdf
-      
+      - stack_overflow_cards.pdf
+      - stack_overflow_functions.pdf
+      - stack_overflow_tutorial.pdf
+
 
 #pages:
 #  stage: deploy
 #  tags:
 #    - shared-fi
-#    
+#
 #  script:
 #    - mkdir public
-#    - cp stack_overflow.pdf public/stack_overflow.pdf
+#    - cp stack_overflow_cards.pdf public/stack_overflow_cards.pdf
+#    - cp stack_overflow_functions.pdf public/stack_overflow_functions.pdf
+#    - cp stack_overflow_tutorial.pdf public/stack_overflow_tutorial.pdf
 #  artifacts:
 #    paths:
 #      - public

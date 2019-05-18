@@ -82,21 +82,21 @@ def get_rules():
       switch_places,
       increment_digits,
       reverse,
-      subtract_madness,
+      subtract_madness,  #####
 
       # K
       rec_subtract,
-      rec_divide,
+      rec_divide,  #####
       double_rec,
       rec_multiply,
 
     ],
     "white": [
       # A
-      ack,
-      fibb,
-      lambda x: pow(x, -x),
-      lambda x: inf,
+      ack,  #####
+      fibb,  #####
+      lambda x: pow(x, -x),  #####
+      lambda x: inf,  #####
     ]
   }
 
