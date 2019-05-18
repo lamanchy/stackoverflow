@@ -99,22 +99,22 @@ def if_func(x):
   else:       x += 4
   return x + 10
 
-# second line (x += 1) is executed only
-# if x is greater than 5
+# "x += 1" is executed only when x is 
+# greater than 5
 
-# third line (x += 2) is executed only
-# if x is greater than 3
+# "x += 2" is executed only when x is
+# greater than 3
 
 # elif is a shortcut for "else if",
-# therefore x is raised by two only if x
+# therefore x is raised by three only if x
 # is less than 1 AND is not bigger than 3
 
-# x += 3 is executed when both conditions
-# above are False, only if x is 1, 2 or 3
+# "x += 4" is executed when both
+# conditions above are False, only
+# if x is 1, 2 or 3
 
-# the part without indent (return x + 10)
-# is not affected by if statements and
-# is executed always
+# "return x + 10" is not affected by
+# the if statements and is executed always
 
 if x > 5:  # two line equivalent
   x += 1   # of the first if statement\
@@ -133,7 +133,7 @@ if x > 5:  # two line equivalent
 # difficulties than you play
 
 lambda x: ceil(x / 3)
-# ceil rounds up, ceil of -0.5 is 0 not -1
+# ceil rounds up, ceil of -0.8 is 0 not -1
 ② -3 -> -1, -2 -> 0, 0 -> 0
 
 lambda x: x // -6

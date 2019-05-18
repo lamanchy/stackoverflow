@@ -7,7 +7,7 @@ green_tutorial = [
   TitleHelpCard("How to play\nthis game", "(tutorial for mortals)", "green"),
   TextHelpCard("green", "## Hello to Stack Overflow", """\
 # If you wanna jump to playing the game,
-# don't worry, go ahead. But if you are't
+# don't worry, go ahead. But if you aren't
 # in hurry, there are few lines for you:
 
 # This game is hard. Well, not difficult,
@@ -107,7 +107,7 @@ green_tutorial = [
                   ),
   PictureHelpCard("green", "## Put away used functions", """\
 # Used functions are put away, if there's
-# not enough of unused functions, mix
+# not enough of unused functions, shuffle
 # the used ones and add them to the bottom
 # of the unused ones\
 """,
