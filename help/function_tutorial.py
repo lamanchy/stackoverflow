@@ -123,7 +123,9 @@ if x > 5:  # two line equivalent
 # just a reminder, some combinations
 # of cards might get ugly results, so
 # if you cannot calculate something
-# in your head, then just don't use it
+# in your head, then don't use it, or
+# just use an approximation (being closer 
+# to result than your opponent is enough)
 
 # signs ①②③ shows, that the example is
 # relevant for specific difficulty only,
@@ -141,13 +143,17 @@ lambda x: x // -6
 ② 0 -> 0, 1 -> -1, 6 -> -1, 7 -> -2
 ③ 6.1 -> -2
 
-lambda x: 100 // x
-# "how many times can you fit
-# number x into 100"
-② 3 -> 33, -5 -> -20
-③ -3.3 -> -30\
+def if_prime
+# only natural number can be a prime
+② 0 -> 0, -5 -> -5
+③ 3.5 -> 3.5, 200 -> 200, 201 -> 0\
 """),
   TextHelpCard("yellow", "", """\
+lambda x: 100 // x
+# "how many times x fits into 100"
+② 3 -> 33, -5 -> -20
+③ -3.3 -> -30
+
 lambda x: gcd(x, 12)  # green cards
 ② 0 -> 12, -5 -> 1    # might get tricky
 ③ 1.5 -> 1.5, -3.5 -> 0.5, inf -> 12
@@ -214,6 +220,22 @@ def last_digit_negative
 # on cards, see last page of tutorial
 # for programmers for more info
 
+lambda x: 2 * x
+③ 2.2 -> 4.4, 3.5 -> 7, inf -> inf
+
+lambda x: min(x, 11)
+③ inf -> 11
+
+def sign
+# returns 1 if x > 0, -1 if x < 0
+# and 0 when x == 0
+③ -0.5 -> -1, 0 -> 0, 57.3 -> 1
+
+def abs
+# distance from zero, always positive
+③ -1.5 -> 1.5, 0 -> 0, 0.5 -> 0.5\
+"""),
+  TextHelpCard("red", "", """\
 def int_from_list
 # "123"[0] == "1", "123"[1] == "2"
 ② 0 -> 9, 1 -> 5, 12 -> 7
@@ -225,39 +247,38 @@ def ints_from_list
 ③ 1.1 -> TypeError
 
 lambda x: ceil(sqrt(x))
-# sqrt is √, abs(3) is abs(-3) is 3
-③ 4 -> 2, 5 -> 3, -10 -> ValueError\
-"""),
-  TextHelpCard("red", "", """\
-lambda x: floor(log2(x))
-③ 0 -> ValueError, 1 -> 0, 2 -> 1, 3 -> 2
+# sqrt stands for √
+③ 4 -> 2, 5 -> 3, -10 -> ValueError
 
-def sign(x)
-# returns 1 if x > 0, -1 if x < 0
-# # and 0 when x == 0
-③ -0.5 -> -1, 0 -> 0, 57.3 -> 1
+lambda x: floor(log2(x))
+# logarithm with base of two
+③ 0 -> ValueError, 1 -> 0, 2 -> 1, 3 -> 2
 
 def switch_places
 # "{0:.2f}".format(x) always returns x
-# to two decimal places (1 / 3 as "3.33")
+# to two decimal places (1 / 3 as "3.33",
+# -2.5 as "-2.50")
 ③ 123.456 -> 45.123, -3 -> -0.3
 
 def increment_digits
 # "abaa".replace("a", "c") == "cbcc"
 # be careful, digit 9 is incremented twice
-③ 10 -> 21.11, -9.09 -> -1.11
-
-def reverse
-# "abcd"[::-1] == "dcba"
-③ 123.5 -> 321, -43 -> -34\
+③ 10 -> 21.11, -9.08 -> -1.19\
 """),
   TextHelpCard("red", "", """\
+def reverse
+# "abcd"[::-1] == "dcba"
+③ 123.5 -> 321, -43 -> -34
+
 def rec_subtract
 # beware, this function calls itself!
-③ 55 -> -5
+# rec_s(20) --> rec_s(rec_s(-40)) -->
+# rec_s(-40) --> -40 
+③ 55 -> -5, -20 -> -20
+③ inf -> RecursionError
 
 def rec_divide
-③ 1 -> 0, 2 -> 1, -4 -> -1, -5 -> -2
+③ 1 -> 0, 2 -> 0, 3 -> 1, 10 -> 2
 ③ -2 -> RecursionError
 
 def double_rec
@@ -268,13 +289,12 @@ def rec_multiply
 ③ 1 -> 5, 2 -> 6, -2 -> -10, 1.5 -> 20
 ③ inf -> inf
 
-# Just for sake of sanity, huge numbers
+# just for sake of sanity, huge numbers
 # are interpreted as inf, OverflowError
-# does not exist etc. But if you made it
-# this far, you'll manage on your own.
+# does not exist, etc. But if you made it
+# this far, you'll manage on your own
 
-# thank you player, and have a lot of fun
-#                                     B.\
+# thank you player, have a lot of fun\
 """),
   TextHelpCard("grey", "", 26 * "\n" + """\
      game and design by: Ondřej Lomič

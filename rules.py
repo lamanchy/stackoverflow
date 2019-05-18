@@ -259,8 +259,7 @@ def rec_divide(x):
     return 0
 
   x = floor(x / 3)
-  return sign(x) + \
-         rec_divide(x)
+  return 1 + rec_divide(x)
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
