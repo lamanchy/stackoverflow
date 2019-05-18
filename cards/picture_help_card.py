@@ -1,8 +1,11 @@
+import os
+
 from PIL import Image
 
 from cards.text_help_card import TextHelpCard
 from colors import getrgb
 from pil_quality_pdf.rendering import mm_to_px
+from pil_quality_pdf.transformation import resize
 
 
 class PictureHelpCard(TextHelpCard):
@@ -33,4 +36,17 @@ class PictureHelpCard(TextHelpCard):
     self.box_draw(card, self.DX - .5, color="grey")
     self.box_draw(card, 20, self.picture_getter())
 
+    self.paste_arrows(card)
+
     return card
+
+  def paste_arrows(self, card):
+    candidates = [file for file in os.listdir("help/arrows") if self.title[-15:] in file]
+    assert len(candidates) == 1
+    file = candidates[0]
+
+    im = Image.open("help/arrows/" + file)
+
+    im = resize(im, card.size)
+
+    card.paste(im, mask=im)
