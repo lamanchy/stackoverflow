@@ -16,4 +16,6 @@ https://gitlab.fi.muni.cz/xlomic/stackoverflow/blob/master/GDD.md
 
 ## Download latest pdf here
 
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow.pdf?job=build
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_cards.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_functions.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_tutorial.pdf
