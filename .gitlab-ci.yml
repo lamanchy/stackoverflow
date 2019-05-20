@@ -42,9 +42,12 @@ build:
     
   artifacts:
     paths:
-      - stack_overflow_cards.pdf
-      - stack_overflow_functions.pdf
-      - stack_overflow_tutorial.pdf
+      - stack_overflow_cards_cz.pdf
+      - stack_overflow_functions_cz.pdf
+      - stack_overflow_tutorial_cz.pdf
+      - stack_overflow_cards_en.pdf
+      - stack_overflow_functions_en.pdf
+      - stack_overflow_tutorial_en.pdf
 
 
 #pages:

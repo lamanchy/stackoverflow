@@ -4,6 +4,7 @@ from PIL import Image
 
 from cards.text_help_card import TextHelpCard
 from colors import getrgb
+from language import get_language
 from pil_quality_pdf.rendering import mm_to_px
 from pil_quality_pdf.transformation import resize
 
@@ -14,6 +15,7 @@ class PictureHelpCard(TextHelpCard):
   def __init__(self, color, title, text, picture_getter):
     super().__init__(color, title, text)
     self.picture_getter = picture_getter
+    self.id = None
 
   def box_draw(self, card, move, picture=None, color=None):
     assert picture is not None or color is not None
@@ -41,11 +43,13 @@ class PictureHelpCard(TextHelpCard):
     return card
 
   def paste_arrows(self, card):
-    candidates = [file for file in os.listdir("help/arrows") if self.title[-15:] in file]
-    assert len(candidates) == 1
+    candidates = [file for file in os.listdir(f"help/arrows/{get_language()}") if str(self.id) == file[:-4]]
+    if len(candidates) != 1:
+      print(f"There is no arrow for {self.title}, id: {self.id}")
+      exit(1)
     file = candidates[0]
 
-    im = Image.open("help/arrows/" + file)
+    im = Image.open(f"help/arrows/{get_language()}/" + file)
 
     im = resize(im, card.size)
 

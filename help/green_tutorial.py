@@ -76,3 +76,4 @@ pictures = [
 for i, picture in enumerate(pictures):
   i += 2
   green_tutorial.append(PictureHelpCard("green", translate(f"page{i}_title"), translate(f"page{i}_text"), picture))
+  green_tutorial[-1].id = i

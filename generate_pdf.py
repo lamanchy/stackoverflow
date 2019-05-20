@@ -111,8 +111,9 @@ if __name__ == "__main__":
       tutorial_cards = help.green_tutorial.green_tutorial + help.red_tutorial.red_tutorial
       for card in tutorial_cards: card.is_upside_down = False
 
-    # generate_pdf("stack_overflow_cards", rules.get_all_functions() + values.get_all_values())
-    # generate_pdf("stack_overflow_tutorial", prepare_help_cards_to_print(tutorial_cards))
-    generate_pdf("stack_overflow_functions", prepare_help_cards_to_print(help.function_tutorial.function_tutorial))
+    generate_pdf(f"stack_overflow_cards_{language}", rules.get_all_functions() + values.get_all_values())
+    generate_pdf(f"stack_overflow_tutorial_{language}", prepare_help_cards_to_print(tutorial_cards))
+    generate_pdf(f"stack_overflow_functions_{language}",
+                 prepare_help_cards_to_print(help.function_tutorial.function_tutorial))
 
     print(f"{language} generation took:", datetime.now() - n)
