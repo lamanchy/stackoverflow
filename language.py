@@ -13,6 +13,10 @@ def set_language(language):
   LANGUAGE[0] = language
 
 
+def get_language():
+  return LANGUAGE[0]
+
+
 def translate(section, key):
   p = Properties()
   with open(f"translations/{section}_{LANGUAGE[0]}.properties", encoding="utf-8") as f:
