@@ -8,12 +8,8 @@ from PIL import Image
 
 from cards.card import Card
 from cards.two_sided_card import TwoSidedCard
-from help.function_tutorial import function_tutorial
-from help.green_tutorial import green_tutorial
-from help.red_tutorial import red_tutorial
+from language import set_language
 from pil_quality_pdf.rendering import mm_to_px, PdfWriter
-from rules import get_all_functions
-from values import get_all_values
 
 BROCHURE = True
 
@@ -92,8 +88,12 @@ def prepare_help_cards_to_print(help_cards):
 
 
 if __name__ == "__main__":
-  generate_pdf("stack_overflow_cards", get_all_functions() + get_all_values())
+  # generate_pdf("stack_overflow_cards", get_all_functions() + get_all_values())
 
+  from help.green_tutorial import green_tutorial
+
+  set_language("cz")
+  from help.red_tutorial import red_tutorial
   n = datetime.now()
   if BROCHURE:
     tutorial_cards = green_tutorial + list(reversed(red_tutorial))

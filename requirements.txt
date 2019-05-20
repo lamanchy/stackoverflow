@@ -3,3 +3,4 @@ setuptools
 pillow
 numpy
 img2pdf
+jproperties
