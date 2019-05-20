@@ -3,19 +3,19 @@ import os
 from jproperties import Properties
 
 LANGUAGES = ["en", "cz"]
-LANGUAGE = LANGUAGES[0]
+LANGUAGE = [LANGUAGES[0]]
 
 
 def set_language(language):
   if language not in LANGUAGES:
     raise ValueError(f"Language {language} unknown, use one of {LANGUAGES}")
   global LANGUAGE
-  LANGUAGE = language
+  LANGUAGE[0] = language
 
 
 def translate(section, key):
   p = Properties()
-  with open(f"translations/{section}_{LANGUAGE}.properties", encoding="utf-8") as f:
+  with open(f"translations/{section}_{LANGUAGE[0]}.properties", encoding="utf-8") as f:
     text = f.read()
     text = text.replace("=\\\n", "=")
     text = text.replace("\\\n", "\\n\\\n")

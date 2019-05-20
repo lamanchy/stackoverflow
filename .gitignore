@@ -2,11 +2,4 @@
 /venv
 /local_generate_settings.py
 
-/stack_overflow.pdf
-/stack_overflow_dir
-/stack_overflow_cards.pdf
-/stack_overflow_cards_dir
-/stack_overflow_functions.pdf
-/stack_overflow_functions_dir
-/stack_overflow_tutorial.pdf
-/stack_overflow_tutorial_dir
+/stack_overflow*

@@ -2,13 +2,14 @@
 import random
 import sys
 from datetime import datetime
+from importlib import reload
 from math import ceil
 
 from PIL import Image
 
 from cards.card import Card
 from cards.two_sided_card import TwoSidedCard
-from language import set_language
+from language import set_language, LANGUAGES
 from pil_quality_pdf.rendering import mm_to_px, PdfWriter
 
 BROCHURE = True
@@ -87,21 +88,31 @@ def prepare_help_cards_to_print(help_cards):
   return cards
 
 
+import help.green_tutorial
+import help.red_tutorial
+import rules
+import values
+import help.function_tutorial
+
 if __name__ == "__main__":
-  # generate_pdf("stack_overflow_cards", get_all_functions() + get_all_values())
+  for language in LANGUAGES:
+    set_language(language)
 
-  from help.green_tutorial import green_tutorial
+    reload(help.green_tutorial)
+    reload(help.red_tutorial)
+    reload(rules)
+    reload(values)
+    reload(help.function_tutorial)
 
-  set_language("cz")
-  from help.red_tutorial import red_tutorial
-  n = datetime.now()
-  if BROCHURE:
-    tutorial_cards = green_tutorial + list(reversed(red_tutorial))
-  else:
-    tutorial_cards = green_tutorial + red_tutorial
-    for card in tutorial_cards: card.is_upside_down = False
+    n = datetime.now()
+    if BROCHURE:
+      tutorial_cards = help.green_tutorial.green_tutorial + list(reversed(help.red_tutorial.red_tutorial))
+    else:
+      tutorial_cards = help.green_tutorial.green_tutorial + help.red_tutorial.red_tutorial
+      for card in tutorial_cards: card.is_upside_down = False
 
-  generate_pdf("stack_overflow_tutorial", prepare_help_cards_to_print(tutorial_cards))
-  generate_pdf("stack_overflow_functions", prepare_help_cards_to_print(function_tutorial))
+    # generate_pdf("stack_overflow_cards", rules.get_all_functions() + values.get_all_values())
+    # generate_pdf("stack_overflow_tutorial", prepare_help_cards_to_print(tutorial_cards))
+    generate_pdf("stack_overflow_functions", prepare_help_cards_to_print(help.function_tutorial.function_tutorial))
 
-  print("generation took:", datetime.now() - n)
+    print(f"{language} generation took:", datetime.now() - n)
