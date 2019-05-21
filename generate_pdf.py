@@ -3,14 +3,17 @@ import random
 import sys
 from datetime import datetime
 from importlib import reload
-from math import ceil
+from math import ceil, sqrt
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
+from cards.back_card import BackCard
 from cards.card import Card
+from cards.function_card import FunctionCard
 from cards.two_sided_card import TwoSidedCard
+from colors import getrgb
 from language import set_language, LANGUAGES
-from pil_quality_pdf.rendering import mm_to_px, PdfWriter
+from pil_quality_pdf.rendering import mm_to_px, PdfWriter, px_to_mm
 
 BROCHURE = True
 
@@ -94,8 +97,84 @@ import rules
 import values
 import help.function_tutorial
 
+
+def dashed_line(draw, xy, fill, width):
+  dir = (xy[1][0] - xy[0][0], xy[1][1] - xy[0][1])
+  total_dist = sqrt(pow(dir[0], 2) + pow(dir[1], 2))
+  step_dist = mm_to_px(1)
+  step = (dir[0] * step_dist / total_dist, dir[1] * step_dist / total_dist)
+  dist = 0
+  pos = xy[0]
+  while dist + step_dist < total_dist:
+    draw.line((pos, (pos[0] + step[0], pos[1] + step[1])), fill, width)
+    pos = (pos[0] + 2 * step[0], pos[1] + 2 * step[1])
+    dist += 2 * step_dist
+
+  if dist < total_dist:
+    draw.line((pos, xy[1]), fill, width)
+
+
+def generate_box(name):
+  with PdfWriter(name) as f:
+    for diff in [0, 1]:
+      w = mm_to_px(Card.base_width + diff)
+      l = mm_to_px(Card.base_height * 2 + diff)
+      h = mm_to_px(25)
+      mx = max(w / 2, h * 2)
+      mn = min(w / 2, h * 2)
+      margin = mm_to_px(30)
+
+      for i in range(2):
+        cropping = mm_to_px(2) if i == 0 else 0
+
+        page = Image.new("RGB", mm_to_px(210, 297), (255, 255, 255))
+        draw = ImageDraw.Draw(page)
+        color = getrgb("black") if diff == 0 else getrgb("true_black")
+        draw.rectangle((
+          (margin - cropping, margin + mx - w / 2 - cropping),
+          (margin + h + w + h + cropping, margin + mx + l + w / 2 + cropping)
+        ), color)
+        draw.rectangle((
+          (margin + h - cropping, margin + mx - h * 2 - cropping),
+          (margin + h + w + cropping, margin + mx + l + h * 2 + cropping)
+        ), color)
+
+        if i == 0 and diff == 1:
+          card = BackCard(px_to_mm(w), px_to_mm(l), True, "orange").get_card().rotate(180)
+          page.paste(card, (margin + h, margin + mx), mask=card)
+
+        if i == 1:
+          line_color = getrgb("white")
+          line_width = mm_to_px(.05)
+          draw.line(((margin + h, margin + mx + l + mn), (margin + h, margin + mx + l),), line_color, line_width)
+          draw.line(((margin + h + w, margin + mx + l), (margin + h + w, margin + mx + l + mn),), line_color,
+                    line_width)
+          draw.line(((margin + h + w, margin + mx - mn), (margin + h + w, margin + mx),), line_color, line_width)
+          draw.line(((margin + h, margin + mx - mn), (margin + h, margin + mx),), line_color, line_width)
+
+          dashed_line(draw, ((margin + h, margin + mx - h), (margin + h + w, margin + mx - h)), line_color, line_width)
+
+          dashed_line(draw, ((margin, margin + mx), (margin + h, margin + mx)), line_color, line_width)
+          dashed_line(draw, ((margin + h, margin + mx), (margin + h + w, margin + mx)), line_color, line_width)
+          dashed_line(draw, ((margin + h + w, margin + mx), (margin + h + w + h, margin + mx)), line_color, line_width)
+
+          dashed_line(draw, ((margin, margin + mx + l), (margin + h, margin + mx + l)), line_color, line_width)
+          dashed_line(draw, ((margin + h, margin + mx + l), (margin + h + w, margin + mx + l)), line_color, line_width)
+          dashed_line(draw, ((margin + h + w, margin + mx + l), (margin + h + w + h, margin + mx + l)), line_color,
+                      line_width)
+
+          dashed_line(draw, ((margin + h, margin + mx + l + h), (margin + h + w, margin + mx + l + h)), line_color,
+                      line_width)
+
+          dashed_line(draw, ((margin + h, margin + mx), (margin + h, margin + mx + l)), line_color, line_width)
+          dashed_line(draw, ((margin + h + w, margin + mx), (margin + h + w, margin + mx + l)), line_color, line_width)
+
+        f.write(page)
+
+
 if __name__ == "__main__":
   for language in LANGUAGES:
+    n = datetime.now()
     set_language(language)
 
     reload(help.green_tutorial)
@@ -104,16 +183,17 @@ if __name__ == "__main__":
     reload(values)
     reload(help.function_tutorial)
 
-    n = datetime.now()
     if BROCHURE:
       tutorial_cards = help.green_tutorial.green_tutorial + list(reversed(help.red_tutorial.red_tutorial))
     else:
       tutorial_cards = help.green_tutorial.green_tutorial + help.red_tutorial.red_tutorial
       for card in tutorial_cards: card.is_upside_down = False
 
-    generate_pdf(f"stack_overflow_cards_{language}", rules.get_all_functions() + values.get_all_values())
+    generate_pdf(f"stack_overflow_cards_{language}", FunctionCard.get_all_functions() + values.get_all_values())
     generate_pdf(f"stack_overflow_tutorial_{language}", prepare_help_cards_to_print(tutorial_cards))
     generate_pdf(f"stack_overflow_functions_{language}",
                  prepare_help_cards_to_print(help.function_tutorial.function_tutorial))
+
+    generate_box(f"stack_overflow_box_{language}")
 
     print(f"{language} generation took:", datetime.now() - n)

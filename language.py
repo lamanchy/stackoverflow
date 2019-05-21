@@ -39,6 +39,8 @@ def translate(section, key):
 
     os.remove("tmp")
 
+    if key not in p:
+      raise ValueError(f"{key} is not in properties {section} (language {get_language()})")
     data = p[key].data
     lines = data.split("\n")
     for l, line in enumerate(lines):

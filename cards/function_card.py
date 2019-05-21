@@ -1,9 +1,12 @@
 from PIL import ImageDraw
 
+from cards.playing_card_back import PlayingCardBack
 from cards.playing_card_front import PlayingCardFront
+from cards.two_sided_card import TwoSidedCard
 from colors import getrgb
 from pil_quality_pdf.fonts import get_font
 from pil_quality_pdf.rendering import mm_to_px
+from rules import get_rules
 from source_code_helpers import get_source_code_position_n_size, get_source_code_coloring, get_source_code
 
 
@@ -29,3 +32,12 @@ class FunctionCard(PlayingCardFront):
                 colors[color], font=font, fill=getrgb(color), spacing=mm_to_px(0.8))
 
     return card
+
+  @staticmethod
+  def get_all_functions():
+    fns = []
+    for color in ["green", "yellow", "red"]:
+      for fn in get_rules()[color]:
+        fns.append(TwoSidedCard(FunctionCard(color, fn), PlayingCardBack("yellow")))
+
+    return fns

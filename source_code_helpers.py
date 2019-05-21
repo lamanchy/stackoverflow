@@ -3,8 +3,10 @@ import re
 
 from cards.card import Card
 from colors import color_regexes
+from language import translate
 from pil_quality_pdf.fonts import get_font
 from pil_quality_pdf.rendering import mm_to_px
+from rules import get_rules
 
 
 def get_source_code(fn):
@@ -67,7 +69,26 @@ def colorify_string(string):
   return colors
 
 
+variables = ["string", "digit", "parts", "count", "result", "new"]
+
+
+def translate_functions(string):
+  for color in ["green", "yellow", "red"]:
+    for fn in get_rules()[color]:
+      code = get_source_code(fn)
+      if code.startswith("def "):
+        fn_name = code[4:code.index("(")]
+        string = string.replace(fn_name, translate("functions", fn_name))
+
+  for variable in variables:
+    string = string.replace(variable, translate("variables", variable))
+
+  return string
+
+
 def get_source_code_coloring(string):
+  string = translate_functions(string)
+
   colors = colorify_string(string)
 
   result = {}

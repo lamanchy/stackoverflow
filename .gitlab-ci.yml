@@ -45,9 +45,11 @@ build:
       - stack_overflow_cards_cz.pdf
       - stack_overflow_functions_cz.pdf
       - stack_overflow_tutorial_cz.pdf
+      - stack_overflow_box_cz.pdf
       - stack_overflow_cards_en.pdf
       - stack_overflow_functions_en.pdf
       - stack_overflow_tutorial_en.pdf
+      - stack_overflow_box_en.pdf
 
 
 #pages:

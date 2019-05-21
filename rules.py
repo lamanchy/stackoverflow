@@ -1,15 +1,6 @@
 import functools
 from math import *
 
-# yvetsit values
-# zvetsit text na programech
-# type error, value error, stack overflow, zero division, timeout error
-# co delat pri chybe
-# napisu program aby delal stack overflow
-from cards.function_card import FunctionCard
-from cards.playing_card_back import PlayingCardBack
-from cards.two_sided_card import TwoSidedCard
-
 
 def get_rules():
   return {
@@ -56,7 +47,7 @@ def get_rules():
       lambda x: x * (x // 4),
       lambda x: sin(pi * x / 2) - 2,
       split_by_int,
-      last_digit_negative,
+      last_negative,
 
       # 9
       if_greater_or_less,
@@ -85,10 +76,10 @@ def get_rules():
       # subtract_madness,  #####
 
       # K
-      rec_subtract,
-      rec_divide,
-      double_rec,
-      rec_multiply,
+      r_subtract,
+      r_divide,
+      double_r,
+      r_multiply,
 
       # A
       lambda x: inf,
@@ -162,8 +153,8 @@ def if_equal_or_not(x):
 #  MAX FUNCTION LINES 7 !!!!!
 
 def for_cycle(x):
-  num = floor(x) % 5
-  for _ in range(num):
+  count = floor(x) % 5
+  for _ in range(count):
     x += 10
 
   return x
@@ -201,7 +192,7 @@ def split_by_int(x):
   return len(parts) - 4
 
 
-def last_digit_negative(x):
+def last_negative(x):
   digit = str(int(x))[-1]
   return -1 * int(digit)
 
@@ -221,16 +212,16 @@ def switch_places(x):
 def increment_digits(x):
   s = "{0:.2f}".format(x)
   for i in "9876543210":
-    add = str(1 + int(i))[-1]
-    s = s.replace(i, add)
+    new = str(1 + int(i))[-1]
+    s = s.replace(i, new)
   return float(s)
 
 
 def reverse(x):
   string = str(abs(int(x)))
   string = string[::-1]
-  res = int(string)
-  return res * sign(x)
+  result = int(string)
+  return result * sign(x)
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
@@ -244,51 +235,42 @@ def subtract_madness(x):
 
 
 @functools.lru_cache(None)
-def rec_subtract(x):
+def r_subtract(x):
   if x <= 0:
     return x
 
   x -= 60
   if x >= 0: x %= 60  # DEBUG this line wont be printed
-  return rec_subtract(x)
+  return r_subtract(x)
 
 
 @functools.lru_cache(None)
-def rec_divide(x):
+def r_divide(x):
   if x == 0:
     return 0
 
   x = floor(x / 3)
-  return 1 + rec_divide(x)
+  return 1 + r_divide(x)
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
 
 @functools.lru_cache(None)
-def double_rec(x):
+def double_r(x):
   if -1 <= x <= 10: return -x
 
-  res = double_rec(x // 100)
-  res += double_rec(x // 10)
-  return res
+  result = double_r(x // 100)
+  result += double_r(x // 10)
+  return result
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
 
 
 @functools.lru_cache(None)
-def rec_multiply(x):
+def r_multiply(x):
   if x % 8 == 0:
     return x
 
-  res = rec_multiply(2 * x)
-  return res - 1
-
-
-def get_all_functions():
-  fns = []
-  for color in ["green", "yellow", "red"]:
-    for fn in get_rules()[color]:
-      fns.append(TwoSidedCard(FunctionCard(color, fn), PlayingCardBack("yellow")))
-
-  return fns
+  result = r_multiply(2 * x)
+  return result - 1
