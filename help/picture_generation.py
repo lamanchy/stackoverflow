@@ -9,8 +9,7 @@ from cards.picture_help_card import PictureHelpCard
 from cards.playing_card_back import PlayingCardBack
 from cards.value_card import ValueCard
 from colors import color_codes, getrgb
-from pil_quality_pdf.local_quality_constants import ANTIALIASING
-from pil_quality_pdf.quality_constants import RESOLUTION_DPI
+from pil_quality_pdf.quality_constants import RESOLUTION_DPI, ANTIALIASING
 from pil_quality_pdf.rendering import mm_to_px
 from pil_quality_pdf.transformation import rotate, transform, resize
 from rules import get_rules
