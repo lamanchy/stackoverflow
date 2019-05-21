@@ -6,6 +6,7 @@ from importlib import reload
 from math import ceil, sqrt
 
 from PIL import Image, ImageDraw
+from PIL.Image import FLIP_LEFT_RIGHT
 
 from cards.back_card import BackCard
 from cards.card import Card
@@ -169,6 +170,8 @@ def generate_box(name):
           dashed_line(draw, ((margin + h, margin + mx), (margin + h, margin + mx + l)), line_color, line_width)
           dashed_line(draw, ((margin + h + w, margin + mx), (margin + h + w, margin + mx + l)), line_color, line_width)
 
+        if i == 1:
+          page = page.transpose(FLIP_LEFT_RIGHT)
         f.write(page)
 
 

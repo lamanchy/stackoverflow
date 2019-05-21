@@ -8,7 +8,9 @@ from cards.function_card import FunctionCard
 from cards.picture_help_card import PictureHelpCard
 from cards.playing_card_back import PlayingCardBack
 from cards.value_card import ValueCard
-from colors import color_codes
+from colors import color_codes, getrgb
+from pil_quality_pdf.local_quality_constants import ANTIALIASING
+from pil_quality_pdf.quality_constants import RESOLUTION_DPI
 from pil_quality_pdf.rendering import mm_to_px
 from pil_quality_pdf.transformation import rotate, transform, resize
 from rules import get_rules
@@ -177,7 +179,8 @@ def get_play(
     input_value_index, output_value_index,
     used_fn_indexes,
     front_hand_count, right_hand_count,
-    front_played_count=0, right_played_count=0
+    front_played_count=0, right_played_count=0,
+    add_thumb=False
 ):
   background = ImageColor.getrgb(color_codes["lighter_black"])
   base = Image.new("RGB", mm_to_px(87 - PictureHelpCard.DX, 87 - PictureHelpCard.DX), (*background,))
@@ -270,6 +273,36 @@ def get_play(
     scale = 1.5
     right_hand = resize(right_hand, (int(right_hand.width / scale), int(right_hand.height / scale)))
     base.paste(right_hand, mm_to_px(-110 / scale + 23, -30 / scale + 2), mask=right_hand)
+
+  if add_thumb:
+    thumb = Image.new("RGBA", mm_to_px(200, 200), (0, 0, 0, 0))
+    thumb_tmp = Image.new("RGBA", mm_to_px(200, 200), (0, 0, 0, 0))
+    thumb_card = Image.open("help/arrows/thumb.png").convert("RGBA")
+    scale = 3. * 80 / ANTIALIASING / RESOLUTION_DPI
+    thumb_card = resize(thumb_card, (int(thumb_card.width / scale), int(thumb_card.height / scale)))
+    thumb_card = rotate(thumb_card, 180)
+    color = getrgb("grey")
+    for x in range(thumb_card.width):
+      for y in range(thumb_card.height):
+        thumb_card.putpixel((x, y), (*color, thumb_card.getpixel((x, y))[3]))
+    thumb_tmp.paste(thumb_card, mm_to_px(70, 50), thumb_card)
+    thumb_tmp = rotate(thumb_tmp, 13, expand=False, center=mm_to_px((Card.base_width + 50, 50)))
+    thumb.paste(thumb_tmp, mm_to_px(0, 80), thumb_tmp)
+    thumb = rotate(thumb, 180)
+
+    coeffs = find_coefficients(
+      [
+        (mm_to_px(140), mm_to_px(20)),
+        (thumb.size[0] - mm_to_px(20), mm_to_px(40)),
+        (thumb.size[0] - mm_to_px(20), thumb.size[1] - mm_to_px(130)),
+        (mm_to_px(160), thumb.size[1] - mm_to_px(140))
+      ],
+      [(0, 0), (thumb.size[0], 0), (thumb.size[0], thumb.size[1]), (0, thumb.size[1])]
+    )
+    thumb = transform(thumb, thumb.size, Image.PERSPECTIVE, coeffs)
+    scale = 1.5
+    thumb = resize(thumb, (int(thumb.width / scale), int(thumb.height / scale)))
+    base.paste(thumb, mm_to_px(-110 / scale + 23, -30 / scale + 2), mask=thumb)
 
   for i in range(len(used_fn_indexes)):
     used_fn = get_play_board()

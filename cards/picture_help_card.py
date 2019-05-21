@@ -43,9 +43,10 @@ class PictureHelpCard(TextHelpCard):
     return card
 
   def paste_arrows(self, card):
-    candidates = [file for file in os.listdir(f"help/arrows/{get_language()}") if str(self.id) == file[:-4]]
+    id = f"{self.id}-01.png"
+    candidates = [file for file in os.listdir(f"help/arrows/{get_language()}") if id == file]
     if len(candidates) != 1:
-      print(f"There is no arrow for {self.title}, id: {self.id}")
+      print(f"There is no arrow for {self.title}, id: {id}")
       exit(1)
     file = candidates[0]
 

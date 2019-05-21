@@ -70,6 +70,7 @@ pictures = [
     used_fn_indexes=[5, 2, 7, 4, 8, 9, 11, 6],
     front_hand_count=2,
     right_hand_count=0,
+    add_thumb=True
   ),
 ]
 
