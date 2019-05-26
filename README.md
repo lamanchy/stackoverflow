@@ -16,11 +16,11 @@ https://gitlab.fi.muni.cz/xlomic/stackoverflow/blob/master/GDD.md
 
 ## Download latest pdf here
 
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_cards_cz.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_functions_cz.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_tutorial_cz.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_box_cz.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_cards_en.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_functions_en.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_tutorial_en.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/41788/artifacts/raw/stack_overflow_box_en.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_cards_cz.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_functions_cz.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_tutorial_cz.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_box_cz.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_cards_en.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_functions_en.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_tutorial_en.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_box_en.pdf
