@@ -4,14 +4,14 @@ A project for a Stack Overflow game, contains code for pdf generation, GDD etc.
 
 ## Download latest pdf here
 
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_cards_cz.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_functions_cz.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_tutorial_cz.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_box_cz.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_cards_en.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_functions_en.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_tutorial_en.pdf
-https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_box_en.pdf
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_cards_cz.pdf?job=build
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_functions_cz.pdf?job=build
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_tutorial_cz.pdf?job=build
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_box_cz.pdf?job=build
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_cards_en.pdf?job=build
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_functions_en.pdf?job=build
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_tutorial_en.pdf?job=build
+https://gitlab.fi.muni.cz/xlomic/stackoverflow/-/jobs/artifacts/master/raw/stack_overflow_box_en.pdf?job=build
 
 ## Author:
 
