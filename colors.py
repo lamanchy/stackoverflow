@@ -23,7 +23,7 @@ color_regexes = [
   (r"(-|\.)(?=\d)", "blue"),
   (r"(√|π|pi|inf)", "blue"),
   (
-    r'(?:^|\s|\(|\[)(round|range|abs|max|min|floor|len|gcd|lcm|is_prime|prime|sqrt|ceil|log2|sin|int|str'
+    r'(?:^|\s|\(|\[)(round|range|abs|max|min|floor|len|gcd|lcm|nsd|nsn|is_prime|prime|sqrt|ceil|log2|sin|int|str'
     r'|pow|float|eval|sign|isnan|input|get_all_cards|shuffle|all|enumerate'
     r'|isinf|ZeroDivisionError|ValueError|TypeError|RecursionError|Exception)(?=\(|:|\s|\)|,|$)',
     "violet"),

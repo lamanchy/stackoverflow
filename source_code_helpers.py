@@ -69,7 +69,7 @@ def colorify_string(string):
   return colors
 
 
-variables = ["string", "digit", "parts", "count", "result", "new"]
+variables = ["string", "digit", "parts", "count", "result", "new", "lcm", "gcd"]
 
 
 def translate_functions(string):

@@ -3,10 +3,10 @@ import random
 import sys
 from datetime import datetime
 from importlib import reload
-from math import ceil, sqrt
 
 from PIL import Image, ImageDraw
 from PIL.Image import FLIP_LEFT_RIGHT
+from math import ceil, sqrt
 
 from cards.back_card import BackCard
 from cards.card import Card
@@ -117,12 +117,14 @@ def dashed_line(draw, xy, fill, width):
 
 def generate_box(name):
   with PdfWriter(name) as f:
+    extra_space_around_cards = 1
+    extra_space_because_of_how_box_is_folded = 2
     for diff in [0, 1]:
-      w = mm_to_px(Card.base_width + diff)
-      l = mm_to_px(Card.base_height * 2 + diff)
-      h = mm_to_px(25)
-      mx = max(w / 2, h * 2)
-      mn = min(w / 2, h * 2)
+      w = mm_to_px(Card.base_width + diff + extra_space_around_cards)
+      l = mm_to_px((Card.base_height + diff) * 2 + extra_space_around_cards + extra_space_because_of_how_box_is_folded)
+      h = mm_to_px(22)
+      mx = max(w // 2, h * 2)
+      mn = min(w // 2, h * 2)
       margin = mm_to_px(30)
 
       for i in range(2):
@@ -132,8 +134,8 @@ def generate_box(name):
         draw = ImageDraw.Draw(page)
         color = getrgb("black") if diff == 0 else getrgb("true_black")
         draw.rectangle((
-          (margin - cropping, margin + mx - w / 2 - cropping),
-          (margin + h + w + h + cropping, margin + mx + l + w / 2 + cropping)
+          (margin - cropping, margin + mx - w // 2 - cropping),
+          (margin + h + w + h + cropping, margin + mx + l + w // 2 + cropping)
         ), color)
         draw.rectangle((
           (margin + h - cropping, margin + mx - h * 2 - cropping),
