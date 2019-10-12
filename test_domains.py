@@ -71,8 +71,8 @@ def view_results():
   for num in range(2, 3):
     print("stats with %s cards" % (num + 1))
     print()
-    # for c in range(len(colors)):
-    for c in [2]:
+    for c in range(len(colors)):
+      # for c in [2]:
       print(colors[:c + 1])
       color_values = []
       color_rules = []

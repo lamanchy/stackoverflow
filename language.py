@@ -37,7 +37,14 @@ def translate(section, key):
     with open("tmp", "rb") as tmp:
       p.load(tmp, "utf-8")
 
-    os.remove("tmp")
+    done = False
+    while not done:
+      try:
+        os.remove("tmp")
+        done = True
+      except Exception:
+        pass
+
 
     if key not in p:
       raise ValueError(f"{key} is not in properties {section} (language {get_language()})")
