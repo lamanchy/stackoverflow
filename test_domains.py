@@ -44,11 +44,11 @@ def get_value_color(value):
     if 0 < value < 21:
       return "green-int"
 
-    if -20 <= value <= 100:
+    if -10 <= value <= 50:
       if value < 0: return "yellow-int-"
       return "yellow-int+"
 
-    if -200 <= value <= 200:
+    if -20 <= value <= 100:
       if value < 0: return "red-int-"
       return "red-int+"
 

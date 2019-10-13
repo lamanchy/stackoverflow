@@ -23,7 +23,7 @@ color_regexes = [
   (r"(-|\.)(?=\d)", "blue"),
   (r"(√|π|pi|inf)", "blue"),
   (
-    r'(?:^|\s|\(|\[)(round|range|abs|max|min|floor|len|gcd|lcm|nsd|nsn|is_prime|prime|sqrt|ceil|log2|sin|int|str'
+    r'(?:^|\s|\(|\[|{)(round|range|abs|max|min|floor|len|gcd|lcm|nsd|nsn|is_prime|prime|sqrt|ceil|log2|sin|int|str'
     r'|pow|float|eval|sign|isnan|input|get_all_cards|shuffle|all|enumerate'
     r'|isinf|ZeroDivisionError|ValueError|TypeError|RecursionError|Exception)(?=\(|:|\s|\)|,|$)',
     "violet"),
@@ -31,7 +31,13 @@ color_regexes = [
    r'|is|except|try|as)(?=\W|:|\))', "orange"),
   (r'def (\w*)', "yellow"),
   (r"'[^'\n]*'", "green"),
-  (r'"[^"]*"', "green"),
+  (r"(?:[\s\(])\"[^\"]*\"", "green"),
+  (r"(f\"[^{]*)(?:{)(?:[^:]*)(?::)(?:[^}]*)(?:})(?:[^\"]*\")", "green"),
+  (r"(?:f\"[^{]*)({)(?:[^:]*)(?::)(?:[^}]*)(?:})(?:[^\"]*\")", "orange"),
+  (r"(?:f\"[^{]*)(?:{)(?:[^:]*)(:)(?:[^}]*)(?:})(?:[^\"]*\")", "orange"),
+  (r"(?:f\"[^{]*)(?:{)(?:[^:]*)(?::)(?:[^}]*)(})(?:[^\"]*\")", "orange"),
+  (r"(?:f\"[^{]*)(?:{)(?:[^:]*)(?::)([^}]*)(?:})(?:[^\"]*\")", "green"),
+  (r"(?:f\"[^{]*)(?:{)(?:[^:]*)(?::)(?:[^}]*)(?:})([^\"]*\")", "green"),
   (r'#.*', "grey"),
   (r'①', "green"),
   (r'②', "yellow"),

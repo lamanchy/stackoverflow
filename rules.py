@@ -32,19 +32,19 @@ def get_rules():
     ],
     "yellow": [  # 16 6-9
       # 6
-      lambda x: x - 25,
-      lambda x: x - 128,
-      lambda x: 151 - x,
-      lambda x: 38 - x,
+      lambda x: x - 7,
+      lambda x: x - 12,
+      lambda x: 40 - x,
+      lambda x: 10 - x,
 
       # 7
-      lambda x: x // -6,
-      lambda x: -5 * x,
-      lambda x: 100 // x,
+      lambda x: x // -4,
+      lambda x: -2 * x + 40,
+      lambda x: 50 // x,
       lambda x: x % 25,
 
       # 8
-      lambda x: x * (x // 4),
+      lambda x: ceil(x / 4) ** 2,
       lambda x: sin(pi * x / 2) - 2,
       split_by_int,
       last_negative,
@@ -54,17 +54,16 @@ def get_rules():
       if_equal_or_not,
       for_cycle,
       while_cycle,
-
     ],
     "red": [  # 16 10KQJ
       # 10
       lambda x: ceil(sqrt(10 + x)),
-      lambda x: floor(log2(90 - x)),
+      lambda x: floor(log2(68 - x)),
       int_from_list,
       ints_from_list,
 
       # # J can use floats
-      lambda x: x + 0.5,
+      lambda x: x + 20.5,
       lambda x: -0.5 * x,
       lambda x: x / 1.5,
       lambda x: 1 / x,
@@ -132,8 +131,8 @@ def if_prime(x):
 #  MAX FUNCTION LINES 7 !!!!!
 
 def if_greater_or_less(x):
-  if x < 5:   return 66
-  if x > 66:  return 5
+  if x < 3:   return 33
+  if x > 15:  return 28
   return 42
 
 
@@ -141,8 +140,10 @@ def if_greater_or_less(x):
 #  MAX FUNCTION LINES 7 !!!!!
 
 def if_equal_or_not(x):
-  if   x == 10:  x += 66
-  elif x != 66:  x -= 10
+  if x == 10:
+    x += 33
+  elif x != 33:
+    x -= 10
   else:
     return x // 10
 
@@ -177,10 +178,10 @@ def int_from_list(x):
 
 #  MAX LINE LENGTH 29 SIGNS!!
 def ints_from_list(x):
-  # index:  0123456789
-  string = "176485923074"
-  a = x % 10
-  b = a + (x % 3) + 1
+  # index:  012345678
+  string = "4269581730"
+  a = x % 9
+  b = a + (x % 2) + 1
   return int(string[a:b])
 
 
@@ -200,17 +201,17 @@ def last_negative(x):
 #  MAX LINE LENGTH 29 SIGNS!!
 
 def switch_places(x):
-  y = abs(x)
-  s = "{0:.2f}".format(y)
+  # TODO coloring of that
+  s = f"{abs(x):.2f}"
   a, b = s.split(".")
   result = float(b + "." + a)
-  return result * sign(x)
+  return result
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
 
 def increment_digits(x):
-  s = "{0:.2f}".format(x)
+  s = f"{x:.2f}"
   for i in "9876543210":
     new = str(1 + int(i))[-1]
     s = s.replace(i, new)
@@ -229,35 +230,36 @@ def reverse(x):
 def subtract_madness(x):
   if isnan(x) or isinf(x):  # DEBUG this line wont be printed
     raise ValueError  # DEBUG this line wont be printed
-  s = "{0:.2f}".format(x)
+  s = f"{x:.2f}"
   s = s.replace('.', '--')
   return eval('-'.join(s))
 
 
 @functools.lru_cache(None)
 def r_subtract(x):
-  if x <= 0:
+  if x <= 30:
     return x
 
-  x -= 60
-  if x >= 0: x %= 60  # DEBUG this line wont be printed
+  x -= 40
+  if x >= 0: x %= 40  # DEBUG this line wont be printed
   return r_subtract(x)
 
 
 @functools.lru_cache(None)
 def r_divide(x):
+  if x <= -1: raise RecursionError  # DEBUG this line wont be printed
   if x == 0:
     return 0
 
   x = floor(x / 3)
-  return 1 + r_divide(x)
+  return 10 + r_divide(x)
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
 
 @functools.lru_cache(None)
 def double_r(x):
-  if -1 <= x <= 10: return -x
+  if -1 <= x <= 20: return x
 
   result = double_r(x // 100)
   result += double_r(x // 10)
@@ -269,7 +271,7 @@ def double_r(x):
 
 @functools.lru_cache(None)
 def r_multiply(x):
-  if x % 8 == 0:
+  if x % 4 == 0:
     return x
 
   result = r_multiply(2 * x)
