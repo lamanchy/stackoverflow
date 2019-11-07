@@ -143,7 +143,7 @@ def generate_box(name):
         ), color)
 
         if i == 0 and diff == 1:
-          card = BackCard(px_to_mm(w), px_to_mm(l), True, "orange").get_card().rotate(180)
+          card = BackCard(px_to_mm(w), px_to_mm(l), True, "orange").get_card()
           page.paste(card, (margin + h, margin + mx), mask=card)
 
         if i == 1:

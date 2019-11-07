@@ -5,7 +5,6 @@ from cards.colored_card import ColoredCard
 from colors import getrgb
 from pil_quality_pdf.fonts import get_font
 from pil_quality_pdf.rendering import mm_to_px
-from pil_quality_pdf.transformation import rotate
 
 
 class BackCard(ColoredCard):
@@ -24,7 +23,7 @@ class BackCard(ColoredCard):
       self.paste_centered_rectangle(card, delta, color)
 
     self.write_logo(card)
-    return rotate(card, 180)
+    return card
 
   def write_logo(self, card):
     draw = ImageDraw.Draw(card)
