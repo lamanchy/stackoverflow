@@ -36,7 +36,7 @@ class FunctionCard(PlayingCardFront):
   @staticmethod
   def get_all_functions():
     fns = []
-    for color in ["green", "yellow", "red"]:
+    for color in ["green", "yellow", "red", "white"]:
       for fn in get_rules()[color]:
         fns.append(TwoSidedCard(FunctionCard(color, fn), PlayingCardBack("yellow")))
 

@@ -82,6 +82,12 @@ def get_rules():
 
       # A
       lambda x: inf,
+    ],
+    "white": [
+      my_function_1,
+      my_function_2,
+      my_function_3,
+      my_function_4,
     ]
   }
 
@@ -172,24 +178,24 @@ def while_cycle(x):
 
 def int_from_list(x):
   # index:  0123456789
-  string = "9578124630"
-  return int(string[x % 10])
+  digits = "9578124630"
+  return int(digits[x % 10])
 
 
 #  MAX LINE LENGTH 29 SIGNS!!
 def ints_from_list(x):
   # index:  012345678
-  string = "4269581730"
+  digits = "4269581730"
   a = x % 9
   b = a + (x % 2) + 1
-  return int(string[a:b])
+  return int(digits[a:b])
 
 
 def split_by_int(x):
   x = str(int(x) % 10)
 
-  string = "376326492"
-  parts = string.split(x)
+  digits = "376326492"
+  parts = digits.split(x)
   return len(parts) - 4
 
 
@@ -201,7 +207,6 @@ def last_negative(x):
 #  MAX LINE LENGTH 29 SIGNS!!
 
 def switch_places(x):
-  # TODO coloring of that
   s = f"{abs(x):.2f}"
   a, b = s.split(".")
   result = float(b + "." + a)
@@ -265,6 +270,29 @@ def double_r(x):
   result += double_r(x // 10)
   return result
 
+
+def my_function_1(x):
+  # TODO def_my_fn_message
+
+  return x
+
+
+def my_function_2(x):
+  # TODO def_my_fn_message
+
+  return x
+
+
+def my_function_3(x):
+  # TODO def_my_fn_message
+
+  return x
+
+
+def my_function_4(x):
+  # TODO def_my_fn_message
+
+  return x
 
 #  MAX LINE LENGTH 29 SIGNS!!
 

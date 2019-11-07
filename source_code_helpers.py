@@ -69,7 +69,7 @@ def colorify_string(string):
   return colors
 
 
-variables = ["string", "digit", "parts", "count", "result", "new", "lcm", "gcd"]
+variables = ["digits", "string", "digit", "parts", "count", "result", "new", "lcm", "gcd", "def_my_fn_message"]
 
 
 def translate_functions(string):
@@ -82,6 +82,8 @@ def translate_functions(string):
 
   for variable in variables:
     string = string.replace(variable, translate("variables", variable))
+    if variable == "string" and len(translate("variables", variable)) == len(variable) - 1:
+      string = string.replace("# index:  012345678", "# index: 012345678")
 
   return string
 

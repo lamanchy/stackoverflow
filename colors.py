@@ -10,6 +10,7 @@ color_codes = {
   "violet": "rgb(169,168,255)",
   "orange": "rgb(230,142,71)",
   "yellow": "#FFC66D",
+  "bright_yellow": "#A8C023",
   "green": "rgb(100,183,70)",
   "grey": "rgb(166,166,166)",
   "red": "rgb(216,69,65)",
@@ -29,6 +30,7 @@ color_regexes = [
     "violet"),
   (r'(?:^|\s|=)(lambda|def|if|while|and|or|else|elif|for|in|return|None|global'
    r'|is|except|try|as)(?=\W|:|\))', "orange"),
+  (r'pass', "orange"),
   (r'def (\w*)', "yellow"),
   (r"'[^'\n]*'", "green"),
   (r"(?:[\s\(])\"[^\"]*\"", "green"),
@@ -39,6 +41,7 @@ color_regexes = [
   (r"(?:f\"[^{]*)(?:{)(?:[^:]*)(?::)([^}]*)(?:})(?:[^\"]*\")", "green"),
   (r"(?:f\"[^{]*)(?:{)(?:[^:]*)(?::)(?:[^}]*)(?:})([^\"]*\")", "green"),
   (r'#.*', "grey"),
+  (r'# TODO.*', "bright_yellow"),
   (r'①', "green"),
   (r'②', "yellow"),
   (r'③', "red"),
