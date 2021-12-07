@@ -146,10 +146,8 @@ def if_greater_or_less(x):
 #  MAX FUNCTION LINES 7 !!!!!
 
 def if_equal_or_not(x):
-  if x == 10:
-    x += 33
-  elif x != 33:
-    x -= 10
+  if x == 10:   x += 33
+  elif x != 33: x -= 10
   else:
     return x // 10
 
